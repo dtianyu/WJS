@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"          
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template/mainTemplate.xhtml">
+
+            <ui:define name="left">
+                <div id="leftMenuBar">
+                    <ul id="leftNavMenu">
+                        <li  id="active" class="menuActive"><div><a href="/WJS-war/faces/newsList.xhtml" >网上办事</a></div></li>
+                        <li class="menu"><div><a href="/WJS-war/faces/noticeList.xhtml" >表格下载</a></div></li>                     
+                        <div><a href="/WJS-war/faces/complaintDetail.xhtml"><img src="resources/img/toplink02.jpg" style="height:68px ;width: 230px;"/></a></div>
+                        <div><a href="/WJS-war/faces/complaintDetail.xhtml"><img src="resources/img/toplink03.jpg" style="height:68px ;width: 230px;"/></a></div>
+                    </ul> 
+                </div>
+            </ui:define>
+
+            <ui:define name="right">
+                <div class="topTitle">
+                    <div style="padding-left: 10px;padding-top: 10px;">
+                        <a class="topTileText">投诉举报</a>                             
+                        <a class="quicklink">投诉举报</a><span class="quicklink">|</span><a class="quicklink" href="/">首页</a><span class="quicklink">当前位置：</span>
+                    </div>
+                </div>
+                <div style="width: 730px;height: 420px;">
+                    <h:form id="formNew"> 
+                        <p:growl id="growl" showSummary="false" showDetail="true" autoUpdate="true" sticky="true"/>
+                        <ul class="newComplaint">
+                            <li>
+                                <span>姓名:</span>
+                                <p:inputText style="width: 220px;" id="name" value="#{complaintManagedBean.newEntity.name}" title="Name" required="true" requiredMessage="姓名不能空白">
+                                    <f:validateLength minimum="2" maximum="8" />
+                                </p:inputText><font color="red">*</font>请输入真实姓名
+                            </li>
+                            <li>
+                                <span>联系电话:</span>
+                                <p:inputText style="width: 220px;" id="tel" value="#{complaintManagedBean.newEntity.tel}" 
+                                             required="true" requiredMessage="联系电话不能空白" validatorMessage="联系电话格式不正确">
+                                    <f:validateRegex pattern="^([0-9]{3,4})([\-]{0,1})([0-9]{7,8})$" /> 
+                                </p:inputText><font color="red">*</font>请输入11位手机号码或021-57330000格式固定电话号码
+                            </li>
+                            <li>
+                                <span>电子邮箱:</span>
+                                <p:inputText style="width: 220px;" id="mailadd" value="#{complaintManagedBean.newEntity.mailadd}" required="false" validatorMessage="邮箱格式不正确" >
+                                    <f:validateRegex pattern="^([a-zA-Z0-9_\-\.]+)@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$"/>
+                                </p:inputText><font color="red">*</font>
+                            </li>
+                            <li>
+                                <span>联系地址:</span>
+                                <p:inputText style="width: 420px;" id="address" value="#{complaintManagedBean.newEntity.address}" />
+                            </li>
+                            <li>
+                                <span>标题:</span>
+                                <p:inputText style="width: 420px;" id="title" value="#{complaintManagedBean.newEntity.title}" 
+                                             required="true" requiredMessage="标题不能空白"  validatorMessage="标题长度需要大于6个字">
+                                    <f:validateLength minimum="6"/>
+                                </p:inputText><font color="red">*</font>标题长度需要大于6个字
+                            </li>
+                            <li style="height: 100px;">
+                                <span>内容:</span>
+                                <p:inputTextarea rows="6" cols="30" id="content" value="#{complaintManagedBean.newEntity.content}" title="Content"  style="width:420px;"
+                                                 required="true" requiredMessage="内容不能空白"/> <font color="red">*</font>
+                            </li>
+                            <p:commandButton id="btnSave" action="#{complaintManagedBean.persist()}"  icon="ui-icon-disk" value="提交" 
+                                             style="margin-top: 20px;margin-left:  460px;" update="@form" />      
+                        </ul>
+                    </h:form>
+                    <div id="afterSubmitComplaint" class="nodisplay">
+                        <h1 style="margin-top: 60px; text-align: center;">
+                            我们将尽快受理您的案件，谢谢您提供的信息！
+                        </h1>
+                    </div>
+                </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

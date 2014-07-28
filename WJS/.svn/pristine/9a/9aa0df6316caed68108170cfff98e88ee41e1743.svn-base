@@ -1,0 +1,59 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.control;
+
+import com.wjs.entity.Image;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
+/**
+ *
+ * @author C0160
+ */
+@ManagedBean(name = "imageSwitchManagedBean")
+@RequestScoped
+public class ImageSwitchManagedBean {
+
+    private List<Image> imageList;
+
+    /**
+     * Creates a new instance of TopImageSwitchManagedBean
+     */
+    @PostConstruct
+    public void construct() {
+        setImageList(new ArrayList<Image>());
+        init();
+    }
+
+    public ImageSwitchManagedBean() {
+
+    }
+
+    public void init() {
+        imageList.add(new Image("newsImage01.jpg", "2014年上海市卫生计生工作会议召开"));
+        imageList.add(new Image("newsImage02.jpg", "市卫生计生委主任沈晓初看望慰问老同志"));
+        imageList.add(new Image("newsImage03.jpg", "上海市突发急性传染病防控和突发中毒事件应急处置技能竞赛"));
+        imageList.add(new Image("newsImage04.jpg", "国家卫生计生委副主任王国强在沪调研妇幼健康服务和中医药工作"));
+    }
+
+    /**
+     * @return the imageList
+     */
+    public List<Image> getImageList() {
+        return imageList;
+    }
+
+    /**
+     * @param imageList the imageList to set
+     */
+    public void setImageList(List<Image> imageList) {
+        this.imageList = imageList;
+    }
+
+}

@@ -1,0 +1,78 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.query;
+
+import com.wjs.ebj.NewsBean;
+import com.wjs.entity.News;
+import com.wjs.lazy.NewsModel;
+import com.wjs.mbi.SuperQueryBean;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
+/**
+ *
+ * @author kevintung
+ */
+@ManagedBean(name = "newsQueryBean")
+@RequestScoped
+public class NewsQueryBean extends SuperQueryBean<News> {
+
+    @EJB
+    protected NewsBean newsBean;
+
+    /**
+     * Creates a new instance of NewsManagedBean
+     */
+    public NewsQueryBean() {
+    }
+
+    @Override
+    public void init() {
+        setTopList(getNewsBean().findTop(10));
+        if (!getTopList().isEmpty()) {
+            setCurrentEntity(getTopList().get(0));
+        }
+        setModel(new NewsModel(getNewsBean()));
+        if (getId() != null) {
+            setCurrentEntity(getNewsBean().getById(getId()));
+            if (getCurrentEntity() != null) {
+                setPrev(getNewsBean().getPrevById(getId()));
+                if (prev.getId() == 0) {
+                    setHasPrev(false);
+                } else {
+                    setHasPrev(true);
+                }
+                setNext(getNewsBean().getNextById(getId()));
+                if (next.getId() == 0) {
+                    setHasNext(false);
+                } else {
+                    setHasNext(true);
+                }
+            }
+        }
+    }
+
+    @Override
+    public String viewList() {
+        return "newsList.xhtml";
+    }
+
+    /**
+     * @return the newsBean
+     */
+    public NewsBean getNewsBean() {
+        return newsBean;
+    }
+
+    /**
+     * @param newsBean the newsBean to set
+     */
+    public void setNewsBean(NewsBean newsBean) {
+        this.newsBean = newsBean;
+    }
+
+}

@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"          
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template/mainTemplate.xhtml">
+
+            <ui:define name="left">
+                left
+            </ui:define>
+
+            <ui:define name="right">
+                <div class="topTitle">
+                    <div style="padding-left: 10px;padding-top: 10px;">
+                        <a class="pageTile">投诉举报</a>                             
+                        <a class="quicklink">投诉举报</a><span class="quicklink">|</span><a class="quicklink" href="/">首页</a><span class="quicklink">当前位置：</span>
+                    </div>
+                </div>
+                <h:form id='formNew'>
+                    <p:growl id="growl" showSummary="false" showDetail="true" autoUpdate="true" sticky="true"/>
+                    
+                    <h:panelGrid id='plgNew' columns="4" columnClasses="w080,w100,w100,w200"  styleClass="plgDialog topHeight" >
+                        <h:outputLabel value="姓名:" for="name" />
+                        <p:inputText id="name" value="#{complaintManagedBean.newEntity.name}" title="Name" required="true" requiredMessage="姓名不能为空"/><font color="red">*</font>
+                        <p:message for="name"/>
+                        <h:outputLabel value="联系电话:" for="tel" />
+                        <p:inputText id="tel" value="#{complaintManagedBean.newEntity.tel}" title="" required="true" requiredMessage="联系电话不能为空"/><font color="red">*</font>
+                        <p:message for="tel"/>
+                        <h:outputLabel value="电子邮箱:" for="mailadd" />
+                        <p:inputText id="mailadd" value="#{complaintManagedBean.newEntity.mailadd}" title="Mailadd" /><font color="red">*</font>
+                        <p:message for="mailadd"/>
+                        <h:outputLabel value="联系地址:" for="address" />
+                        <p:inputText id="address" value="#{complaintManagedBean.newEntity.address}" title="Address" /><font color="red">*</font>
+                        <p:message for="address"/>
+                        <h:outputLabel value="标题:" for="title" />
+                        <p:inputText id="title" value="#{complaintManagedBean.newEntity.title}" title="Title" required="true" requiredMessage="标题不能空白"/><font color="red">*</font>
+                        <p:message for="title"/>
+                    </h:panelGrid>  
+                    <h:panelGrid id='plgNewContent'columns="4" columnClasses="w080,w400,w040,w160">
+                        <h:outputLabel value="内容:" for="content" />
+                        <p:inputTextarea rows="4" cols="30" id="content" value="#{complaintManagedBean.newEntity.content}" title="Content"  style="width:390px;"
+                                         required="true" requiredMessage="内容不能空白"/> <font color="red">*</font>
+                        <p:message for="content"/>
+                        <f:facet name="footer">
+                            <p:commandButton id="btnSave" action="#{complaintManagedBean.persist()}"  icon="ui-icon-disk" value="提交" 
+                                             style="margin-left:  432px;"  update="@form" oncomplete="submitComplaint;"/>
+                        </f:facet> 
+                    </h:panelGrid>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

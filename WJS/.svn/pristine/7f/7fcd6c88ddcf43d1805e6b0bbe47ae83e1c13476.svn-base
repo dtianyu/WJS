@@ -1,0 +1,136 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.query;
+
+import com.sun.faces.util.DebugUtil;
+import com.wjs.ebj.KnowledgeBean;
+import com.wjs.entity.Knowledge;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import org.primefaces.context.RequestContext;
+
+/**
+ *
+ * @author kevintung
+ */
+@ManagedBean(name = "knowledgeQueryBean")
+@RequestScoped
+public class KnowledgeQueryBean {
+
+    @EJB
+    private KnowledgeBean knowledgeBean;
+
+    private Knowledge currentKnowledge;
+    private List<Knowledge> knowledgeList;
+    private List<Knowledge> topList;
+
+    /**
+     * Creates a new instance of KnowledgeQueryManagedBean
+     */
+    public KnowledgeQueryBean() {
+    }
+
+    @PostConstruct
+    public void construct() {
+        init();
+    }
+
+    @PreDestroy
+    public void destroy() {
+        if (getTopList() != null) {
+            getTopList().clear();
+            setTopList(null);
+        }
+        if (getKnowledgeList() != null) {
+            getKnowledgeList().clear();
+            setKnowledgeList(null);
+        }
+        setCurrentKnowledge(null);
+    }
+
+    public void init() {
+        setTopList(knowledgeBean.findTop());
+        if (!getTopList().isEmpty()) {
+            setCurrentKnowledge(getTopList().get(0));
+        }
+    }
+
+    public String view(Knowledge entity) {
+        if (entity != null) {
+            setCurrentKnowledge(entity);
+        }
+        return "KnowledgeDetail";
+    }
+
+    public String viewList() {
+        setKnowledgeList(knowledgeBean.retrieve());
+        if (!getKnowledgeList().isEmpty()) {
+            setCurrentKnowledge(getKnowledgeList().get(0));
+        }
+        return "KnowledgeList";
+    }
+
+    /**
+     * @return the knowledgeBean
+     */
+    public KnowledgeBean getKnowledgeBean() {
+        return knowledgeBean;
+    }
+
+    /**
+     * @param knowledgeBean the knowledgeBean to set
+     */
+    public void setKnowledgeBean(KnowledgeBean knowledgeBean) {
+        this.knowledgeBean = knowledgeBean;
+    }
+
+    /**
+     * @return the currentKnowledge
+     */
+    public Knowledge getCurrentKnowledge() {
+        return currentKnowledge;
+    }
+
+    /**
+     * @param currentKnowledge the currentKnowledge to set
+     */
+    public void setCurrentKnowledge(Knowledge currentKnowledge) {
+        this.currentKnowledge = currentKnowledge;
+    }
+
+    /**
+     * @return the knowledgeList
+     */
+    public List<Knowledge> getKnowledgeList() {
+        return knowledgeList;
+    }
+
+    /**
+     * @param knowledgeList the knowledgeList to set
+     */
+    public void setKnowledgeList(List<Knowledge> knowledgeList) {
+        this.knowledgeList = knowledgeList;
+    }
+
+    /**
+     * @return the topList
+     */
+    public List<Knowledge> getTopList() {
+        return topList;
+    }
+
+    /**
+     * @param topList the topList to set
+     */
+    public void setTopList(List<Knowledge> topList) {
+        this.topList = topList;
+    }
+
+}

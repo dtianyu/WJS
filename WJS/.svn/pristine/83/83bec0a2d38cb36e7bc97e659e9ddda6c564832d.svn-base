@@ -1,0 +1,82 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.query;
+
+import com.wjs.ebj.MediaBean;
+import com.wjs.entity.Media;
+import com.wjs.lazy.MediaModel;
+import com.wjs.web.SuperQueryBean;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
+/**
+ *
+ * @author kevintung
+ */
+@ManagedBean(name = "mediaQueryBean")
+@RequestScoped
+public class MediaQueryBean extends SuperQueryBean<Media> {
+
+    @EJB
+    private MediaBean mediaBean;
+
+    /**
+     * Creates a new instance of MediaQueryBean
+     */
+    public MediaQueryBean() {
+    }
+
+    @Override
+    public void init() {
+        setTopList(mediaBean.findTop(8));
+        if (!getTopList().isEmpty()) {
+            setCurrentEntity(getTopList().get(0));
+        }
+        setModel(new MediaModel(mediaBean, com.wjs.web.Scope.Query));
+        if (getId() != null) {
+            setCurrentEntity(mediaBean.getById(getId()));
+            if (getCurrentEntity() != null) {
+                setPrev(mediaBean.getPrevById(getId()));
+                if (prev.getId() == 0) {
+                    setHasPrev(false);
+                } else {
+                    setHasPrev(true);
+                }
+                setNext(mediaBean.getNextById(getId()));
+                if (next.getId() == 0) {
+                    setHasNext(false);
+                } else {
+                    setHasNext(true);
+                }
+            } else {
+                setCurrentEntity(new Media(0, "没有相关资料"));
+                setHasPrev(false);
+                setHasNext(false);
+            }
+        }
+    }
+
+    @Override
+    public String viewList() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /**
+     * @return the mediaBean
+     */
+    public MediaBean getMediaBean() {
+        return mediaBean;
+    }
+
+    /**
+     * @param mediaBean the mediaBean to set
+     */
+    public void setMediaBean(MediaBean mediaBean) {
+        this.mediaBean = mediaBean;
+    }
+
+}

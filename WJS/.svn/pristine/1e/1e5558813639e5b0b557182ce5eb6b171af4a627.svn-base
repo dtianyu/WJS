@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <h:form id="formleft">   
+            <div id="leftMenuBar">
+                <ul id="leftNavMenu">
+                    <li id="active" class="menuActive"><div><a href="/WJS-war/faces/orgFun.xhtml" >监督职能</a></div></li>
+                    <li class="menu"><div><a href="/WJS-war/faces/orgLeader.xhtml" >领导班子</a></div></li>                     
+                    <li class="menu"><div><a href="/WJS-war/faces/orgInfo.xhtml">机构设置</a></div></li>
+                </ul> 
+            </div>
+            <p:panelMenu rendered="false"> 
+
+            </p:panelMenu>
+        </h:form>
+
+    </ui:composition>
+
+</html>
+

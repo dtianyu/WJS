@@ -1,0 +1,140 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.query;
+
+import com.wjs.ebj.NoticeBean;
+import com.wjs.entity.Notice;
+import com.wjs.lazy.NoticeModel;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import org.primefaces.model.LazyDataModel;
+
+/**
+ *
+ * @author C0160
+ */
+@ManagedBean
+@RequestScoped
+public class NoticeQueryBean {
+
+    @EJB
+    private NoticeBean noticeBean;
+
+    private String id;
+    private Notice currentNotice;
+    private List<Notice> topList;
+
+    private LazyDataModel<Notice> model;
+
+    /**
+     * Creates a new instance of NoticeRequestBean
+     */
+    public NoticeQueryBean() {
+
+    }
+
+    @PostConstruct
+    public void construct() {
+        init();
+        model = new NoticeModel(noticeBean);
+    }
+
+    @PreDestroy
+    public void destory() {
+        if (getTopList() != null) {
+            getTopList().clear();
+            setTopList(null);
+        }
+        setCurrentNotice(null);
+    }
+
+    public void init() {
+        setTopList(noticeBean.findTop());
+        if (!getTopList().isEmpty()) {
+            setCurrentNotice(getTopList().get(0));
+        }
+    }
+
+    public String viewList() {
+        return "noticeList.xhtml";
+    }
+
+    /**
+     * @return the currentNotice
+     */
+    public Notice getCurrentNotice() {
+        return noticeBean.getById(id);
+//        return currentNotice;
+    }
+
+    /**
+     * @param currentNotice the currentNotice to set
+     */
+    public void setCurrentNotice(Notice currentNotice) {
+        this.currentNotice = currentNotice;
+    }
+
+    /**
+     * @return the topNotice
+     */
+    public List<Notice> getTopList() {
+        return topList;
+    }
+
+    /**
+     * @param topList the topNotice to set
+     */
+    public void setTopList(List<Notice> topList) {
+        this.topList = topList;
+    }
+
+    /**
+     * @return the noticeBean
+     */
+    public NoticeBean getNoticeBean() {
+        return noticeBean;
+    }
+
+    /**
+     * @param noticeBean the noticeBean to set
+     */
+    public void setNoticeBean(NoticeBean noticeBean) {
+        this.noticeBean = noticeBean;
+    }
+
+    /**
+     * @return the model
+     */
+    public LazyDataModel getModel() {
+        return model;
+    }
+
+    /**
+     * @param model the model to set
+     */
+    public void setModel(LazyDataModel model) {
+        this.model = model;
+    }
+
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+}

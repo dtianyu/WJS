@@ -1,0 +1,41 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.query;
+
+import javax.inject.Named;
+import javax.enterprise.context.RequestScoped;
+
+/**
+ *
+ * @author kevintung
+ */
+@Named(value = "searchQueryBean")
+@RequestScoped
+public class SearchQueryBean {
+
+    private String search;
+
+    /**
+     * Creates a new instance of SearchQueryBean
+     */
+    public SearchQueryBean() {
+    }
+
+    /**
+     * @return the search
+     */
+    public String getSearch() {
+        return search;
+    }
+
+    /**
+     * @param search the search to set
+     */
+    public void setSearch(String search) {
+        this.search = search;
+    }
+
+}

@@ -1,0 +1,232 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.control;
+
+import com.wjs.ebj.NoticeBean;
+import com.wjs.entity.Notice;
+import com.wjs.mbi.ManagedBeanDataOperation;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+/**
+ *
+ * @author kevintung
+ */
+@ManagedBean(name = "noticeManagedBean")
+@SessionScoped
+public class NoticeManagedBean implements ManagedBeanDataOperation<Notice> {
+
+    @EJB
+    private NoticeBean noticeBean;
+
+    private Notice currentEntity;
+    private Notice newEntity;
+    private List<Notice> entityList;
+    @ManagedProperty("#{userManagedBean}")
+    private UserManagedBean userManagedBean;
+
+    /**
+     * Creates a new instance of NoticeManagedBean
+     */
+    public NoticeManagedBean() {
+    }
+
+    @PostConstruct
+    public void construct() {
+        init();
+        create();
+    }
+
+    @PreDestroy
+    public void destory() {
+        if (getEntityList() != null) {
+            getEntityList().clear();
+            setEntityList(null);
+        }
+        setCurrentEntity(null);
+        setNewEntity(null);
+    }
+
+    @Override
+    public void init() {
+        setEntityList(retrieve());
+        if (!getEntityList().isEmpty()) {
+            setCurrentEntity(getEntityList().get(0));
+        }
+    }
+
+    @Override
+    public void create() {
+        if (getNewEntity() == null) {
+            Notice entity = new Notice();
+            entity.setOntop(false);
+            entity.setStatus("N");
+            entity.setCreator(getUserManagedBean().getCurrentUser().getUserid());
+            entity.setCredate(getUserManagedBean().getDate());
+            setNewEntity(entity);
+        }
+    }
+
+    @Override
+    public void delete(Notice entity) {
+        if (entity != null) {
+            try {
+                noticeBean.delete(entity);
+                if (getEntityList().contains(entity)) {
+                    getEntityList().remove(entity);
+                }
+            } catch (Exception e) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(null,e.getMessage()));
+            }
+            init();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(null,"删除成功！"));
+        }
+    }
+
+    @Override
+    public void edit(Notice entity) {
+        if (entity != null) {
+            setCurrentEntity(entity);
+        }
+    }
+
+    @Override
+    public void save() {
+        if (currentEntity != null) {
+            try {
+                currentEntity.setOptuser(userManagedBean.getUserid());
+                currentEntity.setOptdate(userManagedBean.getDate());
+                noticeBean.update(currentEntity);
+            } catch (Exception e) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(null, e.toString()));
+            }
+            init();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(null,"更新成功！"));
+        }
+    }
+
+    @Override
+    public void persist() {
+        if (getNewEntity() != null) {
+            try {
+                noticeBean.persist(getNewEntity());
+                if (!getEntityList().contains(getNewEntity())) {
+                    getEntityList().add(getNewEntity());
+                }
+            } catch (Exception e) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(null,e.getMessage()));
+            }
+            setNewEntity(null);
+            init();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(null,"更新成功！"));
+        }
+    }
+
+    @Override
+    public List<Notice> retrieve() {
+        return noticeBean.findAll();
+    }
+
+    @Override
+    public void sendNotification(Notice entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void view(Notice entity) {
+        if (entity != null) {
+            setCurrentEntity(entity);
+        }
+    }
+
+    @Override
+    public void verify() {
+        //To change body of generated methods, choose Tools | Templates.
+        if (getCurrentEntity() != null) {
+            getCurrentEntity().setCfmuser(userManagedBean.getUserid());
+            getCurrentEntity().setCfmdate(userManagedBean.getDate());
+            getCurrentEntity().setStatus("V");
+            save();
+        }
+    }
+
+    @Override
+    public void unverify() {
+        //To change body of generated methods, choose Tools | Templates.
+        if (getCurrentEntity() != null) {
+            getCurrentEntity().setCfmuser(null);
+            getCurrentEntity().setCfmdate(null);
+            getCurrentEntity().setOptuser(userManagedBean.getUserid());
+            getCurrentEntity().setOptdate(userManagedBean.getDate());
+            getCurrentEntity().setStatus("M");
+            save();
+        }
+    }
+
+    /**
+     * @return the currentEntity
+     */
+    public Notice getCurrentEntity() {
+        return currentEntity;
+    }
+
+    /**
+     * @param currentEntity the currentEntity to set
+     */
+    public void setCurrentEntity(Notice currentEntity) {
+        this.currentEntity = currentEntity;
+    }
+
+    /**
+     * @return the newEntity
+     */
+    public Notice getNewEntity() {
+        return newEntity;
+    }
+
+    /**
+     * @param newEntity the newEntity to set
+     */
+    public void setNewEntity(Notice newEntity) {
+        this.newEntity = newEntity;
+    }
+
+    /**
+     * @return the news
+     */
+    public List<Notice> getEntityList() {
+        return entityList;
+    }
+
+    /**
+     * @param newsList the news to set
+     */
+    public void setEntityList(List<Notice> newsList) {
+        this.entityList = newsList;
+    }
+
+    /**
+     * @return the userManagedBean
+     */
+    public UserManagedBean getUserManagedBean() {
+        return userManagedBean;
+    }
+
+    /**
+     * @param userManagedBean the userManagedBean to set
+     */
+    public void setUserManagedBean(UserManagedBean userManagedBean) {
+        this.userManagedBean = userManagedBean;
+    }
+
+}

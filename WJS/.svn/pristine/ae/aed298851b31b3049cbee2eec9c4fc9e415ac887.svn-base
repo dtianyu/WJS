@@ -1,0 +1,94 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.lazy;
+
+import com.wjs.entity.License;
+import com.wjs.ebj.LicenseBean;
+import java.util.List;
+import java.util.Map;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
+
+/**
+ *
+ * @author C0160
+ */
+public class LicenseModel extends LazyDataModel<License> {
+
+    LicenseBean sessionBean;
+    private List<License> dataList;
+
+    private String kind;
+    
+    public LicenseModel() {
+
+    }
+
+    public LicenseModel(LicenseBean sessionBean,String kind) {
+        this.sessionBean = sessionBean;
+        this.kind = kind;      
+    }
+
+    
+    
+    @Override
+    public void setRowIndex(int rowIndex) {
+        /*
+         * The following is in ancestor (LazyDataModel):
+         * this.rowIndex = rowIndex == -1 ? rowIndex : (rowIndex % pageSize);
+         */
+        if (rowIndex == -1 || getPageSize() == 0) {
+            super.setRowIndex(-1);
+        } else {
+            super.setRowIndex(rowIndex % getPageSize());
+        }
+    }
+
+
+    @Override
+    public Object getRowKey(License entity) {
+        return entity.getId();
+    }
+
+    @Override
+    public List<License> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
+        setDataList(sessionBean.retrieve(getKind(),first, pageSize));
+        int i =sessionBean.getRowCount(kind);
+        setRowCount(i);
+        return this.dataList;
+    }
+
+    
+    /**
+     * @return the dataList
+     */
+    public List<License> getDataList() {
+        return dataList;
+    }
+
+    /**
+     * @param dataList the dataList to set
+     */
+    public void setDataList(List<License> dataList) {
+        this.dataList = dataList;
+    }
+
+    /**
+     * @return the kind
+     */
+    public String getKind() {
+        return kind;
+    }
+
+    /**
+     * @param kind the kind to set
+     */
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
+
+
+}

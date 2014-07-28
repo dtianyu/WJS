@@ -1,0 +1,51 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2014-5-21, 16:27:40
+    Author     : C0160
+*/
+
+#slides {
+    position:relative;
+    overflow: hidden;
+    width: 345px;
+    display:block;
+}
+
+#slides img{
+    width: 345px;
+    height: 250px;
+}
+
+#slides a:link, a:visited {
+    color: #fff;
+    /*font-weight : bold;*/
+    text-decoration: none;
+}
+
+#slides a:link:hover, a:visited:hover  {
+    color: #ffff66;
+    /*font-weight : bold;*/
+} 
+
+.slidesjs-container{
+}
+
+.slidesjs-navigation{position: relative;z-index: 999;float:right;margin-top:-26px;padding-right:15px;}
+.slidesjs-navigation a{font:bold 20px/normal simsun;text-decoration:none;color:#333;}
+.slidesjs-navigation a:hover{color:#C00}
+.slidesjs-previous{}
+.slidesjs-next{}
+
+.slidesjs-pagination{position: relative;z-index: 999;float:right;
+                     margin-top:-35px;
+                     padding-right:15px; }
+.slidesjs-pagination li{float:left;padding:0 3px;}
+.slidesjs-pagination li a{display:block;width: 13px;height:0;padding-top:13px;
+                          background:url("../resources/img/pagination.png") 0 0;
+                          overflow:hidden;}
+.slidesjs-pagination li a.active,.slidesjs-pagination li a:hover.active {background-position: 0 -13px}
+.slidesjs-pagination li a:hover {background-position: 0 -26px}

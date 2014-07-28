@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./template/jsfTemplate.xhtml">
+
+            <ui:define name="left">
+                <div id="leftMenuBar">
+                    <ul id="leftNavMenu">
+                        <li id="active" class="menuActive"><div><a href="/WJS-war/faces/orgFun.xhtml" >监督职能</a></div></li>
+                        <li class="menu"><div><a href="/WJS-war/faces/orgLeader.xhtml" >领导班子</a></div></li>                     
+                        <li class="menu"><div><a href="/WJS-war/faces/orgInfo.xhtml">机构设置</a></div></li>
+                    </ul> 
+                </div>
+            </ui:define>
+
+            <ui:define name="right">      
+                <h:form id="formContent">
+                    <h:outputScript library="js"  name="pageContent.js" target="head"></h:outputScript>
+                    <div class="listTitle">
+                        <div style="padding-left: 10px;padding-top: 10px;">
+                            <a class="pageTile">#{pageInfoQueryBean.currentPageInfo.title}</a>
+                            <span class="quicklink" >监督职能</span><span class="quicklink">|</span><a class="quicklink" href="/">首页</a><span class="quicklink">当前位置：</span>
+                        </div>
+                    </div>
+                    <div id="pageContent">                       
+                    </div>
+                    <div style="display: none">                     
+                        <input id="pageInfo" value="#{pageInfoQueryBean.currentPageInfo.content}"/>
+                    </div>
+                </h:form>                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

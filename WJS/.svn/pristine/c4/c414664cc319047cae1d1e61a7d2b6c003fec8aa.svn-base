@@ -1,0 +1,149 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.query;
+
+import com.wjs.ebj.SupervisionBean;
+import com.wjs.entity.Supervision;
+import com.wjs.lazy.SupervisionModel;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
+import org.primefaces.model.LazyDataModel;
+
+/**
+ *
+ * @author kevintung
+ */
+@ManagedBean(name = "supervisionQueryBean")
+@RequestScoped
+public class SupervisionQueryBean {
+
+    @EJB
+    private SupervisionBean supervisionBean;
+
+    private Supervision currentSupervision;
+
+    private List<Supervision> topList;
+
+    private LazyDataModel model;
+
+    @ManagedProperty("#{param.id}")
+    private String id;
+
+    /**
+     * Creates a new instance of SupervisionQueryBean
+     */
+    public SupervisionQueryBean() {
+    }
+
+    @PostConstruct
+    public void construct() {
+        init();
+        setModel(new SupervisionModel(supervisionBean));
+        if(id!=null){
+            setCurrentSupervision(supervisionBean.getById(id));
+        }
+    }
+
+    @PreDestroy
+    public void destory() {
+        if (getTopList() != null) {
+            getTopList().clear();
+            setTopList(null);
+        }
+        setCurrentSupervision(null);
+    }
+
+    public void init() {
+        setTopList(supervisionBean.findTop());
+        if (!getTopList().isEmpty()) {
+            setCurrentSupervision(getTopList().get(0));
+        }
+    }
+
+    public String view(Supervision entity) {
+        setCurrentSupervision(entity);
+        return "supervisionDetail";
+    }
+
+    public String viewList() {
+        return "supervisionList";
+    }
+
+    /**
+     * @return the supervisionBean
+     */
+    public SupervisionBean getSupervisionBean() {
+        return supervisionBean;
+    }
+
+    /**
+     * @param supervisionBean the supervisionBean to set
+     */
+    public void setSupervisionBean(SupervisionBean supervisionBean) {
+        this.supervisionBean = supervisionBean;
+    }
+
+    /**
+     * @return the currentSupervision
+     */
+    public Supervision getCurrentSupervision() {
+        return currentSupervision;
+    }
+
+    /**
+     * @param currentSupervision the currentSupervision to set
+     */
+    public void setCurrentSupervision(Supervision currentSupervision) {
+        this.currentSupervision = currentSupervision;
+    }
+
+    /**
+     * @return the topList
+     */
+    public List<Supervision> getTopList() {
+        return topList;
+    }
+
+    /**
+     * @param topList the topList to set
+     */
+    public void setTopList(List<Supervision> topList) {
+        this.topList = topList;
+    }
+
+    /**
+     * @return the model
+     */
+    public LazyDataModel getModel() {
+        return model;
+    }
+
+    /**
+     * @param model the model to set
+     */
+    public void setModel(LazyDataModel model) {
+        this.model = model;
+    }
+
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+}

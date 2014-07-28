@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <h:form id="formAdmin">   
+
+            <p:panelMenu rendered="true"> 
+                <p:submenu label="内容维护">
+                    <p:menuitem value="新闻维护" url="newsAdmin.xhtml" /> 
+                    <p:menuitem value="通知公告维护" url="noticeAdmin.xhtml" /> 
+                    <p:menuitem value="监督快讯维护" url="supervisionAdmin.xhtml" />
+                    <p:menuitem value="健康知识维护" url="knowledgeAdmin.xhtml" />
+                    <p:menuitem value="行政许可维护" url="licenseAdmin.xhtml" />
+                    <p:menuitem value="页面维护" url="pageAdmin.xhtml" />
+                </p:submenu>
+                <p:submenu label="党建网站"> 
+                    <p:menuitem value="党建新闻" url="#" /> 
+                    <p:menuitem value="党建动态" url="#" /> 
+                    <p:menuitem value="群教专栏" url="#" /> 
+                    <p:menuitem value="工团信息" url="#" /> 
+                </p:submenu>  
+                <p:submenu label="系统管理">
+                    <p:menuitem value="账户管理" url="userAdmin.xhtml"/> 
+                    <p:menuitem value="修改密码" url="modifyPassword.xhtml"/> 
+                </p:submenu>
+
+            </p:panelMenu>
+
+        </h:form>  
+
+    </ui:composition>
+
+</html>
+

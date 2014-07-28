@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template/jsfTemplate.xhtml">
+            <ui:define name="left">
+                <h:form id="formNotice">
+                    <div id="topNoticeDiv" class="box-shadow">
+                        <div id="topNoticeTitle" class="topTitle">
+                            <a class="topTitleText">通知公告</a>
+                            <p:commandLink value="More"  styleClass="more" action="#{noticeQueryBean.viewList()}"/>        
+                        </div>
+                        <p:dataList id="topNoticeList" value="#{noticeQueryBean.topList}" var="item" itemType="disc">          
+                            <h:outputText value="#{item.cfmdate}" >
+                                <f:convertDateTime pattern="MM/dd" />
+                            </h:outputText>
+                            <h:link outcome="noticeDetail" value="#{item.title}" style="padding-left: 10px;" >
+                                <f:param name="id" value="#{item.id}"></f:param>
+                            </h:link>
+                        </p:dataList>
+                    </div>   
+                </h:form>
+                <div id="topLink" class="box-shadow">
+                    <div><img src="resources/img/toplink01.jpg" style="height:104px ;width: 208px;"/></div>
+                    <div><img src="resources/img/toplink02.jpg" style="height:103px ;width: 208px;"/></div>
+                </div>
+                <h:form id="formKB">
+                    <div id="topKB" class="box-shadow">
+                        <div id="topKBTitle">
+                            <p:commandLink value="More"  styleClass="more"  action="#{knowledgeQueryBean.viewList()}"/>
+                        </div>
+                        <p:dataList id="topKBList" value="#{knowledgeQueryBean.topList}" var="item" itemType="disc">
+                            <p:commandLink value="#{item.title}" action="#{knowledgeQueryBean.view(item)}"></p:commandLink>                                            
+                        </p:dataList>
+                    </div> 
+                </h:form>
+            </ui:define>
+            <ui:define name="content">  
+                <h:form id="formContent">
+                    <div id="mainTopLeft">
+                        <p:imageSwitch effect="fade" speed="1000">  
+                            <ui:repeat value="#{newsQueryBean.topList}" var="item">  
+                                <div>
+                                    <p:graphicImage id="topImgSwitch" value="../resources/upload/#{item.imgfile}" styleClass="topImgSwitch"/>                             
+                                    <p:commandLink action="#{newsQueryBean.viewList}">#{item.title}</p:commandLink>
+                                </div>
+                            </ui:repeat>
+                        </p:imageSwitch>
+                    </div>
+                    <div id="mainTopRight">
+                        <div id="topSupervisionTitle">
+                            <p:commandLink value="More"  styleClass="more"  action="#{supervisionQueryBean.viewList()}"/>
+                        </div>
+                        <p:dataList id="topSupervisionList" value="#{supervisionQueryBean.topList}" var="item" itemType="square" >
+                            <h:outputText value="#{item.cfmdate}" style="float: right;padding-right:20px;">
+                                <f:convertDateTime pattern="MM/dd" />
+                            </h:outputText> 
+                            <p:commandLink value="#{item.title}" action="#{supervisionQueryBean.view(item)}"></p:commandLink>
+                        </p:dataList>
+                    </div>
+                    <div id="toDoNavigator" Class="toDoNavigator">
+                        <div id="toDoNavigatorTitle" class="toDoNavigatorTitle">
+                            <h1><img style="padding-top: 5px;" width="14" height="14" alt="" src="./resources/img/ico11.jpg"></img>
+                                <a  class="topTitleText">网上办事/service</a></h1>
+                        </div>  
+                        <div id="toDoPrevImg">
+                            <img src="resources/img/toDoPrev.gif"></img>
+                        </div>
+                        <div id="toDoNextImg">
+                            <img src="resources/img/toDoNext.gif"></img>
+                        </div>          
+                        <div id="toDoList">
+                            <ul>
+                                <li><div class="toDoNavBox" ><img src="resources/img/toDo1.png"/><a>表格下载</a></div></li>
+                                <li><div class="toDoNavBox" ><img  src="resources/img/toDo2.png"/><a>962223热线</a></div></li>
+                                <li><div class="toDoNavBox" ><img  src="resources/img/toDo3.png"/><a>许可查询</a></div></li>
+                                <li><div class="toDoNavBox" ><img  src="resources/img/toDo4.png"/><a>健康证查询</a></div></li>
+                            </ul>
+                        </div>                            
+                    </div>
+                    <div id="topTabContent">
+                        <p:tabView id="tabViewRight" dynamic="true" cache="true" styleClass="tabTop">  
+                            <p:tab id="tab1Right" title="抽检结果">  
+                                <ul id="tabTopRightList" class="" >
+                                    <li><b>S230U</b></li>
+                                    <li><b>cpu:</b> Core i5</li>
+                                    <li><b>ram:</b> 4GB</li>
+                                    <li><b>hd:</b> 500GB</li>
+                                    <li><b>mo:</b> 12.5"</li>
+                                    <li><b>vga:</b> GF9800</li>
+                                    <li><b>mouse:</b> 罗技</li>
+                                </ul>
+                            </p:tab>  
+                            <p:tab id="tab2Right" title="许可结果" titleStyle="">  
+                                <ul id="tabTopRightList">
+                                    <li><b>X220i</b></li>
+                                    <li><b>cpu:</b> Core i3</li>
+                                    <li><b>ram:</b> 4GB</li>
+                                    <li><b>hd:</b> 320GB</li>
+                                    <li><b>mo:</b> 12.5"</li>
+                                    <li><b>vga:</b> GF9800</li>
+                                    <li><b>mouse:</b> 罗技</li>
+                                </ul>
+                            </p:tab>  
+                        </p:tabView>  
+                    </div>
+                </h:form>
+            </ui:define>
+            <ui:define name="contentlist">
+                <div id="contentListImage"></div>
+                <h:form id="formContentList">
+                    <div>
+                        <div class="contentList">
+                            <div class="topTitle">
+                                <div style="padding-left: 10px;padding-top: 10px;">
+                                    <a class="topTitleText">通知公告</a>
+                                    <p:commandLink value="More"  style="padding-left:105px;" action="#{noticeQueryBean.viewList()}"/>
+                                </div>
+                            </div>
+                            <p:dataList id="topContentList1" value="#{newsQueryBean.topList}" var="item" itemType="disc">
+                                <p:commandLink value="#{item.title}" action="#{newsQueryBean.view(item)}"></p:commandLink>                                            
+                            </p:dataList>
+                        </div>
+                        <div class="contentList">
+                            <div class="topTitle">
+                                <div style="padding-left: 10px;padding-top: 10px;">
+                                    <a class="topTitleText">通知公告</a>
+                                    <p:commandLink value="More"  style="padding-left:105px;" action="#{noticeQueryBean.viewList()}"/>
+                                </div>
+                            </div>
+                            <p:dataList id="topContentList2" value="#{newsQueryBean.topList}" var="item" itemType="disc">
+                                <p:commandLink value="#{item.title}" action="#{newsQueryBean.view(item)}"></p:commandLink>                                            
+                            </p:dataList>
+                        </div>
+                        <div class="contentList">
+                            <div id="topNewsTitle" class="topTitle">
+                                <div style="padding-left: 10px;padding-top: 10px;">
+                                    <a  class="topTitleText">通知公告</a>
+                                    <p:commandLink value="More"  style="padding-left:105px;" action="#{noticeQueryBean.viewList()}"/>
+                                </div>
+                            </div>
+                            <p:dataList id="topContentList3" value="#{newsQueryBean.topList}" var="item" itemType="disc">
+                                <p:commandLink value="#{item.title}" action="#{newsQueryBean.view(item)}"></p:commandLink>                                            
+                            </p:dataList>
+                        </div>
+                        <div class="contentList">
+                            <div id="topNewsTitle" class="topTitle">
+                                <div style="padding-left: 10px;padding-top: 10px;">
+                                    <a  class="topTitleText">通知公告</a>
+                                    <p:commandLink value="More"  style="padding-left:105px;" action="#{noticeQueryBean.viewList()}"/>
+                                </div>
+                            </div>
+                            <p:dataList id="topContentList4" value="#{newsQueryBean.topList}" var="item" itemType="disc">
+                                <p:commandLink value="#{item.title}" action="#{newsQueryBean.view(item)}"></p:commandLink>                                            
+                            </p:dataList>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="contentList">
+                            <div id="topNewsTitle" class="topTitle">
+                                <div style="padding-left: 10px;padding-top: 10px;">
+                                    <a  class="topTitleText">通知公告</a>
+                                    <p:commandLink value="More"  style="padding-left:105px;" action="#{noticeQueryBean.viewList()}"/>
+                                </div>
+                            </div>
+                            <p:dataList id="topContentList5" value="#{newsQueryBean.topList}" var="item" itemType="disc">
+                                <p:commandLink value="#{item.title}" action="#{newsQueryBean.view(item)}"></p:commandLink>                                            
+                            </p:dataList>
+                        </div>
+                        <div class="contentList">
+                            <div id="topNewsTitle" class="topTitle">
+                                <div style="padding-left: 10px;padding-top: 10px;">
+                                    <a class="topTitleText">通知公告</a>
+                                    <p:commandLink value="More"  style="padding-left:105px;" action="#{noticeQueryBean.viewList()}"/>
+                                </div>
+                            </div>
+                            <p:dataList id="topContentList6" value="#{newsQueryBean.topList}" var="item" itemType="disc">
+                                <p:commandLink value="#{item.title}" action="#{newsQueryBean.view(item)}"></p:commandLink>                                            
+                            </p:dataList>
+                        </div>
+                        <div class="contentList">
+                            <div id="topNewsTitle" class="topTitle">
+                                <div style="padding-left: 10px;padding-top: 10px;">
+                                    <a  class="topTitleText">通知公告</a>
+                                    <p:commandLink value="More"  style="padding-left:105px;" action="#{noticeQueryBean.viewList()}"/>
+                                </div>
+                            </div>
+                            <p:dataList id="topContentList7" value="#{newsQueryBean.topList}" var="item" itemType="disc">
+                                <p:commandLink value="#{item.title}" action="#{newsQueryBean.view(item)}"></p:commandLink>                                            
+                            </p:dataList>
+                        </div>
+                        <div class="contentList">
+                            <div id="topNewsTitle" class="topTitle">
+                                <div style="padding-left: 10px;padding-top: 10px;">
+                                    <a  class="topTitleText">通知公告</a>
+                                    <p:commandLink value="More"  style="padding-left:105px;" action="#{noticeQueryBean.viewList()}"/>
+                                </div>
+                            </div>
+                            <p:dataList id="topContentList8" value="#{newsQueryBean.topList}" var="item" itemType="disc">
+                                <p:commandLink value="#{item.title}" action="#{newsQueryBean.view(item)}"></p:commandLink>                                            
+                            </p:dataList>
+                        </div>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+
+</html>

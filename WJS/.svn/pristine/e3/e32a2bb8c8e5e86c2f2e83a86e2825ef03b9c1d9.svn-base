@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template/jsfTemplate.xhtml">
+            <ui:define name="left">
+                <h:form id="topNews">
+                    <h:outputScript library="js" name="main.js" target="head"></h:outputScript>
+                    <div id="topNewsdiv" style="background-color: white;">
+                        <div id="topTitle" style="background-image: url('../resources/img/titlebg.gif');background-repeat: no-repeat;background-size: 100% 100%;height: 36px;">
+                            <div style="padding-left: 10px;padding-top: 10px;">
+                                <a style="font-size: 14px;font-weight: bold;text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.8);">通知公告</a>
+                            </div>
+                        </div>
+                        <p:dataList id="topNewsList" value="#{newsManagedBean.topList}" var="item" itemType="disc">
+                            <p:commandLink value="#{item.title}" ></p:commandLink>                                          
+                        </p:dataList>
+                    </div>
+                </h:form>
+                <div id="topLink">
+                    <div><img src="resources/img/toplink01.jpg" style="height:104px ;width: 208px;"/></div>
+                    <div><img src="resources/img/toplink02.jpg" style="height:103px ;width: 208px;"/></div>
+                </div>
+            </ui:define>
+            <ui:define name="content">  
+                <h:form id="formContent">
+                    <div id="tabTopLeft">
+                        <p:tabView id="tabViewLeft" dynamic="true" cache="true" styleClass="tabTop">  
+                            <p:tab id="tab1Left" title="通知公告">  
+                                <ul id="tabTopLeftList">
+                                    <li><b>S230U</b></li>
+                                    <li><b>cpu:</b> Core i5</li>
+                                    <li><b>ram:</b> 4GB</li>
+                                    <li><b>hd:</b> 500GB</li>
+                                    <li><b>mo:</b> 12.5"</li>
+                                    <li><b>vga:</b> GF9800</li>
+                                    <li><b>mouse:</b> 罗技</li>
+                                </ul>
+                            </p:tab>  
+                            <p:tab id="tab2Left" title="监督快讯" titleStyle="">  
+                                <ul id="tabTopLeftList">
+                                    <li><b>X220i</b></li>
+                                    <li><b>cpu:</b> Core i3</li>
+                                    <li><b>ram:</b> 4GB</li>
+                                    <li><b>hd:</b> 320GB</li>
+                                    <li><b>mo:</b> 12.5"</li>
+                                    <li><b>vga:</b> GF9800</li>
+                                    <li><b>mouse:</b> 罗技</li>
+                                </ul>
+                            </p:tab>  
+                        </p:tabView> 
+                    </div>
+                    <div id="tabTopRight">
+                        <p:tabView id="tabViewRight" dynamic="true" cache="true" styleClass="tabTop">  
+                            <p:tab id="tab1Right" title="抽检结果">  
+                                <ul id="tabTopRightList">
+                                    <li><b>S230U</b></li>
+                                    <li><b>cpu:</b> Core i5</li>
+                                    <li><b>ram:</b> 4GB</li>
+                                    <li><b>hd:</b> 500GB</li>
+                                    <li><b>mo:</b> 12.5"</li>
+                                    <li><b>vga:</b> GF9800</li>
+                                    <li><b>mouse:</b> 罗技</li>
+                                </ul>
+                            </p:tab>  
+                            <p:tab id="tab2Right" title="许可结果" titleStyle="">  
+                                <ul id="tabTopRightList">
+                                    <li><b>X220i</b></li>
+                                    <li><b>cpu:</b> Core i3</li>
+                                    <li><b>ram:</b> 4GB</li>
+                                    <li><b>hd:</b> 320GB</li>
+                                    <li><b>mo:</b> 12.5"</li>
+                                    <li><b>vga:</b> GF9800</li>
+                                    <li><b>mouse:</b> 罗技</li>
+                                </ul>
+                            </p:tab>  
+                        </p:tabView>  
+                    </div>
+                    <p:panel id="toDoNavigator" styleClass="toDoNavigator">
+                        <div id="todoprevImg">
+                            <img src="resources/img/todoprev.gif"></img>
+                        </div>
+                        <div id="todonextImg">
+                            <img src="resources/img/todonext.gif"></img>
+                        </div>          
+                        <div id="toDoListDiv">
+                            <ul id="toDoList">
+                                <li><div class="doNavBox" ><img src=""/></div></li>
+                                <li><div class="doNavBox" ><img  src=""/></div></li>
+                                <li><div class="doNavBox" ><img  src=""/></div></li>
+                                <li><div class="doNavBox" ><img  src=""/></div></li>
+                            </ul>
+                        </div>                            
+                    </p:panel>
+                </h:form>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+
+</html>

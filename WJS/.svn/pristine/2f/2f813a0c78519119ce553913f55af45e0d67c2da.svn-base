@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only"/>
+    <Scope Scope="Project">
+        <Node id="template/adminTemplate.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="template/leftMenu.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="knowledgeDetail.xhtml" x="400" y="600" zoom="true"/>
+        <Node id="admin.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="supervisionDetail.xhtml" x="900" y="600" zoom="true"/>
+        <Node id="admin/supervisionAdmin.xhtml" x="577" y="300" zoom="true"/>
+        <Node id="orgFun.xhtml" x="1150" y="450" zoom="true"/>
+        <Node id="orgInfo.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="admin/noticeAdmin.xhtml" x="650" y="600" zoom="true"/>
+        <Node id="newsList.xhtml" x="150" y="600" zoom="true"/>
+        <Node id="supervisionList.xhtml" x="1400" y="300" zoom="true"/>
+        <Node id="welcomePrimefaces.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="admin/knowledgeAdmin.xhtml" x="900" y="300" zoom="true"/>
+        <Node id="admin/admin.xhtml" x="400" y="750" zoom="false"/>
+        <Node id="login.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="template/jsfTemplate.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="admin/newsAdmin.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="template/adminMenu.xhtml" x="400" y="900" zoom="true"/>
+        <Node id="index.html" x="400" y="300" zoom="true"/>
+        <Node id="noticeDetail.xhtml" x="1650" y="150" zoom="true"/>
+        <Node id="template/topMenu.xhtml" x="650" y="450" zoom="true"/>
+        <Node id="noticeList.xhtml" x="1150" y="150" zoom="true"/>
+        <Node id="index.xhtml" x="650" y="150" zoom="false"/>
+        <Node id="newsDetail.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="admin/pageAdmin.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="admin/login.xhtml" x="1400" y="150" zoom="true"/>
+        <Node id="knowledgeList.xhtml" x="1150" y="300" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

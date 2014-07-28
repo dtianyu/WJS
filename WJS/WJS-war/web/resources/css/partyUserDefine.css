@@ -1,0 +1,532 @@
+/* 
+    Document   : columnsCSS
+    Created on : 2012-11-1, 11:29:59
+    Author     : C0160
+    Description:
+        #C00704
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+button{
+    color: buttonhighlight;
+    height: 22px;
+}
+
+button span{
+    font-size:10px;
+}
+
+/*导航栏*/
+
+
+#topNavMenu{
+    margin: auto;
+    padding-left: 150px;
+}
+
+#topNavMenu li{
+    float: left;
+    height: 30px;
+    margin-top: 4px; 
+    padding-top: 3px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: #B70303;
+}
+
+#topNavMenu li.menu{
+    width: 100px;
+}
+
+#topNavMenu li.menu:hover {
+    background-image: url("./../img/party/tabtitle1.jpg");
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+}
+
+#topNavMenu li.subMenu{
+    width: 100px;
+    background-color:#B70303;
+    color: white;
+}
+
+#topNavMenu li.subMenu:hover {
+    background-image: url("./../img/party/tabtitle1.jpg");
+    background-repeat:no-repeat;
+    background-size: 100% 100%;
+}
+
+.menuDropdownShow{
+    display: block;
+    width: 800px;
+    height: 36px;
+    margin-top: 13px;   
+    background-color:transparent;   
+    position: relative;
+    z-index: 100;
+}
+
+.menuDropdownShow ul{
+    list-style: none;
+    margin-left: -49px;
+}
+
+.menuDropdownShow ul li{
+    background-color:#B70303;
+    color: #045491;
+}
+
+.menuDropdownHide{
+    display: none;
+    position: relative;
+    z-index: 100;
+}
+
+.leftNavMenu{
+    float: left;
+    font-size: 16px;
+    text-align: left;
+    padding-left:-0px; 
+    margin: auto;
+}
+
+.leftNavMenu li{   
+    height: 40px;
+    width: 230px;
+    margin: 0px 0px 10px 0px;
+}
+
+.leftNavMenu li.active a{
+    display: inline-block;  
+    width: 200px;
+    line-height: 2.6em;
+    padding-left: 30px;
+    background: url("../img/party/labelbg1.png") no-repeat scroll left center;
+    text-decoration :none;
+    color: #B70303;
+}
+
+.leftNavMenu li.inactive a{
+      display: inline-block;  
+    width: 200px;
+    line-height: 2.6em;
+    padding-left: 30px;
+    background: url("../img/party/labelbg2.png") no-repeat scroll left center;
+    text-decoration :none;
+}
+
+.leftNavMenu li.inactive a:hover{
+    background: url("../img/party/labelbg1.png") no-repeat scroll left center;
+}
+
+.leftNews{
+    margin-top: 160px;
+    width: 230px;
+}
+
+.leftNews img{
+    width:206px ;
+    height:156px ;
+    float:top;
+    margin: auto;
+}
+
+.leftNews ul li{
+    height: 200px;
+}
+
+.leftNews ul li.ui-datalist-item{
+    white-space: normal;
+}
+/*导航栏*/
+
+.box-shadow{
+    box-shadow: 1px 1px 2px black;   
+}
+
+.more{
+    float: right; padding-right: 5px;padding-top: 10px;
+}
+
+.nodisplay{
+    display: none;
+}
+
+.nopadding{
+    padding: 0px;
+}
+
+.pageDetail{
+    width: 980px;
+    min-height: 520px;
+    margin: 0px 0px 0px 0px;
+    padding-top: 20px;
+    color: #000;
+    background: none repeat scroll 0% 0% #FFF;
+}
+
+.pageContent{
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.pageTitle{
+    font-size: 14pt;font-weight: bold;
+    text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.8);
+}
+
+.quicklink{
+    float: right;font-size: 12px;text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.8);
+    padding-right: 10px;
+    padding-top: 10px;
+}
+
+span.quicklink{
+    color: #B70303;
+}
+
+/*设定panelGrid显示样式*/
+
+form .plgDialog{
+    width: 850px; 
+}
+
+form .plgHead{
+    margin: 0 0 20px 0;
+    width: 980px;
+}
+
+form .plgHead tr{
+
+}
+
+form .plgHead td{
+
+}
+
+form .plgQuery{
+    margin: 0 0 20px 0;
+    width: 980px;
+}
+
+form .plgQuery tr{
+    border: none; 
+}
+
+form .plgQuery td{
+    border: none; 
+}
+
+form .plgLable{
+    width: 60px;
+    text-align: right;
+}
+
+form .plgInput {
+    width: 220px;
+}
+
+form .plgInputLong {
+    width: 520px;
+}
+
+form .plgInputLong input{
+    width: 420px;
+}
+
+/*设定panelGrid中Column的宽度,配合columnClasses使用*/
+
+
+
+.panellist{
+    margin: 0px 0px 0px 0px;
+    width: 730px;
+    min-height:520px;
+    background: none repeat scroll 0% 0% #FFF;
+}
+
+.panellist .ui-datalist-item{
+    margin: 0px 10px 10px -20px; padding: 0.2em;height: 24px; text-align: left;  
+    border-bottom: 1px dotted #999999;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    -ms-text-overflow: ellipsis;/* IE/Safari */
+    -o-text-overflow: ellipsis;/* Opera */
+    -moz-binding: url("ellipsis.xml#ellipsis");/*FireFox*/ 
+}
+
+.ui-datalist-item{
+    margin: 0px 1px 1px -30px; padding: 0.1em;height: 20px;text-align: left; 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    -ms-text-overflow: ellipsis;/* IE/Safari */
+    -o-text-overflow: ellipsis;/* Opera */
+    -moz-binding: url("ellipsis.xml#ellipsis");/*FireFox*/ 
+}
+
+.ui-datatable-header {
+    height: 22px;
+}
+
+.ui-datatable-footer  {
+    height: 22px;
+}
+
+.tbllist{
+    margin: 0px 0px 0px 0px;
+    width: 720px;
+}
+
+.plgUpload{
+    margin: 20px 0px 0px 0px;
+    width: 720px; 
+}
+
+.ui-panelgrid  tr {
+    height:  30px;
+}
+
+.ui-panelmenu-header{
+    height: 30px;
+    background-image: url("../img/titlebg.gif");
+    background-repeat: no-repeat;
+    background-size: 100% 100%; 
+    font-size: 12px;
+    padding-left: 12px;
+}
+
+.topTitle{
+    background-image: url('../img/party/titlebg.jpg');
+    background-repeat: repeat-x;
+    background-size: 100% 100%;
+    height: 36px;
+
+}
+
+.topTitle a:link{
+    color: #B70303;
+}
+
+.topTitle a.ico{
+    position: relative;
+    z-index: 99;
+    display: block;
+    height: 24px; 
+    padding-left: 20px;
+    padding-right: 5px;
+    padding-top: 10px;
+    border-bottom:#B70303 solid 2px;  
+    background: url("../img/party/partyico.jpg") no-repeat scroll left ;
+    float: left;
+}
+
+.topTitle a.topTitleText{
+    position: relative;
+    z-index: 99;
+    display: inline-block;
+    width: 70px;
+    height: 26px;  
+    font-size: 16px;
+    font-weight: bold;
+    padding-top: 8px;
+    color: #B70303;
+    border-bottom:#B70303 solid 2px;  
+}
+
+.topTitle img{
+    padding-top:6px;
+    padding-left: 5px;  
+}
+
+.footerTitle{
+    background-image: url('../img/party/titlebg.jpg');
+    background-repeat: repeat-x;
+    background-size: 100% 100%;height: 36px;
+}
+
+.footerTitle a{
+    font-size: 12px;font-weight: bold;text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.8);
+}
+
+.topListContent{
+    height: 215px;
+    margin-top: -1px;
+}
+
+#topLink{
+    margin: 10px 0px 10px 0px;
+}
+
+#topLeft{
+    float: left;
+    width: 345px;
+    height: 252px;
+    margin: 0px 10px 10px 0px;
+}
+
+#topRight{
+    float: left;
+    width: 623px;
+    height: 250px;
+    margin: 0px 0px 10px 0px;
+}
+
+#topRight .ui-datalist-item{
+    /*list-style: none;*/
+    list-style-position: outside;
+    display: list-item;
+}
+
+.toDoNavigator{
+    clear: both;
+    width: 730px;
+    height: 212px;
+    margin: 10px 0px 10px 0px;
+    background-image:url("../img/icobg.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#bodyAdv{
+    width: 980px;
+    height: 152px;
+    margin:  auto;
+    background-image: url("../img/party/bodyAdv.jpg") ; 
+    background-size: 100% 100%;   
+}
+
+.contentList{
+    float:left;
+    width: 320px;
+    height: 250px;   
+    margin: 0px 10px 10px 0px;  
+}
+
+.contentListNoRightMargin{
+    float:left;
+    width: 320px;
+    height: 250px;
+    margin: 0px 0px 10px 0px; 
+}
+
+.contentList .ui-datalist-item,.contentListNoRightMargin .ui-datalist-item{
+    list-style:disc inside url("../img/liststyle4.jpg");
+}
+
+.find {
+    height: 42px;
+    width: 320px;
+    background: url('../img/find.jpg') no-repeat scroll left center transparent;
+    float: right;
+    border: 0px solid #CCC;
+    padding-right: 30px;
+}
+
+.find input {
+    height: 17px;
+    width: 207px;    
+    float: left;   
+    margin-top: 4px;
+    margin-left: 30px;
+    border:none;
+}
+
+div.title a.selected{
+    display: inline-block;
+    height: 26px; 
+    padding: 10px 20px 0px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #B70303;
+    -moz-border-top-left-radius: 10px;
+    -moz-border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+div.title a.unselected{
+    display: inline-block;
+    height: 26px;     
+    padding: 10px 20px 0px;
+    font-size: 16px;
+}
+
+.navPage{
+    height: 50px;
+}
+
+.navPrevPage,.navNextPage{
+    margin-top: 10px; 
+}
+
+#bottomLink{
+    clear: both;
+    width: 980px;
+    height: 105px;
+    margin: auto;
+    background-image: url("../img/bgbar.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;  
+}
+
+#bottomLink ul{list-style: none;}
+
+#bottomLink ul.selected{margin-top: 60px;display: block;}
+
+#bottomLink ul.unselected{display:none}
+
+#bottomLink ul li{
+    list-style: none;
+    float: left; padding-left: 20px;
+}
+
+#bottomLink ul li img{ border:#B70303 solid 1px;}
+
+#bottomLinkTitle li.selected{
+    list-style: none;
+    background: #B70303;width: 130px;height:40px; padding: 0px;margin: 0px; 
+}
+
+#bottomLinkTitle li.unselected{
+    list-style: none;
+    width: 130px;height:40px; padding: 0px;margin: 0px; 
+}
+
+#bottomLinkTitle li a.selected{
+    line-height: 2.2em;color: #ffffff;font-weight: bold;
+}
+
+#bottomLinkTitle li a.unselected{
+    line-height: 2.2em;color: #B70303;font-weight: bold;
+}
+
+#footerNav{
+    width: 980px;
+    height: 36px;
+    font-size:14px;
+    color: #0288AB;
+    text-align: center;
+    padding-top: 5px; 
+    margin: auto;
+}
+
+#footerNav ul{
+    margin-left: 185px;
+    text-align: center;
+    list-style: none;
+}
+
+#footerNav ul li{
+    float: left;
+}
+
+#footerNav ul li.footerMemu{
+    width: 80px;
+}

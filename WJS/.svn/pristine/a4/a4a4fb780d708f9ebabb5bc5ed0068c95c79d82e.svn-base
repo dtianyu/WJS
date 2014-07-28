@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <div id="topNavBar">
+            <ul id="topNavMenu">
+                <li><span>|</span></li>
+                <li class="menu"><a href="/" title="">首页</a></li>
+                <li><span>|</span></li>
+                <li class="menu"><a href="/WJS-war/faces/orgFun.xhtml">机构介绍</a>
+                    <div class="menuDropdownHide"><ul>
+                            <li><span>|</span></li>
+                            <li class="subMenu"><a href="/WJS-war/faces/orgFun.xhtml" >监督职能</a></li>
+                            <li><span>|</span></li>
+                            <li class="subMenu"><a href="/WJS-war/faces/orgLeader.xhtml" >领导班子</a></li>                     
+                            <li><span>|</span></li>
+                            <li class="subMenu"><a href="/WJS-war/faces/orgInfo.xhtml">机构设置</a></li>
+                            <li><span>|</span></li></ul></div></li>
+                <li><span>|</span></li>
+                <li class="menu"><a href="/WJS-war/faces/newsList.xhtml" title="">监督快讯</a></li>
+                <li><span>|</span></li>       
+                <li class="menu"><a href="/WJS-war/faces/law.xhtml" title="">政策法规</a></li>
+                <li><span>|</span></li>
+                <li class="menu"><a href="http://www.hs.sh.cn/newwjs/onlineHearLoadPage.shtml" target="_blank">办事指南</a>
+                    <div class="menuDropdownHide"><ul>
+                            <li><span>|</span></li>
+                            <li class="subMenu">许可须知</li>
+                            <li><span>|</span></li>
+                            <li class="subMenu">办证流程</li>
+                            <li><span>|</span></li>
+                            <li class="subMenu">收费标准</li>
+                            <li><span>|</span></li>
+                            <li class="subMenu">处罚程序</li>
+                            <li><span>|</span></li>
+                            <li class="subMenu">医疗事故</li>
+                            <li><span>|</span></li></ul></div></li>
+                <li><span>|</span></li>
+                <li class="menu"><a href="/WJS-war/faces/party.xhtml" target="_blank">党建工作</a></li>
+                <li><span>|</span></li>
+            </ul>
+        </div >
+        <div id="topNavSearch">
+            <div class="find">
+                <input id="searchContent" type="text" name="content"/>
+                <a id="searchLink" href="" style="float: right; padding-top: 2px;"><img src="../resources/img/findbtn.jpg"/>
+                </a>
+            </div>
+        </div>            
+    </ui:composition>
+
+</html>
+

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scene Scope="Project" version="2">
+    <Scope Scope="Faces Configuration Only">
+        <Node id="login.xhtml" x="150" y="900" zoom="true"/>
+        <Node id="index.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="admin.xhtml" x="900" y="450" zoom="true"/>
+    </Scope>
+    <Scope Scope="Project">
+        <Node id="licenseList.xhtml" x="3463" y="32" zoom="true"/>
+        <Node id="template/adminTemplate.xhtml" x="9771" y="32" zoom="true"/>
+        <Node id="admin/*" x="650" y="300" zoom="true"/>
+        <Node id="knowledgeDetail.xhtml" x="5535" y="32" zoom="true"/>
+        <Node id="inspectionList.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="supervisionDetail.xhtml" x="8919" y="32" zoom="true"/>
+        <Node id="admin/supervisionAdmin.xhtml" x="3093" y="32" zoom="true"/>
+        <Node id="orgLeader.xhtml" x="5263" y="32" zoom="true"/>
+        <Node id="inspectionDetail.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="orgFun.xhtml" x="2188" y="32" zoom="true"/>
+        <Node id="punishmentDetail.xhtml" x="650" y="150" zoom="true"/>
+        <Node id="orgInfo.xhtml" x="10505" y="32" zoom="true"/>
+        <Node id="template/mainTemplate.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="licenseDetail.xhtml" x="8029" y="32" zoom="true"/>
+        <Node id="admin/noticeAdmin.xhtml" x="4066" y="32" zoom="true"/>
+        <Node id="template/adminTopMenu.xhtml" x="150" y="150" zoom="true"/>
+        <Node id="law.xhtml" x="9239" y="32" zoom="true"/>
+        <Node id="newsList.xhtml" x="769" y="32" zoom="true"/>
+        <Node id="punishmentList.xhtml" x="150" y="450" zoom="true"/>
+        <Node id="supervisionList.xhtml" x="2787" y="32" zoom="true"/>
+        <Node id="welcomePrimefaces.xhtml" x="5850" y="32" zoom="true"/>
+        <Node id="handleGuide.xhtml" x="1271" y="32" zoom="true"/>
+        <Node id="admin/knowledgeAdmin.xhtml" x="10140" y="32" zoom="true"/>
+        <Node id="admin/admin.xhtml" x="7446" y="32" zoom="false"/>
+        <Node id="template/partyTemplate.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="admin/licenseAdmin.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="party.xhtml" x="6854" y="32" zoom="true"/>
+        <Node id="template/adminMenu.xhtml" x="2442" y="32" zoom="true"/>
+        <Node id="admin/newsAdmin.xhtml" x="8319" y="32" zoom="true"/>
+        <Node id="faces/admin/login.xhtml" x="400" y="450" zoom="true"/>
+        <Node id="index.html" x="1034" y="32" zoom="true"/>
+        <Node id="noticeDetail.xhtml" x="4651" y="32" zoom="true"/>
+        <Node id="template/topMenu.xhtml" x="3739" y="32" zoom="true"/>
+        <Node id="index.xhtml" x="34" y="32" zoom="true"/>
+        <Node id="noticeList.xhtml" x="8648" y="32" zoom="true"/>
+        <Node id="newsDetail.xhtml" x="1559" y="32" zoom="true"/>
+        <Node id="admin/pageAdmin.xhtml" x="4936" y="32" zoom="true"/>
+        <Node id="search.xhtml" x="4401" y="32" zoom="true"/>
+        <Node id="admin/login.xhtml" x="7741" y="32" zoom="true"/>
+        <Node id="template/leftMenuOrg.xhtml" x="1838" y="32" zoom="true"/>
+        <Node id="knowledgeList.xhtml" x="9470" y="32" zoom="true"/>
+    </Scope>
+    <Scope Scope="All Faces Configurations"/>
+</Scene>

@@ -1,0 +1,86 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.lazy;
+
+import com.wjs.ebj.NewsBean;
+import com.wjs.entity.News;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortOrder;
+
+/**
+ *
+ * @author C0160
+ */
+public class NewsModel extends LazyDataModel<News> {
+
+    NewsBean newsBean;
+    private List<News> dataList;
+
+    public NewsModel() {
+
+    }
+
+    public NewsModel(NewsBean newsBean) {
+        this.newsBean = newsBean;
+    }
+
+    @Override
+    public void setRowIndex(int rowIndex) {
+        /*
+         * The following is in ancestor (LazyDataModel):
+         * this.rowIndex = rowIndex == -1 ? rowIndex : (rowIndex % pageSize);
+         */
+        if (rowIndex == -1 || getPageSize() == 0) {
+            super.setRowIndex(-1);
+        } else {
+            super.setRowIndex(rowIndex % getPageSize());
+        }
+    }
+
+    @Override
+    public News getRowData(String rowKey) {
+        for (News news : dataList) {
+            if (news.getId().toString().equals(rowKey)) {
+                return news;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Object getRowKey(News news) {
+        return news.getId();
+    }
+
+    @Override
+    public List<News> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
+        setDataList(newsBean.retrieve(first, pageSize));
+        setRowCount(newsBean.getRowCount());
+        return this.dataList;
+    }
+
+    /**
+     * @return the dataList
+     */
+    public List<News> getDataList() {
+        return dataList;
+    }
+
+    /**
+     * @param dataList the dataList to set
+     */
+    public void setDataList(List<News> dataList) {
+        this.dataList = dataList;
+    }
+
+}

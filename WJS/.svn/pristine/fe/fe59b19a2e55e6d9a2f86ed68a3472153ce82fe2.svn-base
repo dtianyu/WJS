@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template/partyTemplate.xhtml">
+
+            <ui:define name="left">
+                <h:form id="formLeft">
+                    <h:outputScript library="js/libs/" name="jquery.slides.js"  target="head"/>
+                    <h:outputScript library="js" name="slides.js"  target="head"/>
+                    <h:outputStylesheet library="css" name="slides.css" />
+                    <div id="slides" >
+                        <ui:repeat value="#{newsQueryBean.topList}" var="item">  
+                            <img src="resources/upload/#{item.imgfile}" alt=""></img>
+                        </ui:repeat>
+                    </div>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="right">
+                <h:form id="formRight">
+                    <div id="topRight" class="box-shadow">
+                        <div id="topWorkTitle" class="topTitle">
+                            <p:commandLink value="More"  styleClass="more"  action="#{supervisionQueryBean.viewList()}"/>
+                        </div>
+                        <p:dataList id="topSupervisionList" value="#{supervisionQueryBean.topList}" var="item" itemType="square" >
+                            <h:outputText value="#{item.credate}" style="float: right;padding-right:20px;">
+                                <f:convertDateTime pattern="MM/dd" />
+                            </h:outputText> 
+                            <h:link outcome="supervisionDetail" value="#{item.title}">
+                                <f:param name="id" value="#{item.id}"></f:param>
+                            </h:link>     
+                        </p:dataList>
+                    </div>
+                </h:form>
+            </ui:define>
+
+            <ui:define name="content">
+                <div id="contentListImage" ></div>
+                <h:form id="formContent">
+                    <div style="margin-top: 10px;">
+                        <div class="contentList  box-shadow">
+                            <div class="topTitle">
+                                <p:commandLink value="More"  styleClass="more" action="#{noticeQueryBean.viewList()}"/>
+                            </div>
+                            <p:dataList id="topContentList1" value="#{newsQueryBean.topList}" var="item" itemType="disc">
+                                <p:commandLink value="#{item.title}" action="#{newsQueryBean.view(item)}"></p:commandLink>                                            
+                            </p:dataList>
+                        </div>
+                        <div class="contentList  box-shadow">
+                            <div class="topTitle">
+                                <p:commandLink value="More"  styleClass="more"  action="#{noticeQueryBean.viewList()}"/>
+                            </div>
+                            <p:dataList id="topContentList2" value="#{newsQueryBean.topList}" var="item" itemType="disc">
+                                <p:commandLink value="#{item.title}" action="#{newsQueryBean.view(item)}"></p:commandLink>                                            
+                            </p:dataList>
+                        </div>
+                        <div class="contentListNoRightMargin box-shadow">
+                            <div class="topTitle">
+                                <p:commandLink value="More"   styleClass="more"  action="#{noticeQueryBean.viewList()}"/>
+                            </div>
+                            <p:dataList id="topContentList3" value="#{newsQueryBean.topList}" var="item" itemType="disc">
+                                <p:commandLink value="#{item.title}" action="#{newsQueryBean.view(item)}"></p:commandLink>                                            
+                            </p:dataList>
+                        </div>
+                    </div>
+
+                </h:form>
+                <div style="margin-top: 10px;color: white;font-size: 12pt;text-align: center ">
+                    <div id="bottomLink" class="ui-widget-content">
+                        <ul id="bottomLinkTitle" style=" padding: 0px;margin: 0px; ">
+                            <li id="bottomLinkTitle1" class="selected"><a class="selected">友情链接</a></li>
+                            <li id="bottomLinkTitle2" class="unselected"><a class="unselected">政府机关</a></li>
+                        </ul>                    
+                        <ul id="bottomLink1" class="selected">
+                            <li><a><img src="./resources/img/linkjdzx.jpg" alt="" height="36" width="130"/></a></li>
+                            <li><a><img src="./resources/img/linkhs.jpg" alt="" height="36" width="130"/></a></li>
+                            <li><a><img src="./resources/img/link3.jpg" alt="" height="36" width="130"/></a></li>
+                            <li><a><img src="./resources/img/linksmhb.jpg" alt="" height="36" width="130"/></a></li>
+                        </ul>
+                        <ul id="bottomLink2" class="unselected">
+                            <li><a><img src="./resources/img/linkjsgov.jpg" alt="" height="36" width="130"/></a></li>
+                            <li><a><img src="./resources/img/linkjsgov.jpg" alt="" height="36" width="130"/></a></li>
+                            <li><a><img src="./resources/img/linkjsgov.jpg" alt="" height="36" width="130"/></a></li>
+                            <li><a><img src="./resources/img/linkjsgov.jpg" alt="" height="36" width="130"/></a></li>
+                        </ul>                
+                    </div>
+                </div>      
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <h:form id="formleft">   
+
+            <p:panelMenu rendered="true">  
+                <p:submenu label="网上办事">
+                    <p:menuitem value="" url="#" style="background-image: url('../resources/img/queryxk.gif'); background-repeat: no-repeat;background-size: 95% 100%;background-position: right;" /> 
+                    <p:menuitem value="" url="#" style="background-image: url('../resources/img/queryjkz.jpg'); background-repeat: no-repeat;background-size: 95% 100%;background-position: right;" /> 
+                </p:submenu>
+                <p:submenu label="意见反馈"> 
+                    <p:menuitem value="" url="#" style="background-image: url('../resources/img/mail01.gif'); background-repeat: no-repeat;background-size: 95% 100%;background-position: right;" /> 
+                    <p:menuitem value="" url="#" style="background-image: url('../resources/img/mail02.gif'); background-repeat: no-repeat;background-size: 95% 100%;background-position: right;" /> 
+                </p:submenu>
+                <p:submenu label="专题报告">  
+                    <p:menuitem value="" url="#" style="background-image: url('../resources/img/report01.jpg'); background-repeat: no-repeat;background-size: 95% 100%;background-position: right;" />  
+                    <p:menuitem value="" url="#" style="background-image: url('../resources/img/report02.jpg'); background-repeat: no-repeat;background-size: 95% 100%;background-position: right;" /> 
+                </p:submenu>
+            </p:panelMenu>
+            
+        </h:form>  
+
+    </ui:composition>
+
+</html>
+

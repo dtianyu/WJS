@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="../resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="../resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <link href="../resources/css/cssUserDefine.css" rel="stylesheet" type="text/css" />
+        <title>WJS</title>
+    </h:head>
+    <h:body>
+        <div id="container">
+            <div id="top">
+                <div id="topInfo">
+                    <ui:insert name="topInfo">                   
+                    </ui:insert>               
+                </div>
+                <div id="topAdv">
+                    <ui:insert name="topAdv">
+                    </ui:insert>
+                </div>
+                <div id="topNav">
+                    <ui:insert name="topNav">
+                        <div id="topNavBar">
+                            <ul id="topNavMenu">
+                                <li><span>|</span></li>
+                                <li class="menu"><a href="/" title="">首页</a></li>
+                                <li><span>|</span></li>
+                                <li class="menu"><a href="/html/gzdt/gzdt1/" title="">机构介绍</a>
+                                    <ul class="menuDropdownHide" style="height: 96px">
+                                        <li class="sub-menu">11</li>
+                                        <li class="sub-menu">12</li>
+                                        <li class="sub-menu">13</li></ul></li>
+                                <li><span>|</span></li>
+                                <li class="menu"><a href="supervisionList.xhtml" title="">监督快讯</a>
+                                    <ul class="menuDropdownHide" style="height: 32px">
+                                        <li class="sub-menu">21</li></ul></li>
+                                <li><span>|</span></li>
+                                <li class="menu"><a href="law.xhtml" title="">政策法规</a></li>
+                                <li><span>|</span></li>
+                                <li class="menu"><a href="howdo.xhtml" title="">办事指南</a></li>
+                                <li><span>|</span></li>
+                                <li class="menu"><a href="/html/djgz/" target="_blank" title="">党建工作</a></li>
+                                <li><span>|</span></li>
+                            </ul>	
+                        </div>
+                    </ui:insert>
+                </div> 
+            </div>
+            <div id="center">       
+                <div id="left">
+                    <ui:insert name="left">
+
+                    </ui:insert>
+                </div>
+                <div id="content">
+                    <ui:insert name="content">
+
+                    </ui:insert>
+                </div>
+                <div id="contentlist">  
+                    <ui:insert name="contentlist">
+
+                    </ui:insert>
+                </div>      
+            </div>
+        </div>
+        <div id="bottom">
+            <div id="copyright" style="padding-top: 10px;">
+                <span style="color: black">© 2014 上海市金山区卫生局卫生监督所 沪ICP备07507281号</span>
+            </div>
+        </div>
+    </h:body>
+</html>

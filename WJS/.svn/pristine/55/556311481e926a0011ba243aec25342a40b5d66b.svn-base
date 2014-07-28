@@ -1,0 +1,7 @@
+ <asp:TreeNode ImageUrl="../Admin/Images/ico_Xp11.gif" Text="文章管理" Value="文章管理">
+                        <asp:TreeNode ImageUrl="../Admin/Images/ico_Xp07.gif" Text="目录管理" Value="目录管理" NavigateUrl="~/admin/LevelBig.aspx" Target="frameMain"></asp:TreeNode>
+                    </asp:TreeNode>
+
+
+ <asp:TreeNode ImageUrl="../Admin/Images/ico_Xp05.gif" Text="系统信息管理" Value="系统信息管理" NavigateUrl="~/admin/LevelBig.aspx" Target="frameMain"></asp:TreeNode>
+                        <asp:TreeNode ImageUrl="../Admin/Images/ico_Xp03.gif" Text="访问日志管理" Value="访问日志管理" NavigateUrl="~/admin/LevelBig.aspx" Target="frameMain"></asp:TreeNode>

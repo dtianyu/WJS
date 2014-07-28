@@ -1,0 +1,49 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.ebj;
+
+import com.wjs.entity.Supervision;
+import com.wjs.comm.SuperEJB;
+import java.util.List;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author kevintung
+ */
+@Stateless
+@LocalBean
+public class SupervisionBean extends SuperEJB<Supervision> {
+
+    public SupervisionBean() {
+        this.className = "Supervision";
+    }
+
+    @Override
+    public List<Supervision> getByPId(String value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Supervision getNextById(String value) {
+        Supervision entity = super.getNextById(value);
+        if (entity == null) {
+            entity = new Supervision(0, "没有了");
+        }
+        return entity;
+    }
+
+    @Override
+    public Supervision getPrevById(String value) {
+        Supervision entity = super.getPrevById(value);
+        if (entity == null) {
+            entity = new Supervision(0, "没有了");
+        }
+        return entity;
+    }
+
+}

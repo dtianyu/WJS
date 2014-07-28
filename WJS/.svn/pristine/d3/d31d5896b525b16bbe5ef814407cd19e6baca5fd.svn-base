@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./template/mainTemplate.xhtml">
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form id="formDetail">
+                        <h:outputScript library="js" name="detailContent.js" target="head"></h:outputScript>
+                        <div class="topTitle">
+                            <div style="padding-left: 10px;padding-top: 10px;">
+                                <a class="pageTile">行政许可</a>
+                                <span class="quicklink">正文</span><span class="quicklink">|</span><a class="quicklink" href="/WJS-war/faces/licenseList.xhtml">行政许可</a><span class="quicklink">|</span><a class="quicklink" href="/">首页</a><span class="quicklink">当前位置：</span>
+                            </div>
+                        </div>
+                        <p:outputPanel id="panelDetail" styleClass="panellist"> 
+                            <div style="text-align: center;padding-bottom: 20px;"><a class="pageTile">#{licenseQueryBean.currentEntity.title}</a></div>
+                            <h:outputText id="contentDetail" value="" /> 
+                        </p:outputPanel>
+                        <div class="footerTitle">
+                            <div style="padding-left: 10px;padding-top: 10px;text-align: center;">
+                                <a>
+                                    发布日期：<h:outputText  value="#{licenseQueryBean.currentEntity.credate}"><f:convertDateTime pattern="yyyy/MM/dd" /></h:outputText></a>
+                            </div>
+                        </div>
+                        <div  style="display: none;">
+                            <input id="detailContent" value="#{licenseQueryBean.currentEntity.content}"/>
+                        </div>
+                        <div class="navPage">
+                            <div class="navPrevPage"><span>上一篇：</span><h:link outcome="licenseDetail" value="#{licenseQueryBean.prev.title}" 
+                                                                              rendered="#{licenseQueryBean.hasPrev==true}">
+                                    <f:param name="id" value="#{licenseQueryBean.prev.id}"></f:param>
+                                </h:link><h:outputText value="#{licenseQueryBean.prev.title}" rendered="#{licenseQueryBean.hasPrev==false}"/></div> 
+                            <div class="navNextPage"><span>下一篇：</span><h:link outcome="licenseDetail" value="#{licenseQueryBean.next.title}"
+                                                                              rendered="#{licenseQueryBean.hasNext==true}">
+                                    <f:param name="id" value="#{licenseQueryBean.next.id}"></f:param>
+                                </h:link><h:outputText value="#{licenseQueryBean.next.title}" rendered="#{licenseQueryBean.hasNext==false}"/></div> 
+                        </div>
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

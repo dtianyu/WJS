@@ -1,0 +1,191 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.query;
+
+import com.wjs.ebj.LicenseBean;
+import com.wjs.entity.License;
+import com.wjs.lazy.LicenseModel;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.model.LazyDataModel;
+
+/**
+ *
+ * @author C0160
+ */
+@ManagedBean
+@RequestScoped
+public class LicenseQueryBean {
+
+    @EJB
+    private LicenseBean licenseBean;
+
+    private License currentLicense;
+    private List<License> topListOne;
+    private List<License> topListTwo;
+    private List<License> topListThree;
+
+    private LazyDataModel model;
+
+    @ManagedProperty("#{param.id}")
+    private String id;
+
+    @ManagedProperty("#{param.kind}")
+    private String kind;
+
+    /**
+     * Creates a new instance of LicenseQueryBean
+     */
+    public LicenseQueryBean() {
+    }
+
+    @PostConstruct
+    public void construct() {
+        init();
+        if (getId() != null) {
+            setCurrentLicense(licenseBean.getById(id));
+        }
+        if (getKind() != null) {
+            setModel(new LicenseModel(licenseBean, getKind()));
+        } else {
+            kind = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("kind");
+            setModel(new LicenseModel(licenseBean, getKind()));
+        }
+
+    }
+
+    @PreDestroy
+    public void destory() {
+        if (getTopListOne() != null) {
+            getTopListOne().clear();
+            setTopListOne(null);
+        }
+        setCurrentLicense(null);
+    }
+
+    public void init() {
+        setTopListOne(licenseBean.findTop("1"));
+        if (!getTopListOne().isEmpty()) {
+            setCurrentLicense(getTopListOne().get(0));
+        }
+        setTopListTwo(licenseBean.findTop("2"));
+        setTopListThree(licenseBean.findTop("3"));
+    }
+
+    public String view(License entity) {
+        setCurrentLicense(entity);
+        return "licenseDetail";
+    }
+
+    public String viewList() {
+        return "licenseList.xhtml";
+    }
+
+    /**
+     * @return the currentLicense
+     */
+    public License getCurrentLicense() {
+        return currentLicense;
+    }
+
+    /**
+     * @param currentLicense the currentLicense to set
+     */
+    public void setCurrentLicense(License currentLicense) {
+        this.currentLicense = currentLicense;
+    }
+
+    /**
+     * @return the topListOne
+     */
+    public List<License> getTopListOne() {
+        return topListOne;
+    }
+
+    /**
+     * @param topListOne the topListOne to set
+     */
+    public void setTopListOne(List<License> topListOne) {
+        this.topListOne = topListOne;
+    }
+
+    /**
+     * @return the topListTwo
+     */
+    public List<License> getTopListTwo() {
+        return topListTwo;
+    }
+
+    /**
+     * @param topListTwo the topListTwo to set
+     */
+    public void setTopListTwo(List<License> topListTwo) {
+        this.topListTwo = topListTwo;
+    }
+
+    /**
+     * @return the topListThree
+     */
+    public List<License> getTopListThree() {
+        return topListThree;
+    }
+
+    /**
+     * @param topListThree the topListThree to set
+     */
+    public void setTopListThree(List<License> topListThree) {
+        this.topListThree = topListThree;
+    }
+
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the model
+     */
+    public LazyDataModel getModel() {
+        return model;
+    }
+
+    /**
+     * @param model the model to set
+     */
+    public void setModel(LazyDataModel model) {
+        this.model = model;
+    }
+
+    /**
+     * @return the kind
+     */
+    public String getKind() {
+        return kind;
+    }
+
+    /**
+     * @param kind the kind to set
+     */
+    public void setKind(String kind) {
+        this.kind = kind;
+    }
+
+}

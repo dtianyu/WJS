@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+        <div id="topNavBar">
+            <ul id="topNavMenu">
+                <li><span>|</span></li>
+                <li class="menu"><a href="/" title="">首页</a></li>
+                <li><span>|</span></li>
+                <li class="menu"><a href="/html/gzdt/gzdt1/" title="">机构介绍</a>
+                    <div class="menuDropdownHide"><ul>
+                            <li><span>|</span></li>
+                            <li class="sub-menu">11</li>
+                            <li><span>|</span></li>
+                            <li class="sub-menu">12</li>
+                            <li><span>|</span></li>
+                            <li class="sub-menu">13</li>
+                            <li><span>|</span></li></ul></div></li>
+                <li><span>|</span></li>
+                <li class="menu"><a href="supervisionList.xhtml" title="">监督快讯</a>
+                    <div class="menuDropdownHide"><ul>
+                            <li><span>|</span></li>
+                            <li class="sub-menu">21</li>
+                            <li><span>|</span></li>
+                            <li class="sub-menu">22</li>
+                            <li><span>|</span></li>
+                            <li class="sub-menu">23</li>
+                            <li><span>|</span></li></ul></div></li>
+                <li><span>|</span></li>
+                <li class="menu"><a href="law.xhtml" title="">政策法规</a></li>
+                <li><span>|</span></li>
+                <li class="menu"><a href="howdo.xhtml" title="">办事指南</a></li>
+                <li><span>|</span></li>
+                <li class="menu"><a href="/html/djgz/" target="_blank" title="">党建工作</a></li>
+                <li><span>|</span></li>
+            </ul>	
+        </div>
+    </ui:composition>
+
+</html>
+

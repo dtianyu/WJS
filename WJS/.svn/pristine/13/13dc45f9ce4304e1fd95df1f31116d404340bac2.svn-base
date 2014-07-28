@@ -1,0 +1,234 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.control;
+
+import com.wjs.ebj.NewsBean;
+import com.wjs.entity.News;
+import com.wjs.mbi.ManagedBeanDataOperation;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+/**
+ *
+ * @author kevintung
+ */
+@ManagedBean(name = "newsManagedBean")
+@SessionScoped
+public class NewsManagedBean implements ManagedBeanDataOperation<News> {
+
+    @EJB
+    private NewsBean newsBean;
+
+    private News currentNews;
+    private News newNews;
+    private List<News> newsList;
+    private FacesContext fc;
+    @ManagedProperty("#{userManagedBean}")
+    private UserManagedBean userManagedBean;
+
+    /**
+     * Creates a new instance of NewsManagedBean
+     */
+    public NewsManagedBean() {
+    }
+
+    @PostConstruct
+    public void construct() {
+        init();
+        create();
+        fc = FacesContext.getCurrentInstance();
+    }
+
+    @PreDestroy
+    public void destory() {
+        if (getNewsList() != null) {
+            getNewsList().clear();
+            setNewsList(null);
+        }
+        setCurrentNews(null);
+        setNewNews(null);
+    }
+
+    @Override
+    public void init() {
+        setNewsList(retrieve());
+        if (!getNewsList().isEmpty()) {
+            setCurrentNews(getNewsList().get(0));
+        }
+    }
+
+    @Override
+    public void create() {
+        if (getNewNews() == null) {
+            News entity = new News();
+            entity.setOntop(false);
+            entity.setStatus("N");
+            entity.setCreator(getUserManagedBean().getCurrentUser().getUserid());
+            entity.setCredate(getUserManagedBean().getDate());
+            setNewNews(entity);
+        }
+    }
+
+    @Override
+    public void delete(News entity) {
+        if (entity != null) {
+            try {
+                newsBean.delete(entity);
+                if (getNewsList().contains(entity)) {
+                    getNewsList().remove(entity);
+                }
+            } catch (Exception e) {
+                fc.addMessage(null, new FacesMessage(e.getMessage()));
+            }
+            init();
+//            fc.addMessage(null, new FacesMessage("删除成功！"));
+        }
+    }
+
+    @Override
+    public void edit(News entity) {
+        if (entity != null) {
+            setCurrentNews(entity);
+        }
+    }
+
+    @Override
+    public void save() {
+        if (currentNews != null) {
+            try {
+                currentNews.setOptuser(userManagedBean.getUserid());
+                currentNews.setOptdate(userManagedBean.getDate());
+                newsBean.update(currentNews);
+            } catch (Exception e) {
+                fc.addMessage(null, new FacesMessage(null, e.toString()));
+            }
+            init();
+//            fc.addMessage(null, new FacesMessage("更新成功！"));
+        }
+    }
+
+    @Override
+    public void persist() {
+        if (getNewNews() != null) {
+            try {
+                newsBean.persist(getNewNews());
+                if (!getNewsList().contains(getNewNews())) {
+                    getNewsList().add(getNewNews());
+                }
+            } catch (Exception e) {
+                fc.addMessage(null, new FacesMessage(e.getMessage()));
+            }
+            setNewNews(null);
+            init();
+//            fc.addMessage(null, new FacesMessage("更新成功！"));
+        }
+    }
+
+    @Override
+    public List<News> retrieve() {
+        return newsBean.findAll();
+    }
+
+    @Override
+    public void sendNotification(News entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void view(News entity) {
+        if (entity != null) {
+            setCurrentNews(entity);
+        }
+    }
+
+    @Override
+    public void verify() {
+        //To change body of generated methods, choose Tools | Templates.
+        if (getCurrentNews() != null) {
+            getCurrentNews().setCfmuser(userManagedBean.getUserid());
+            getCurrentNews().setCfmdate(userManagedBean.getDate());
+            getCurrentNews().setStatus("V");
+            save();
+        }
+    }
+
+    @Override
+    public void unverify() {
+        //To change body of generated methods, choose Tools | Templates.
+        if (getCurrentNews() != null) {
+            getCurrentNews().setCfmuser(null);
+            getCurrentNews().setCfmdate(null);
+            getCurrentNews().setOptuser(userManagedBean.getUserid());
+            getCurrentNews().setOptdate(userManagedBean.getDate());
+            getCurrentNews().setStatus("M");
+            save();
+        }
+    }
+
+    /**
+     * @return the currentNews
+     */
+    public News getCurrentNews() {
+        return currentNews;
+    }
+
+    /**
+     * @param currentNews the currentNews to set
+     */
+    public void setCurrentNews(News currentNews) {
+        this.currentNews = currentNews;
+    }
+
+    /**
+     * @return the newNews
+     */
+    public News getNewNews() {
+        return newNews;
+    }
+
+    /**
+     * @param newNews the newNews to set
+     */
+    public void setNewNews(News newNews) {
+        this.newNews = newNews;
+    }
+
+    /**
+     * @return the news
+     */
+    public List<News> getNewsList() {
+        return newsList;
+    }
+
+    /**
+     * @param newsList the news to set
+     */
+    public void setNewsList(List<News> newsList) {
+        this.newsList = newsList;
+    }
+
+    /**
+     * @return the userManagedBean
+     */
+    public UserManagedBean getUserManagedBean() {
+        return userManagedBean;
+    }
+
+    /**
+     * @param userManagedBean the userManagedBean to set
+     */
+    public void setUserManagedBean(UserManagedBean userManagedBean) {
+        this.userManagedBean = userManagedBean;
+    }
+
+}

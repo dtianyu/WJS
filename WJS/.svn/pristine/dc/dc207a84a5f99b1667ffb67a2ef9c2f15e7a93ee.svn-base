@@ -1,0 +1,19 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+$(function() {
+    alert('123');
+    $("#todoprevImg").click(function() {
+        $("#toDoList").append($("#toDoList li:first"));
+    });
+    $("#todonextImg").click(function() {
+        $("#toDoList li:last").insertBefore($("#toDoList li:first"));
+    });
+
+    $(document.getElementById("topNews:topNewsList_content")).addClass("topNewsList_content");
+
+    alert('321');
+});

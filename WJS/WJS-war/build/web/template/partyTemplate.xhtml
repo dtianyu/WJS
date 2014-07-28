@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view contentType="text/html">
+
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <script src="../resources/js/party.js"/>
+            <script src="../resources/js/libs/swfobject_modified.js"/>          
+            <link href="../resources/css/partyDefault.css" rel="stylesheet" type="text/css" />
+            <link href="../resources/css/partyLayout.css" rel="stylesheet" type="text/css" />
+            <link href="../resources/css/partyUserDefine.css" rel="stylesheet" type="text/css" />
+            <title>金山区卫生局卫监所党建网</title>
+        </h:head>
+        <h:body>
+            <div id="container">
+                <div id="top">
+                    <div id="topInfo">
+                        <ui:insert name="topInfo">                   
+                        </ui:insert>               
+                    </div>
+                    <div id="topAdv">
+                        <ui:insert name="topAdv">
+                            <div style="width: 1200px; margin: auto">
+                                <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="1200" height="125" id="FlashID">
+                                    <param name="movie" value="../resources/img/partyHead.swf" />
+                                    <param name="bgcolor" value="ff8920" />
+                                    <param name="align" value="t" />
+                                    <param name="quality" value="high" />
+                                    <param name="wmode" value="opaque" />
+                                    <param name="swfversion" value="11.2.0.0" />
+                                    <!-- This param tag prompts users with Flash Player 6.0 r65 and higher to download the latest version of Flash Player. Delete it if you don’t want users to see the prompt. -->
+                                    <param name="expressinstall" value="../resources/js/libs/expressInstall.swf" />
+                                    <!-- Next object tag is for non-IE browsers. So hide it from IE using IECC. -->
+                                    <!--[if !IE]>-->
+                                    <object type="application/x-shockwave-flash" data="../resources/img/partyHead.swf" width="1200" height="125">
+                                        <!--<![endif]-->
+                                        <param name="bgcolor" value="ff8920" />
+                                        <param name="align" value="t" />
+                                        <param name="quality" value="high" />
+                                        <param name="wmode" value="opaque" />
+                                        <param name="swfversion" value="11.2.0.0" />
+                                        <param name="expressinstall" value="../resources/js/libs/expressInstall.swf" />
+                                        <!-- The browser displays the following alternative content for users with Flash Player 6.0 and older. -->
+                                        <div>
+                                            <h4>Content on this page requires a newer version of Adobe Flash Player.</h4>
+                                            <p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" width="112" height="33" /></a></p>
+                                        </div>
+                                        <!--[if !IE]>-->
+                                    </object>
+                                    <!--<![endif]-->
+                                </object>
+                                <script type="text/javascript">
+                                    swfobject.registerObject("FlashID");
+                                </script>                           
+                            </div>
+                        </ui:insert>
+                    </div>
+                    <div id="topNav">
+                        <ui:insert name="topNav">
+                            <ui:include src="./../template/partyTopMenu.xhtml"/>
+                        </ui:insert>
+                    </div> 
+                </div>
+                <div id="center">       
+                    <div id="left">
+                        <ui:insert name="left">
+                            <ui:include src="partyLeftMenu.xhtml"/>
+                        </ui:insert>
+                    </div>
+                    <div id="right">
+                        <ui:insert name="right">
+
+                        </ui:insert>
+                    </div>
+                    <div id="content">  
+                        <ui:insert name="content">
+
+                        </ui:insert>
+                    </div>      
+                </div>
+            </div>
+            <div id="bottom" >
+                <div id="footerNav" >
+                    <ul><li><span>|</span></li><li class="footerMemu"><a href="/">首页</a></li>
+                        <li><span>|</span></li><li class="footerMemu"><a  href="/WJS-war/faces/orgFun.xhtml">机构介绍</a></li>
+                        <li><span>|</span></li><li class="footerMemu"><a  href="/WJS-war/faces/newsList.xhtml">监督快讯</a></li>
+                        <li><span>|</span></li><li class="footerMemu"><a  href="/WJS-war/faces/law.html" target="_blank">政策法规</a></li>
+                        <li><span>|</span></li><li class="footerMemu"><a  href="http://www.hs.sh.cn/newwjs/onlineHearLoadPage.shtml" target="_blank">办事指南</a></li>
+                        <li><span>|</span></li><li class="footerMemu"><a  href="/WJS-war/faces/party/party.xhtml" target="_blank">党建工作</a></li>
+                        <li><span>|</span></li>
+                    </ul>
+                </div>
+                <div id="copyright" style="padding-top: 10px;text-align: center;">
+                    <span style="color: black">© 2014 上海市金山区卫生局卫生监督所 沪ICP备07507281号</span>
+                </div>             
+            </div>
+
+        </h:body>
+
+    </f:view>              
+</html>

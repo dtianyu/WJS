@@ -1,0 +1,48 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.ebj;
+
+import com.wjs.entity.Inspection;
+import com.wjs.sbi.SuperEJB;
+import java.util.List;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+
+/**
+ *
+ * @author kevintung
+ */
+@Stateless
+@LocalBean
+public class InspectionBean extends SuperEJB<Inspection> {
+
+    public InspectionBean() {
+        this.className = "Inspection";
+    }
+
+    @Override
+    public List<Inspection> getByPId(String value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Inspection getNextById(String value) {
+        Inspection entity = super.getNextById(value);
+        if (entity == null) {
+            entity = new Inspection(0, "没有了");
+        }
+        return entity;
+    }
+
+    @Override
+    public Inspection getPrevById(String value) {
+        Inspection entity = super.getPrevById(value);
+        if (entity == null) {
+            entity = new Inspection(0, "没有了");
+        }
+        return entity;
+    }
+}

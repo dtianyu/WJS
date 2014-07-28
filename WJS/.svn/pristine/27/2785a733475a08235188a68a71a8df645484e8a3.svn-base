@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./template/jsfTemplate.xhtml">
+
+            <ui:define name="left">
+                <ui:include src="./template/leftMenu.xhtml"/>
+            </ui:define>
+
+            <ui:define name="content">
+                <f:view>
+                    <div class="listTitle">
+                        <div style="padding-left: 10px;padding-top: 10px;">
+                            <a style="font-size: 14px;font-weight: bold;text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.8);">新闻列表</a>
+                        </div>
+                    </div>
+                    <h:form id="formList">
+                        <p:dataList id="newsList" value="#{newsQueryBean.topList}" var="item" itemType="none" rows="30" styleClass="panellist">
+                            <span class="ui-icon ui-icon-triangle-1-e" style="float:left;"></span>
+                            <p:commandLink value="#{item.title}" action="#{newsQueryBean.view(item)}" style="float: left;"></p:commandLink>
+                            <h:outputText value="#{item.cfmdate}" style="float: right;padding-right:5px;">
+                                <f:convertDateTime pattern="MM/dd" />
+                            </h:outputText>     
+                        </p:dataList>   
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

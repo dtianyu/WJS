@@ -1,0 +1,247 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.control;
+
+import com.wjs.ebj.SupervisionBean;
+import com.wjs.entity.Supervision;
+import com.wjs.mbi.ManagedBeanDataOperation;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+/**
+ *
+ * @author kevintung
+ */
+@ManagedBean(name="supervisionManagedBean")
+@SessionScoped
+public class SupervisonManagedBean implements ManagedBeanDataOperation<Supervision> {
+
+    @EJB
+    private SupervisionBean supervisionBean;
+
+    private Supervision currentSupervision;
+    private Supervision newSupervision;
+    private List<Supervision> supervisionList;
+    private FacesContext fc;
+    @ManagedProperty("#{userManagedBean}")
+    private UserManagedBean userManagedBean;
+
+    /**
+     * Creates a new instance of SupervisonManagedBean
+     */
+    public SupervisonManagedBean() {
+
+    }
+
+    @PostConstruct
+    public void construct() {
+        init();
+        create();
+        fc = FacesContext.getCurrentInstance();
+    }
+
+    @PreDestroy
+    public void destory() {
+        if (getSupervisionList() != null) {
+            getSupervisionList().clear();
+            setSupervisionList(null);
+        }
+        setCurrentSupervision(null);
+        setNewSupervision(null);
+    }
+
+    @Override
+    public void init() {
+        setSupervisionList(retrieve());
+        if (!getSupervisionList().isEmpty()) {
+            setCurrentSupervision(getSupervisionList().get(0));
+        }
+    }
+
+    @Override
+    public void create() {
+        if (getNewSupervision() == null) {
+            Supervision entity = new Supervision();
+            entity.setOntop(false);
+            entity.setStatus("N");
+            entity.setCreator(getUserManagedBean().getCurrentUser().getUserid());
+            entity.setCredate(getUserManagedBean().getDate());
+            setNewSupervision(entity);
+        }
+    }
+
+    @Override
+    public void delete(Supervision entity) {
+        if (entity != null) {
+            try {
+                supervisionBean.delete(entity);
+                if (getSupervisionList().contains(entity)) {
+                    getSupervisionList().remove(entity);
+                }
+            } catch (Exception e) {
+                fc.addMessage(null, new FacesMessage(null, e.toString()));
+            }
+            init();
+//            fc.addMessage(null, new FacesMessage("删除成功！"));
+        }
+    }
+
+    @Override
+    public void edit(Supervision entity) {
+        if (entity != null) {
+            setCurrentSupervision(entity);
+        }
+    }
+
+    @Override
+    public void persist() {
+        if (getNewSupervision() != null) {
+            try {
+                supervisionBean.persist(getNewSupervision());
+                if (!getSupervisionList().contains(getNewSupervision())) {
+                    getSupervisionList().add(getNewSupervision());
+                }
+            } catch (Exception e) {
+                fc.addMessage(null, new FacesMessage(null, e.getMessage()));
+            }
+            setNewSupervision(null);
+            init();
+//            fc.addMessage(null, new FacesMessage("更新成功！"));
+        }
+    }
+
+    @Override
+    public List<Supervision> retrieve() {
+        return supervisionBean.findAll();
+    }
+
+    @Override
+    public void save() {
+        if (getCurrentSupervision() != null) {
+            try {
+                supervisionBean.update(getCurrentSupervision());
+            } catch (Exception e) {
+                fc.addMessage(null, new FacesMessage(null, e.toString()));
+            }
+            init();
+//            fc.addMessage(null, new FacesMessage("更新成功！"));
+        }
+    }
+
+    @Override
+    public void sendNotification(Supervision entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void view(Supervision entity) {
+        if (entity != null) {
+            setCurrentSupervision(entity);
+        }
+    }
+
+    
+    @Override
+    public void verify() {
+        if (getCurrentSupervision() != null) {
+            getCurrentSupervision().setCfmuser(userManagedBean.getUserid());
+            getCurrentSupervision().setCfmdate(userManagedBean.getDate());
+            getCurrentSupervision().setStatus("V");
+            save();
+        }
+    }
+
+    
+    @Override
+    public void unverify() {
+        if (getCurrentSupervision() != null) {
+            getCurrentSupervision().setCfmuser(null);
+            getCurrentSupervision().setCfmdate(null);
+            getCurrentSupervision().setOptuser(userManagedBean.getUserid());
+            getCurrentSupervision().setOptdate(userManagedBean.getDate());
+            getCurrentSupervision().setStatus("M");
+            save();
+        }
+    }
+
+    /**
+     * @return the supervisionBean
+     */
+    public SupervisionBean getSupervisionBean() {
+        return supervisionBean;
+    }
+
+    /**
+     * @param supervisionBean the supervisionBean to set
+     */
+    public void setSupervisionBean(SupervisionBean supervisionBean) {
+        this.supervisionBean = supervisionBean;
+    }
+
+    /**
+     * @return the currentSupervision
+     */
+    public Supervision getCurrentSupervision() {
+        return currentSupervision;
+    }
+
+    /**
+     * @param currentSupervision the currentSupervision to set
+     */
+    public void setCurrentSupervision(Supervision currentSupervision) {
+        this.currentSupervision = currentSupervision;
+    }
+
+    /**
+     * @return the newSupervision
+     */
+    public Supervision getNewSupervision() {
+        return newSupervision;
+    }
+
+    /**
+     * @param newSupervision the newSupervision to set
+     */
+    public void setNewSupervision(Supervision newSupervision) {
+        this.newSupervision = newSupervision;
+    }
+
+    /**
+     * @return the supervisionList
+     */
+    public List<Supervision> getSupervisionList() {
+        return supervisionList;
+    }
+
+    /**
+     * @param supervisionList the supervisionList to set
+     */
+    public void setSupervisionList(List<Supervision> supervisionList) {
+        this.supervisionList = supervisionList;
+    }
+
+    /**
+     * @return the userManagedBean
+     */
+    public UserManagedBean getUserManagedBean() {
+        return userManagedBean;
+    }
+
+    /**
+     * @param userManagedBean the userManagedBean to set
+     */
+    public void setUserManagedBean(UserManagedBean userManagedBean) {
+        this.userManagedBean = userManagedBean;
+    }
+
+}

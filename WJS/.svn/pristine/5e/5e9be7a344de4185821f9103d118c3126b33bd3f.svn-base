@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <body>
+        <ui:composition template="./../template/adminTemplate.xhtml">
+            <ui:define name="contentlist">  
+                <div id="loginDailog">
+                    <h:form id="loginForm">
+                        <p:panelGrid id="plgLogin" columns="2" columnClasses="plgLoginLabel,plgLoginTnput" styleClass="plglogin">  
+                            <h:outputLabel  for="userid" value="账户:"/>  
+                            <p:inputText id="userid"  value="#{userManagedBean.userid}" label="账户" required="true" /> 
+                            <h:outputLabel  for="pwd" value="密码:" />  
+                            <p:password id="pwd"  value="#{userManagedBean.pwd}"  label="密码"  required="true" /> 
+                        </p:panelGrid>
+                        <p:commandButton id="btnLogin" value="Log In" action ="#{userManagedBean.login()}" styleClass="btnLogin" /> 
+                    </h:form>
+                </div>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

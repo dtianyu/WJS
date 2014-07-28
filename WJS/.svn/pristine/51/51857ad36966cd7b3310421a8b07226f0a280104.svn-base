@@ -1,0 +1,127 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 2014-5-14, 17:00:22
+    Author     : C0160
+*/
+
+/*用户登录框*/
+
+#loginDailog{
+    height: 180px;
+    width: 400px;
+    margin: auto;
+    background-color:transparent;
+    color:white;
+}
+
+form .btnLogout{
+    background-color: orange;  
+    float: right;
+}
+
+form .btnLogin{
+    height: 35px;
+    width: 400px;
+    text-align: center;
+    background-color: #ff6666;
+}
+
+form .btnLogin span{
+    font-size: 14px;
+}
+
+form .plgLogin{
+    width: 400px;
+    margin-top: 100px;
+    background: transparent none repeat 0% 0%;
+}
+
+form .plgLogin tr{
+    height: 65px;
+    border:none;
+    background-color: transparent;
+}
+
+form .plgLogin td{
+    border: none;
+}
+
+form .plgLoginLabel{
+    width: 100px;
+    text-align: right;
+}
+
+form .plgLoginTnput input{
+    width: 200px;
+}
+
+.currentUserLable{
+    border: none;
+    color: orange;
+    font-weight: bold; 
+    width: 60px;
+    float: right;
+    padding: 5px;
+}
+
+.currentUserName{
+    border:none;
+    color: orange;
+    font-weight: bold; 
+    width: 80px;
+    float: right;
+    padding: 5px;
+}
+
+/*用户登录框*/
+
+.notificationBar{
+    width: 320px;
+    height: 190px;
+    right: 0px;
+    border: #045491 solid 2px;
+}
+
+.notificationBar a.shutdown{
+    width: 22px;
+    height: 24px;
+    float: right; 
+    background :url("../img/sprites.png");
+    background-position: -107px -25px;
+}
+
+.notificationBar a.shutdown:hover{
+    width: 22px;
+    height: 24px;
+    float: right; 
+    background :url("../img/sprites.png");
+    background-position: -107px 0px;
+}
+
+.notificationBar div.ui-widget-content{
+    border: none;
+}
+
+
+.tbllist{
+    margin: 0px 0px 0px 0px;
+    width: 810px;
+}
+
+.plgUpload{
+    margin: 20px 0px 0px 0px;
+    width: 810px; 
+}
+
+.plgHead {
+    margin: 0px 0px 20px;
+    width: 810px;
+}
+
+.plgInputLong input{
+    width: 400px;
+}

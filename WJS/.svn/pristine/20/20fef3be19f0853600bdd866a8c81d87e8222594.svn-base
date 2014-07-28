@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <h:form id="formleft">   
+
+            <p:panelMenu rendered="true"> 
+                <p:submenu label="返回首页">
+                    <p:menuitem value="首页" url="index.xhtml" /> 
+                </p:submenu>
+                <p:submenu label="机构介绍">
+                    <p:menuitem value="监督职能" url="#" /> 
+                    <p:menuitem value="领导班子" url="#" /> 
+                    <p:menuitem value="机构介绍" url="#" /> 
+                </p:submenu>
+                <p:submenu label="意见反馈"> 
+                    <p:menuitem value="" url="#" style="background-image: url('../resources/img/mail01.gif'); background-repeat: no-repeat;background-size: 95% 100%;background-position: right;" /> 
+                    <p:menuitem value="" url="#" style="background-image: url('../resources/img/mail02.gif'); background-repeat: no-repeat;background-size: 95% 100%;background-position: right;" /> 
+                </p:submenu>
+                <p:submenu label="专题报告">  
+                    <p:menuitem value="" url="#" style="background-image: url('../resources/img/report01.jpg'); background-repeat: no-repeat;background-size: 95% 100%;background-position: right;" />  
+                    <p:menuitem value="" url="#" style="background-image: url('../resources/img/report02.jpg'); background-repeat: no-repeat;background-size: 95% 100%;background-position: right;" /> 
+                </p:submenu>
+            </p:panelMenu>
+
+        </h:form>  
+
+    </ui:composition>
+
+</html>
+

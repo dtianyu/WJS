@@ -1,0 +1,54 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.ebj;
+
+import com.wjs.comm.SuperEJB;
+import com.wjs.entity.PartyNews;
+import java.util.List;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.persistence.Query;
+
+/**
+ *
+ * @author kevintung
+ */
+@Stateless
+@LocalBean
+public class PartyNewsBean extends SuperEJB<PartyNews> {
+
+    public PartyNewsBean() {
+        this.className = "PartyNews";
+    }
+
+    @Override
+    public List<PartyNews> getByPId(String value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public PartyNews getPrevById(String value) {
+        PartyNews entity = super.getPrevById(value);
+        if (entity == null) {
+            entity = new PartyNews(0, "没有了");
+        }
+        return entity;
+    }
+
+    @Override
+    public PartyNews getNextById(String value) {
+        PartyNews entity = super.getNextById(value);
+        if (entity == null) {
+            entity = new PartyNews(0, "没有了");
+        }
+        return entity;
+    }
+
+    public List<PartyNews> findTopHasImg(int n) {
+        Query query = em.createNamedQuery(getClassName() + ".findTopHasImg").setFirstResult(0).setMaxResults(n);
+        return query.getResultList();
+    }
+}

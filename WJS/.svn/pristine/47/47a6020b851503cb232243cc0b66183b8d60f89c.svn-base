@@ -1,0 +1,93 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.ebj;
+
+import com.wjs.entity.Knowledge;
+import com.wjs.sbi.EJBOperate;
+import java.util.List;
+import javax.ejb.Stateless;
+import javax.ejb.LocalBean;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+/**
+ *
+ * @author C0160
+ */
+@Stateless
+@LocalBean
+public class KnowledgeBean implements EJBOperate<Knowledge> {
+
+    @PersistenceContext(unitName = "WJS-ejbPU")
+    private EntityManager em;
+
+    @Override
+    public void delete(Knowledge entity) {
+        try {
+            if (em.contains(entity)) {
+                em.remove(entity);
+            } else {
+                em.remove(em.merge(entity));
+            }
+        } catch (Exception e) {
+            throw new Error(e.toString());
+        }
+    }
+
+    @Override
+    public void persist(Knowledge entity) {
+        em.persist(entity);
+    }
+
+    @Override
+    public Knowledge getById(String value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Knowledge> getByPId(String value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getRowCount() {
+        Query query = em.createNamedQuery("Knowledge.findRowCount");
+        return Integer.parseInt(query.getSingleResult().toString());
+    }
+
+    @Override
+    public List<Knowledge> retrieve() {
+        Query query = em.createNamedQuery("Knowledge.findVerified");
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Knowledge> retrieve(int first, int pageSize) {
+        Query query = em.createNamedQuery("Knowledge.findVerified").setFirstResult(first).setMaxResults(first + pageSize);
+        return query.getResultList();
+    }
+
+    @Override
+    public Knowledge update(Knowledge entity) {
+        try {
+            Knowledge n = em.merge(entity);
+            return n;
+        } catch (Exception e) {
+            throw new Error(e.toString());
+        }
+    }
+
+    public List<Knowledge> findAll() {
+        Query query = em.createNamedQuery("Knowledge.findAll");
+        return query.getResultList();
+    }
+
+    public List<Knowledge> findTop() {
+        Query query = em.createNamedQuery("Knowledge.findTop").setFirstResult(0).setMaxResults(10);
+        return query.getResultList();
+    }
+}

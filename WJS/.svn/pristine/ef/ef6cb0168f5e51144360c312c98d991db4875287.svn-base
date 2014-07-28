@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view contentType="text/html">
+
+        <h:head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <script src="../resources/js/party.js"/>
+            <link href="../resources/css/partyDefault.css" rel="stylesheet" type="text/css" />
+            <link href="../resources/css/partyLayout.css" rel="stylesheet" type="text/css" />
+            <link href="../resources/css/partyUserDefine.css" rel="stylesheet" type="text/css" />
+            <title>金山区卫生局卫监所党建网</title>
+        </h:head>
+        <h:body>
+            <div id="container">
+                <div id="top">
+                    <div id="topInfo">
+                        <ui:insert name="topInfo">                   
+                        </ui:insert>               
+                    </div>
+                    <div id="topAdv">
+                        <ui:insert name="topAdv">
+                            <object type="application/x-shockwave-flash" data="../resources/img/headimg.swf" width="100%" height="100%" id="topAdvFlash">
+                                <param name="movie" value="../resources/img/headimg.swf" />
+                            </object>
+                        </ui:insert>
+                    </div>
+                    <div id="topNav">
+                        <ui:insert name="topNav">
+                            <ui:include src="./../template/partyTopMenu.xhtml"/>
+                        </ui:insert>
+                    </div> 
+                </div>
+                <div id="center">       
+                    <div id="left">
+                        <ui:insert name="left">
+
+                        </ui:insert>
+                    </div>
+                    <div id="right">
+                        <ui:insert name="right">
+
+                        </ui:insert>
+                    </div>
+                    <div id="content">  
+                        <ui:insert name="content">
+
+                        </ui:insert>
+                    </div>      
+                </div>
+            </div>
+            <div id="bottom" >
+                <div id="footerNav" >
+                    <ul><li><span>|</span></li><li class="footerMemu"><a href="/">首页</a></li>
+                        <li><span>|</span></li><li class="footerMemu"><a  href="/WJS-war/faces/orgFun.xhtml">机构介绍</a></li>
+                        <li><span>|</span></li><li class="footerMemu"><a  href="/WJS-war/faces/newsList.xhtml">监督快讯</a></li>
+                        <li><span>|</span></li><li class="footerMemu"><a  href="/WJS-war/faces/law.xhtml">政策法规</a></li>
+                        <li><span>|</span></li><li class="footerMemu"><a  href="/">办事指南</a></li>
+                        <li><span>|</span></li><li class="footerMemu"><a  href="/WJS-war/faces/party.xhtml" target="_blank">党建工作</a></li>
+                        <li><span>|</span></li>
+                    </ul>
+                </div>
+                <div id="copyright" style="padding-top: 10px;text-align: center;">
+                    <span style="color: black">© 2014 上海市金山区卫生局卫生监督所 沪ICP备07507281号</span>
+                </div>             
+            </div>
+            
+        </h:body>
+
+    </f:view>              
+</html>

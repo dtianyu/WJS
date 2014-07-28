@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+        
+        <ui:composition template="./../template/adminTemplate.xhtml">
+
+            <ui:define name="right">
+                <f:view>      
+                    <h:form id="formList">
+                        <p:messages id="messages" showSummary="true" showDetail="true" autoUpdate="true" closable="true" /> 
+                        <p:dataTable id="tbllist" value="#{pageInfoManagedBean.pageInfoList}" var="item"  paginator="true"  paginatorPosition="bottom" rows="15"  
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="15,30,45"  styleClass="tbllist" >
+                            <f:facet name="header">
+                                <p:commandButton id="btnCreate" value="新增" actionListener="#{pageInfoManagedBean.create()}" style="float: right" icon="ui-icon-plus"  
+                                                 oncomplete="newDialog.show();" update=":formNew:dlgNew"/>
+                                <h:outputLabel>页面列表</h:outputLabel>
+                            </f:facet>
+                            <p:column styleClass="w120">
+                                <f:facet name="header">
+                                    <h:outputText value="页面标题"/>
+                                </f:facet>
+                                <h:outputText value="#{item.title}"/>
+                            </p:column>
+                            <p:column styleClass="w120">
+                                <f:facet name="header">
+                                    <h:outputText value="页面文件"/>
+                                </f:facet>
+                                <h:outputText value="#{item.page}"/>
+                            </p:column>  
+                            <p:column styleClass="w060">
+                                <f:facet name="header">
+                                    <h:outputText value="状态"/>
+                                </f:facet>
+                                <h:outputText value="#{item.status}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Do"/>
+                                </f:facet>
+                                <p:menuButton value="操作" style="float: right">  
+                                    <p:menuitem id="btnView" actionListener="#{pageInfoManagedBean.view(item)}" icon="ui-icon-document" value="查看" style="float: right"
+                                                oncomplete="viewDialog.show()" update=":formView:dlgView" />                        
+                                    <p:menuitem id="btnEdit" actionListener="#{pageInfoManagedBean.edit(item)}" icon="ui-icon-pencil" value="修改" 
+                                                rendered="#{item.status!='V'}" oncomplete="editDialog.show()" update=":formEdit:dlgEdit"/>                                                     
+                                    <p:menuitem id="btnDelete" actionListener="#{pageInfoManagedBean.delete(item)}" icon="ui-icon-close" value="删除" 
+                                                rendered="#{item.status!='V' }" update=":formList"/>                  
+                                </p:menuButton>
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandButton id="btnLoad" value="刷新" actionListener="#{pageInfoManagedBean.init()}" style="float: right"
+                                                 icon="ui-icon-search"    update=":formList"/>
+                            </f:facet>  
+                        </p:dataTable>
+                    </h:form>
+                    <h:form id="formNew">
+                        <p:dialog id="dlgNew" header="News Info" widgetVar="newDialog" modal="true" >
+                            <p:panelGrid columns="2" columnClasses="plgLable,plgInputLong" styleClass="plgDialog" > 
+                                <h:outputLabel value="页面标题" for="newsTitle" />
+                                <p:inputText id="newsTitle" value="#{pageInfoManagedBean.newPageInfo.title}" required="true" requiredMessage="The Title field is required."/>
+                                <h:outputLabel value="页面文件" for="imgfile" />
+                                <p:inputText id="imgfile" value="#{pageInfoManagedBean.newPageInfo.page}" title="Imgfile" />
+                                <h:outputLabel value="内容" for="news" />
+                                <p:editor id="news" value="#{pageInfoManagedBean.newPageInfo.content}" required="true" requiredMessage="The News field is required."></p:editor>
+                                <f:facet name="footer">
+                                    <p:commandButton id="btnSave" action="#{pageInfoManagedBean.persist()}"  icon="ui-icon-disk" value="保存" 
+                                                     style="float: right" oncomplete="newDialog.hide();" update=":formList"/>
+                                </f:facet> 
+                            </p:panelGrid>> 
+                        </p:dialog>
+                    </h:form>
+                    <h:form id="formEdit">
+                        <p:dialog id="dlgEdit" header="News Info" widgetVar="editDialog" modal="true"  >
+                            <p:panelGrid columns="2" columnClasses="plgLable,plgInputLong" styleClass="plgDialog" >
+                                <h:outputLabel value="页面标题" for="title" />
+                                <p:inputText id="title" value="#{pageInfoManagedBean.currentPageInfo.title}" title="Title" required="true" requiredMessage="The Title field is required."/>                 
+                                <h:outputLabel value="页面文件" for="imgfile" />
+                                <p:inputText id="imgfile" value="#{pageInfoManagedBean.currentPageInfo.page}" title="Imgfile" />
+
+                                <h:outputLabel value="内容" for="news" />
+                                <p:editor id="news" value="#{pageInfoManagedBean.currentPageInfo.content}" required="true" requiredMessage="The News field is required."/>
+                                <h:outputLabel value="状态" for="status" />
+                                <h:outputText id="status" value="#{pageInfoManagedBean.currentPageInfo.status}" title="Status" />
+                                <f:facet name="footer">
+                                    <p:commandButton id="btnEdit" action="#{pageInfoManagedBean.save()}"  icon="ui-icon-disk" value="保存" 
+                                                     style="float: right" oncomplete="editDialog.hide();" update=":formList"/>
+                                </f:facet> 
+                            </p:panelGrid>
+                        </p:dialog>
+                    </h:form>
+                    <h:form id="formView">
+                        <p:dialog id="dlgView" header="News Info" widgetVar="viewDialog" modal="true" >
+                            <p:panelGrid columns="2" columnClasses="plgLable,plgInputLong" styleClass="plgDialog" >
+                                <h:outputText value="页面标题"/>
+                                <h:outputText value="#{pageInfoManagedBean.currentPageInfo.title}" title="Title"/>
+                                <h:outputText value="页面文件"/>
+                                <h:outputText value="#{pageInfoManagedBean.currentPageInfo.page}" title="Imgfile"/>                   
+                                <h:outputText value="内容"/>
+                                <p:editor id="news" value="#{pageInfoManagedBean.currentPageInfo.content}" disabled="true"/>
+                                <h:outputText value="状态"/>
+                                <h:outputText value="#{pageInfoManagedBean.currentPageInfo.status}" title="Status"/>
+                                <h:outputText value="创建人"/>
+                                <h:outputText value="#{pageInfoManagedBean.currentPageInfo.creator}" title="创建人"/>
+                                <h:outputText value="创建日期"/>
+                                <h:outputText value="#{pageInfoManagedBean.currentPageInfo.credate}" title="创建日期">
+                                    <f:convertDateTime pattern="yyyy/MM/dd" />
+                                </h:outputText>
+                                <h:outputText value="审核人"/>
+                                <h:outputText value="#{pageInfoManagedBean.currentPageInfo.cfmuser}" title="审核人"/>
+                                <h:outputText value="审核日期"/>
+                                <h:outputText value="#{pageInfoManagedBean.currentPageInfo.cfmdate}" title="审核日期">
+                                    <f:convertDateTime pattern="yyyy/MM/dd" />
+                                </h:outputText>
+                                <f:facet name="footer">
+                                    <p:commandButton id="btnVerify" actionListener="#{pageInfoManagedBean.verify()}" icon="ui-icon-locked" value="复核" style="float: right"
+                                                     rendered="#{pageInfoManagedBean.currentPageInfo.status!='V'}"    oncomplete="viewDialog.hide()" update=":formList"/>
+                                    <p:commandButton id="btnUnverify" actionListener="#{pageInfoManagedBean.unverify()}" icon="ui-icon-unlocked" value="取消" style="float: right"
+                                                     rendered="#{pageInfoManagedBean.currentPageInfo.status=='V'}"    oncomplete="viewDialog.hide()" update=":formList"/>
+                                </f:facet>
+                            </p:panelGrid>              
+                        </p:dialog>
+                    </h:form>
+                    <h:form id="formUpload">
+                        <p:panelGrid id="plgUpload" columns="2" columnClasses="plgLable,plgInputLong" styleClass="plgUpload">
+                            <h:outputLabel value="Select File" for="uploadFile" />
+                            <p:fileUpload id="uploadFile" fileUploadListener="#{fileUploadBean.handleFileUpload}" sizeLimit="5000000"
+                                          update="@form"/>
+                            <h:outputLabel value="File Name" for="filename" />
+                            <h:outputText id="filename"  value="#{fileUploadBean.filename}"/>
+                        </p:panelGrid>
+                    </h:form>
+                </f:view>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

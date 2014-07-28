@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <div id="leftMenuBar">
+            <ul class="leftNavMenu">
+                <li id="active" class="active"><a href="/WJS-war/face/party/partyNewsList.xhtml" >党建新闻</a></li>
+                <li class="style"><a href="/WJS-war/faces/party/partyDynamicList.xhtml" >党建动态</a></li>                     
+                <li class="style"><a href="/WJS-war/faces/party/partyInfoList.xhtml">群教专栏</a></li>
+                <li class="style"><a href="/WJS-war/faces/party/partyGroupList.xhtml">工团信息</a></li>
+            </ul> 
+        </div>  
+        <p:menu rendered="false"/> 
+
+    </ui:composition>
+
+</html>
+

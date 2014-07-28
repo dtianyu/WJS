@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../template/adminTemplate.xhtml">
+
+            <ui:define name="right">
+                <h:form id="formList">
+
+                    <p:growl id="growl" showDetail="true" autoUpdate="true"  sticky="true" /> 
+                    <p:dataTable id="tbllist" value="#{systemUserManagedBean.model}" var="item"  paginator="true"  paginatorPosition="bottom" rows="15"  
+                                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                 rowsPerPageTemplate="15,30,45"  lazy="true"  styleClass="tbllist" >
+                        <f:facet name="header">
+                            <p:commandButton id="btnCreate" value="新增" actionListener="#{systemUserManagedBean.create()}" style="float: right" icon="ui-icon-plus"  
+                                             oncomplete="newDialog.show();" update=":formNew:dlgNew"/>
+                            <h:outputLabel>管理账户列表</h:outputLabel>
+                        </f:facet>
+                        <p:column styleClass="w120">
+                            <f:facet name="header">
+                                <h:outputText value="账户"/>
+                            </f:facet>
+                            <h:outputText value="#{item.userid}"/>
+                        </p:column>
+                        <p:column styleClass="w120">
+                            <f:facet name="header">
+                                <h:outputText value="名字"/>
+                            </f:facet>
+                            <h:outputText value="#{item.username}"/>
+                        </p:column>                         
+                        <p:column >
+                            <f:facet name="header">
+                                <h:outputText value="状态"/>
+                            </f:facet>
+                            <h:outputText value="#{item.status}"/>
+                        </p:column>
+                        <p:column styleClass="w080">
+                            <f:facet name="header">
+                                <h:outputText value="Do"/>
+                            </f:facet>
+                            <p:menuButton value="操作" style="float: right">  
+                                <p:menuitem id="btnView" actionListener="#{systemUserManagedBean.view(item)}" icon="ui-icon-document" value="查看" style="float: right"
+                                            oncomplete="viewDialog.show()" update=":formView:dlgView" />                        
+                                <p:menuitem id="btnEdit" actionListener="#{systemUserManagedBean.edit(item)}" icon="ui-icon-pencil" value="修改" 
+                                            rendered="#{item.status!='V'}" oncomplete="editDialog.show()" update=":formEdit:dlgEdit"/>                                                     
+                                <p:menuitem id="btnDelete" actionListener="#{systemUserManagedBean.delete(item)}" icon="ui-icon-close" value="删除" 
+                                            rendered="#{item.status!='V' }" update=":formList"/>                  
+                            </p:menuButton>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="btnLoad" value="刷新" actionListener="#{systemUserManagedBean.init()}" style="float: right"
+                                             icon="ui-icon-search"    update=":formList"/>
+                        </f:facet>  
+                    </p:dataTable>
+                </h:form>
+                <h:form id="formNew">                  
+                    <p:dialog id="dlgNew" header="News Info" widgetVar="newDialog" modal="true" >
+                        <p:panelGrid columns="2" columnClasses="plgLable,plgInputLong" styleClass="plgDialog" > 
+                            <h:outputLabel value="账户" for="userid" />
+                            <p:inputText id="userid" value="#{systemUserManagedBean.newEntity.userid}" required="true" requiredMessage="账户不能空白!"/>
+                            <h:outputLabel value="名字" for="username" />
+                            <p:inputText id="username" value="#{systemUserManagedBean.newEntity.username}" required="true" requiredMessage="名字不能空白!"/> 
+                            <h:outputLabel value="超级管理员" for="superuser" />
+                            <p:selectBooleanCheckbox id="superuser" value="#{systemUserManagedBean.newEntity.superuser}" required="true" requiredMessage="是不是超级管理员不能空白!"/> 
+                            <h:outputLabel value="密码" for="pwd" />
+                            <p:password id="pwd" value="#{systemUserManagedBean.newEntity.password}" title="Pwd"  feedback="false"
+                                        match="pwd2" redisplay="true" required="true" requiredMessage="The Pwd field is required."/>
+                            <h:outputLabel value="确认密码" for="pwd2" />
+                            <p:password id="pwd2" value="#{systemUserManagedBean.newEntity.password}" title="Pwd"  feedback="false"
+                                        redisplay="true" required="true" requiredMessage="The Pwd field is required."/>   
+                            <f:facet name="footer">
+                                <p:commandButton id="btnSave" action="#{systemUserManagedBean.persist()}"  icon="ui-icon-disk" value="保存" 
+                                                 style="float: right" oncomplete="newDialog.hide();" update=":formList"/>
+                            </f:facet> 
+                        </p:panelGrid>
+                    </p:dialog>
+                </h:form>
+                <h:form id="formEdit">
+                    <p:dialog id="dlgEdit" header="News Info" widgetVar="editDialog" modal="true"  >
+                        <p:panelGrid columns="2" columnClasses="plgLable,plgInputLong" styleClass="plgDialog" >
+                            <h:outputText value="账户"/>
+                            <h:outputText value="#{systemUserManagedBean.currentEntity.userid}" title="账户"/>  
+                            <h:outputLabel value="名字" for="username" />
+                            <p:inputText id="username" value="#{systemUserManagedBean.currentEntity.username}" required="true" requiredMessage="名字不能空白!"/>
+                            <h:outputLabel value="超级管理员" for="superuser" />
+                            <p:selectBooleanCheckbox id="superuser" value="#{systemUserManagedBean.newEntity.superuser}" required="true" requiredMessage="是不是超级管理员不能空白!"/> 
+                            <h:outputLabel value="密码" for="pwd" />
+                            <p:password id="pwd" value="#{systemUserManagedBean.currentEntity.password}" title="密码"  feedback="false"
+                                        match="pwd2" redisplay="true" required="true" requiredMessage="The Pwd field is required."/>
+                            <h:outputLabel value="确认密码" for="pwd2" />
+                            <p:password id="pwd2" value="#{systemUserManagedBean.currentEntity.password}" title="确认密码"  feedback="false"
+                                        redisplay="true" required="true" requiredMessage="The Pwd field is required."/> 
+                            <h:outputText value="状态"/>
+                            <h:outputText id="status" value="#{systemUserManagedBean.currentEntity.status}" title="状态" />
+                            <h:outputText value="操作员"/>
+                            <h:outputText value="#{systemUserManagedBean.currentEntity.creator}" title="操作员"/>  
+                            <h:outputText value="操作日期"/>
+                            <h:outputText value="#{systemUserManagedBean.currentEntity.credate}" title="操作日期">
+                                <f:convertDateTime pattern="yyyy/MM/dd"/>
+                            </h:outputText>  
+                            <f:facet name="footer">
+                                <p:commandButton id="btnEdit" action="#{systemUserManagedBean.save()}"  icon="ui-icon-disk" value="保存" 
+                                                 style="float: right" oncomplete="editDialog.hide();" update=":formList"/>
+                            </f:facet> 
+                        </p:panelGrid>
+                    </p:dialog>
+                </h:form>
+                <h:form id="formView">
+                    <p:dialog id="dlgView" header="News Info" widgetVar="viewDialog" modal="true" >
+                        <p:panelGrid columns="2" columnClasses="plgLable,plgInputLong" styleClass="plgDialog" >
+                            <h:outputText value="账户"/>
+                            <h:outputText value="#{systemUserManagedBean.currentEntity.userid}" title="账户"/>        
+                            <h:outputText value="名字"/>
+                            <h:outputText value="#{systemUserManagedBean.currentEntity.username}" title="名字"/>             
+                            <h:outputText value="超级用户"/>
+                            <h:outputText id="content" value="#{systemUserManagedBean.currentEntity.superuser}"/>                                
+                            <h:outputText value="状态"/>
+                            <h:outputText id="status" value="#{systemUserManagedBean.currentEntity.status}" title="状态" />
+                            <h:outputText value="操作员"/>
+                            <h:outputText value="#{systemUserManagedBean.currentEntity.creator}" title="操作员"/>  
+                            <h:outputText value="操作日期"/>
+                            <h:outputText value="#{systemUserManagedBean.currentEntity.credate}" title="操作日期">
+                                <f:convertDateTime pattern="yyyy/MM/dd"/>
+                            </h:outputText>  
+                            <f:facet name="footer">
+                                <p:commandButton id="btnVerify" actionListener="#{systemUserManagedBean.verify()}" icon="ui-icon-locked" value="复核" style="float: right;"
+                                                 rendered="#{systemUserManagedBean.currentEntity.status!='V'}" oncomplete="viewDialog.hide()" update=":formList"/>
+                                <p:commandButton id="btnUnverify" actionListener="#{supervisionManagedBean.unverify()}" icon="ui-icon-unlocked" value="取消" style="float: right;"
+                                                 rendered="#{systemUserManagedBean.currentEntity.status=='V'}" oncomplete="viewDialog.hide()" update=":formList"/>
+                            </f:facet>
+                        </p:panelGrid>              
+
+                    </p:dialog>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

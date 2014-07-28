@@ -1,0 +1,72 @@
+body {
+    background-image: url("../../resources/img/bodybg.gif");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    font-size: 12px;
+    font-family: Verdana, "Verdana CE",  Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    color: #045491;  
+    margin: 10px;
+}
+
+h1 {
+    font-family: Arial, "Arial CE", "Lucida Grande CE", lucida, "Helvetica CE", sans-serif;
+    border-bottom: 1px solid #AFAFAF; 
+    font-size:  16px;
+    font-weight: bold;
+    margin: 0px;
+    padding: 0px;
+    color: #D20005;
+}
+
+a:link, a:visited {
+  color: #045491;
+  /*font-weight : bold;*/
+  text-decoration: none;
+}
+
+a:link:hover, a:visited:hover  {
+  color: #045491;
+  /*font-weight : bold;*/
+  text-decoration : underline;
+}
+
+table .w040{
+    width: 40px;
+}
+
+table .w060{
+    width: 60px;
+}
+
+table .w080{
+    width: 80px;
+}
+
+table .w100{
+    width: 100px;
+}
+
+table .w120{
+    width: 120px;
+}
+
+table .w160{
+    width: 160px;
+}
+
+table .w200{
+    width: 200px;
+}
+
+table .w300{
+    width: 300px;
+}
+
+table .w400{
+    width: 400px;
+}
+
+table .w460{
+    width: 460px;
+}
+

@@ -1,0 +1,87 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.ebj;
+
+import com.wjs.entity.Supervision;
+import com.wjs.sbi.EJBOperate;
+import java.util.List;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+/**
+ *
+ * @author kevintung
+ */
+@Stateless
+@LocalBean
+public class SupervisionBean implements EJBOperate<Supervision> {
+
+    @PersistenceContext(unitName = "WJS-ejbPU")
+    private EntityManager em;
+
+    @Override
+    public void delete(Supervision entity) {
+        try {
+            if (em.contains(entity)) {
+                em.remove(entity);
+            } else {
+                em.remove(em.merge(entity));
+            }
+        } catch (Exception e) {
+            throw new Error(e.toString());
+        }
+    }
+
+    @Override
+    public void persist(Supervision entity) {
+        try {
+            em.persist(entity);
+        } catch (Exception e) {
+            throw new Error(e.toString());
+        }
+    }
+
+    @Override
+    public Supervision getById(String value) {
+        Query query = em.createNamedQuery("Supervison.findById");
+        query.setParameter("id", value);
+        return (Supervision) query.getSingleResult();
+    }
+
+    @Override
+    public List<Supervision> getByPId(String value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Supervision> retrieve() {
+        Query query = em.createNamedQuery("Supervision.findVerified");
+        return query.getResultList();
+    }
+
+    @Override
+    public Supervision update(Supervision entity) {
+        try {
+            Supervision s = em.merge(entity);
+            return s;
+        } catch (Exception e) {
+            throw new Error(e.toString());
+        }
+    }
+
+    public List<Supervision> findAll() {
+        Query query = em.createNamedQuery("Supervision.findAll");
+        return query.getResultList();
+    }
+
+    public List<Supervision> findTop() {
+        Query query = em.createNamedQuery("Supervision.findTop").setFirstResult(0).setMaxResults(10);
+        return query.getResultList();
+    }
+}

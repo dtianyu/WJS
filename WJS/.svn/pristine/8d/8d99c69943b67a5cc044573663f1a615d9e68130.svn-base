@@ -1,0 +1,121 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.ebj;
+
+import com.wjs.entity.Supervision;
+import com.wjs.sbi.EJBOperate;
+import java.util.List;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+/**
+ *
+ * @author kevintung
+ */
+@Stateless
+@LocalBean
+public class SupervisionBean implements EJBOperate<Supervision> {
+
+    @PersistenceContext(unitName = "WJS-ejbPU")
+    private EntityManager em;
+
+    @Override
+    public void delete(Supervision entity) {
+        try {
+            if (em.contains(entity)) {
+                em.remove(entity);
+            } else {
+                em.remove(em.merge(entity));
+            }
+        } catch (Exception e) {
+            throw new Error(e.toString());
+        }
+    }
+
+    @Override
+    public void persist(Supervision entity) {
+        try {
+            em.persist(entity);
+        } catch (Exception e) {
+            throw new Error(e.toString());
+        }
+    }
+
+    @Override
+    public Supervision getById(String value) {
+        Query query = em.createNamedQuery("Supervision.findById");
+        query.setParameter("id", Integer.parseInt(value));
+        return (Supervision) query.getSingleResult();
+    }
+
+    @Override
+    public List<Supervision> getByPId(String value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getRowCount() {
+        Query query = em.createNamedQuery("Supervision.findRowCount");
+        return Integer.parseInt(query.getSingleResult().toString());
+    }
+
+    @Override
+    public List<Supervision> retrieve() {
+        Query query = em.createNamedQuery("Supervision.findVerified");
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Supervision> retrieve(int first, int pageSize) {
+        Query query = em.createNamedQuery("Supervision.findVerified").setFirstResult(first).setMaxResults(first + pageSize);
+        return query.getResultList();
+    }
+
+    @Override
+    public Supervision update(Supervision entity) {
+        try {
+            Supervision s = em.merge(entity);
+            return s;
+        } catch (Exception e) {
+            throw new Error(e.toString());
+        }
+    }
+
+    public List<Supervision> findAll() {
+        Query query = em.createNamedQuery("Supervision.findAll");
+        return query.getResultList();
+    }
+
+    public List<Supervision> findTop() {
+        Query query = em.createNamedQuery("Supervision.findTop").setFirstResult(0).setMaxResults(10);
+        return query.getResultList();
+    }
+
+    public Supervision getPrevById(String value) {
+        Query query = em.createNamedQuery("Supervision.findPrevById").setFirstResult(0).setMaxResults(1);
+        query.setParameter("id", Integer.parseInt(value));
+        List<Supervision> list = query.getResultList();
+        if (list.isEmpty()) {
+            return new Supervision(0, "没有了");
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public Supervision getNextById(String value) {
+        Query query = em.createNamedQuery("Supervision.findNextById").setFirstResult(0).setMaxResults(1);
+        query.setParameter("id", Integer.parseInt(value));
+        List<Supervision> list = query.getResultList();
+        if (list.isEmpty()) {
+            return new Supervision(0, "没有了");
+        } else {
+            return list.get(0);
+        }
+    }
+}

@@ -1,0 +1,118 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.ebj;
+
+import com.wjs.entity.News;
+import com.wjs.sbi.EJBOperate;
+import java.util.List;
+import javax.ejb.LocalBean;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+/**
+ *
+ * @author KevinDong
+ */
+@Stateless
+@LocalBean
+public class NewsBean implements EJBOperate<News> {
+
+    @PersistenceContext(unitName = "WJS-ejbPU")
+    private EntityManager em;
+
+    @Override
+    public void delete(News entity) {
+        try {
+            if (em.contains(entity)) {
+                em.remove(entity);
+            } else {
+                em.remove(em.merge(entity));
+            }
+        } catch (Exception e) {
+            throw new Error(e.toString());
+        }
+    }
+
+    @Override
+    public void persist(News entity) {
+        em.persist(entity);
+    }
+
+    @Override
+    public News getById(String value) {
+        Query query = em.createNamedQuery("News.findById");
+        query.setParameter("id", Integer.parseInt(value));
+        return (News) query.getSingleResult();
+    }
+
+    @Override
+    public List<News> getByPId(String value) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getRowCount() {
+        Query query = em.createNamedQuery("News.findRowCount");
+        return Integer.parseInt(query.getSingleResult().toString());
+    }
+
+    @Override
+    public List<News> retrieve() {
+        Query query = em.createNamedQuery("News.findVerified");
+        return query.getResultList();
+    }
+
+    @Override
+    public List<News> retrieve(int first, int pageSize) {
+        Query query = em.createNamedQuery("News.findVerified").setFirstResult(first).setMaxResults(first + pageSize);
+        return query.getResultList();
+    }
+
+    @Override
+    public News update(News entity) {
+        try {
+            News n = em.merge(entity);
+            return n;
+        } catch (Exception e) {
+            throw new Error(e.toString());
+        }
+    }
+
+    public List<News> findAll() {
+        Query query = em.createNamedQuery("News.findAll");
+        return query.getResultList();
+    }
+
+    public List<News> findTop() {
+        Query query = em.createNamedQuery("News.findTop").setFirstResult(0).setMaxResults(10);
+        return query.getResultList();
+    }
+    
+    public News getPrevById(String value) {
+        Query query = em.createNamedQuery("News.findPrevById").setFirstResult(0).setMaxResults(1);
+        query.setParameter("id", Integer.parseInt(value));
+        List<News> list = query.getResultList();
+        if (list.isEmpty()) {
+            return new News(0, "没有了");
+        } else {
+            return list.get(0);
+        }
+    }
+
+    public News getNextById(String value) {
+        Query query = em.createNamedQuery("News.findNextById").setFirstResult(0).setMaxResults(1);
+        query.setParameter("id", Integer.parseInt(value));
+        List<News> list = query.getResultList();
+        if (list.isEmpty()) {
+            return new News(0, "没有了");
+        } else {
+            return list.get(0);
+        }
+    }
+
+}

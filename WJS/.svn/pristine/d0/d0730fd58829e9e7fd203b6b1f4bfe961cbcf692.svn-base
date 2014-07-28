@@ -1,0 +1,75 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.query;
+
+import com.wjs.ebj.LicenseBean;
+import com.wjs.entity.License;
+import com.wjs.lazy.LicenseModel;
+import com.wjs.mbi.SuperQueryBean;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
+/**
+ *
+ * @author kevintung
+ */
+@ManagedBean(name = "licenseQueryBean")
+@RequestScoped
+public class LicenseQueryBean extends SuperQueryBean<License> {
+
+    @EJB
+    private LicenseBean licenseBean;
+
+    /**
+     * Creates a new instance of LicenseQueryBean
+     */
+    public LicenseQueryBean() {
+    }
+
+    @Override
+    public void init() {
+        setTopList(licenseBean.findTop(6));
+        model = new LicenseModel(licenseBean);
+        if (getId() != null) {
+            setCurrentEntity(licenseBean.getById(getId()));
+            if (getCurrentEntity() != null) {
+                setPrev(licenseBean.getPrevById(getId()));
+                if (prev.getId() == 0) {
+                    setHasPrev(false);
+                } else {
+                    setHasPrev(true);
+                }
+                setNext(licenseBean.getNextById(getId()));
+                if (next.getId() == 0) {
+                    setHasNext(false);
+                } else {
+                    setHasNext(true);
+                }
+            }
+        }
+    }
+
+    @Override
+    public String viewList() {
+        return "licenseList";
+    }
+
+    /**
+     * @return the licenseBean
+     */
+    public LicenseBean getLicenseBean() {
+        return licenseBean;
+    }
+
+    /**
+     * @param licenseBean the licenseBean to set
+     */
+    public void setLicenseBean(LicenseBean licenseBean) {
+        this.licenseBean = licenseBean;
+    }
+
+}

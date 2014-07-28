@@ -1,0 +1,121 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.ebj;
+
+import com.wjs.entity.License;
+import com.wjs.sbi.EJBOperate;
+import java.util.List;
+import javax.ejb.Stateless;
+import javax.ejb.LocalBean;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+/**
+ *
+ * @author C0160
+ */
+@Stateless
+@LocalBean
+public class LicenseBean implements EJBOperate<License> {
+
+    @PersistenceContext(unitName = "WJS-ejbPU")
+    private EntityManager em;
+
+    @Override
+    public void delete(License entity) {
+        try {
+            if (em.contains(entity)) {
+                em.remove(entity);
+            } else {
+                em.remove(em.merge(entity));
+            }
+        } catch (Exception e) {
+            throw new Error(e.toString());
+        }
+    }
+
+    @Override
+    public void persist(License entity) {
+        try {
+            em.persist(entity);
+        } catch (Exception e) {
+            throw new Error(e.toString());
+        }
+    }
+
+    @Override
+    public License getById(String value) {
+        Query query = em.createNamedQuery("License.findById");
+        query.setParameter("id", Integer.parseInt(value));
+        return (License) query.getSingleResult();
+    }
+
+    @Override
+    public List<License> getByPId(String value) {
+        Query query = em.createNamedQuery("License.findById");
+        query.setParameter("kind", Integer.parseInt(value));
+        return query.getResultList();
+    }
+
+    @Override
+    public int getRowCount() {
+        Query query = em.createNamedQuery("License.findRowCount");
+        query.setParameter("kind", "1");
+        return Integer.parseInt(query.getSingleResult().toString());
+    }
+
+    @Override
+    public List<License> retrieve() {
+        Query query = em.createNamedQuery("License.findVerified");
+        return query.getResultList();
+    }
+
+    @Override
+    public List<License> retrieve(int first, int pageSize) {
+        Query query = em.createNamedQuery("License.findVerified").setFirstResult(first).setMaxResults(first + pageSize);
+        return query.getResultList();
+    }
+
+    @Override
+    public License update(License entity) {
+        try {
+            License e = em.merge(entity);
+            return e;
+        } catch (Exception e) {
+            throw new Error(e.toString());
+        }
+    }
+
+    public List<License> findAll() {
+        Query query = em.createNamedQuery("License.findAll");
+        return query.getResultList();
+    }
+
+    public List<License> findTop() {
+        Query query = em.createNamedQuery("License.findTop").setFirstResult(0).setMaxResults(6);
+        query.setParameter("kind", "1");
+        return query.getResultList();
+    }
+
+    public List<License> findTop(String value) {
+        Query query = em.createNamedQuery("License.findTop").setFirstResult(0).setMaxResults(7);
+        query.setParameter("kind", value);
+        return query.getResultList();
+    }
+
+    public int getRowCount(String value) {
+        Query query = em.createNamedQuery("License.findRowCount");
+        query.setParameter("kind", value);
+        return Integer.parseInt(query.getSingleResult().toString());
+    }
+
+    public List<License> retrieve(String value, int first, int pageSize) {
+        Query query = em.createNamedQuery("License.findVerified").setFirstResult(first).setMaxResults(first + pageSize);
+        query.setParameter("kind", value);
+        return query.getResultList();
+    }
+}

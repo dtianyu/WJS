@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./../template/adminTemplate.xhtml">
+
+            <ui:define name="right">
+                <f:view>      
+                    <h:form id="formList">
+                        <p:messages id="messages" showSummary="false" showDetail="true" autoUpdate="true" closable="true" /> 
+                        <p:dataTable id="tbllist" value="#{licenseManagedBean.model}" var="item"  paginator="true"  paginatorPosition="bottom" rows="15"  
+                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                                     rowsPerPageTemplate="15,30,45"  lazy="true"  styleClass="tbllist" >
+                            <f:facet name="header">
+                                <p:commandButton id="btnCreate" value="新增" actionListener="#{licenseManagedBean.create()}" style="float: right" icon="ui-icon-plus"  
+                                                 oncomplete="newDialog.show();" update=":formNew:dlgNew"/>
+                                <h:outputLabel>行政许可</h:outputLabel>
+                            </f:facet>
+                            <p:column styleClass="w460">
+                                <f:facet name="header">
+                                    <h:outputText value="标题"/>
+                                </f:facet>
+                                <h:outputText value="#{item.title}"/>
+                            </p:column>
+                            <p:column styleClass="w060">
+                                <f:facet name="header">
+                                    <h:outputText value="首页显示"/>
+                                </f:facet>
+                                <h:outputText value="#{item.ontop}"/>
+                            </p:column>                         
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="状态"/>
+                                </f:facet>
+                                <h:outputText value="#{item.status}"/>
+                            </p:column>
+                            <p:column styleClass="w080">
+                                <f:facet name="header">
+                                    <h:outputText value="Do"/>
+                                </f:facet>
+                                <p:menuButton value="操作" style="float: right">  
+                                    <p:menuitem id="btnView" actionListener="#{licenseManagedBean.view(item)}" icon="ui-icon-document" value="查看" style="float: right"
+                                                oncomplete="viewDialog.show()" update=":formView:dlgView" />                        
+                                    <p:menuitem id="btnEdit" actionListener="#{licenseManagedBean.edit(item)}" icon="ui-icon-pencil" value="修改" 
+                                                rendered="#{item.status!='V'}" oncomplete="editDialog.show()" update=":formEdit:dlgEdit"/>                                                     
+                                    <p:menuitem id="btnDelete" actionListener="#{licenseManagedBean.delete(item)}" icon="ui-icon-close" value="删除" 
+                                                rendered="#{item.status!='V' }" update=":formList"/>                  
+                                </p:menuButton>
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandButton id="btnLoad" value="刷新" actionListener="#{licenseManagedBean.init()}" style="float: right"
+                                                 icon="ui-icon-search"    update=":formList"/>
+                            </f:facet>  
+                        </p:dataTable>
+                    </h:form>
+                    <h:form id="formNew">
+                        <p:dialog id="dlgNew" header="News Info" widgetVar="newDialog" modal="true">
+                            <p:panelGrid columns="2" columnClasses="plgLable,plgInputLong" styleClass="plgDialog" > 
+                                <h:outputLabel value="标题" for="newsTitle" />
+                                <p:inputText id="newsTitle" value="#{licenseManagedBean.newEntity.title}" required="true" requiredMessage="The Title field is required."/>
+                                <h:outputLabel value="首页显示" for="ontop" />
+                                <p:selectBooleanCheckbox id="ontop" value="#{licenseManagedBean.newEntity.ontop}" required="true" requiredMessage="The ontop field is required."/>    
+                                <h:outputLabel value="内容" for="content" />
+                                <p:editor id="content" value="#{licenseManagedBean.newEntity.content}" required="true" requiredMessage="The Content field is required."></p:editor>
+                                <f:facet name="footer">
+                                    <p:commandButton id="btnSave" action="#{licenseManagedBean.persist()}"  icon="ui-icon-disk" value="保存" 
+                                                     style="float: right" oncomplete="newDialog.hide();" update=":formList"/>
+                                </f:facet> 
+                            </p:panelGrid>
+                        </p:dialog>
+                    </h:form>
+                    <h:form id="formEdit">
+                        <p:dialog id="dlgEdit" header="News Info" widgetVar="editDialog" modal="true"  >
+                            <p:panelGrid columns="2" columnClasses="plgLable,plgInputLong" styleClass="plgDialog" >
+                                <h:outputLabel value="标题" for="title" />
+                                <p:inputText id="title" value="#{licenseManagedBean.currentEntity.title}" title="Title" required="true" requiredMessage="The Title field is required."/>                 
+                                <h:outputLabel value="首页显示" for="ontop" />
+                                <p:selectBooleanCheckbox id="ontop" value="#{licenseManagedBean.currentEntity.ontop}" required="true" requiredMessage="The Ontop field is required."/>
+                                <h:outputLabel value="内容" for="content" />
+                                <p:editor id="content" value="#{licenseManagedBean.currentEntity.content}" required="true" requiredMessage="The News field is required."/>
+                                <h:outputLabel value="状态" for="status" />
+                                <h:outputText id="status" value="#{licenseManagedBean.currentEntity.status}" title="Status" />
+                                <f:facet name="footer">
+                                    <p:commandButton id="btnEdit" action="#{licenseManagedBean.save()}"  icon="ui-icon-disk" value="保存" 
+                                                     style="float: right" oncomplete="editDialog.hide();" update=":formList"/>
+                                </f:facet> 
+                            </p:panelGrid>
+                        </p:dialog>
+                    </h:form>
+                    <h:form id="formView">
+                        <p:dialog id="dlgView" header="News Info" widgetVar="viewDialog" modal="true" >
+                            <p:panelGrid columns="2" columnClasses="plgLable,plgInputLong" styleClass="plgDialog" >
+                                <h:outputText value="标题"/>
+                                <h:outputText value="#{licenseManagedBean.currentEntity.title}" title="Title"/>       
+                                <h:outputText value="首页显示"/>
+                                <h:outputText value="#{licenseManagedBean.currentEntity.ontop}" title="Ontop"/>             
+                                <h:outputText value="内容"/>
+                                <p:editor id="content" value="#{licenseManagedBean.currentEntity.content}" disabled="true"/>
+                                <h:outputText value="Status:"/>
+                                <h:outputText value="#{licenseManagedBean.currentEntity.status}" title="Status"/>
+                                <f:facet name="footer">
+                                    <p:commandButton id="btnVerify" actionListener="#{licenseManagedBean.verify()}" icon="ui-icon-locked" value="复核" style="float: right"
+                                                     rendered="#{licenseManagedBean.currentEntity.status!='V'}"    oncomplete="viewDialog.hide()" update=":formList"/>
+                                    <p:commandButton id="btnUnverify" actionListener="#{licenseManagedBean.unverify()}" icon="ui-icon-unlocked" value="取消" style="float: right"
+                                                     rendered="#{licenseManagedBean.currentEntity.status=='V'}"    oncomplete="viewDialog.hide()" update=":formList"/>
+                                </f:facet>
+                            </p:panelGrid>              
+                        </p:dialog>
+                    </h:form>
+                </f:view>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

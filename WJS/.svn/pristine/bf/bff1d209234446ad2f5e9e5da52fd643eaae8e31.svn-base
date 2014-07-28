@@ -1,0 +1,257 @@
+/* 
+    Document   : columnsCSS
+    Created on : 2012-11-1, 11:29:59
+    Author     : C0160
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+button{
+    color: buttonhighlight;
+    height: 22px;
+}
+
+button span{
+    font-size:10px;
+}
+
+.loginOrLogout{
+    background-color: orange;  
+    float: right;
+}
+
+.currentUserLable{
+    border: none;
+    color: black;
+    font-weight: bold; 
+    width: 60px;
+    float: right;
+    padding: 5px;
+}
+
+.currentUserName{
+    border:none;
+    color: black;
+    font-weight: bold; 
+    width: 80px;
+    float: right;
+    padding: 5px;
+}
+
+.currentCompanyLable{
+    border: none;
+    color: black;
+    font-weight: bold; 
+    width: 60px;
+    float: right;
+    padding: 5px;
+}
+
+.currentCompanyName{
+    border:none;
+    color: black;
+    font-weight: bold; 
+    width: 200px;
+    float: right;
+    padding: 5px;
+}
+
+form .plglogin{
+    width: 360px;
+}
+
+form .plglogin tr{
+    height: 55px;
+}
+
+form .plglogin td{
+    border: none;
+}
+
+form .plglogin tfoot tr{
+    height: 36px;
+}
+
+form .plgHead{
+    margin: 0 0 20px 0;
+    width: 980px;
+}
+
+form .plgHead tr{
+
+}
+
+form .plgHead td{
+
+}
+/*设定表头panelGrid*/
+
+/*设定查询条件panelGrid*/
+form .plgQuery{
+    margin: 0 0 20px 0;
+    width: 980px;
+}
+
+form .plgQuery tr{
+    border: none; 
+}
+
+form .plgQuery td{
+    border: none; 
+}
+
+form .plgLable{
+    width: 60px;
+    text-align: right;
+}
+
+form .plgInput {
+    width: 220px;
+}
+/*设定panelGrid中Column的宽度,配合columnClasses使用*/
+
+form .tblTop{
+    width: 178px;  
+}
+
+form .tblTop .btnNewsMore{
+    background-image: url("../../resource/img/titlebg.gif");
+    width: 10px;
+    float: right;
+}
+
+form .tbllist{
+    margin: 0 auto;
+    width: 980px;
+}
+
+
+
+
+.tabview .tbllist{
+    margin: 5px auto;
+    width: 920px;
+}
+
+.ui-datatable-header {
+    font-size: 12px;
+}
+
+.ui-datatable-footer  {
+    font-size: 12px;
+}
+
+.ui-panelgrid  tr {
+    height:  30px;
+}
+
+.ui-panelgrid-header {
+    font-size: 12px;
+}
+
+.ui-panelgrid-footer{
+    font-size: 12px;
+}
+
+/*下拉选择框*/
+.ui-selectonemenu{
+    height: 22px;
+}
+
+.ui-panelmenu{
+    font-size: 10px;
+}
+
+.ui-panelmenu-header{
+    height: 40px;
+    background-image: url("../../resources/img/leftmenubg.gif");
+    background-repeat: no-repeat;
+    background-size: 100% 100%; 
+    font-size: 14px;
+    padding-left: 12px;
+}
+
+.ui-panelmenu .ui-menuitem-link{
+    height: 32px;
+    font-size: 12px;
+}
+/*
+#topNewsList_list li{
+     margin: 1px 1px 1px -5px; padding: 0.2em; font-size: 12px; height: 18px; width: 340px; text-align: left;    
+}*/
+
+.ui-datalist-item{
+    margin: 1px 1px 1px -20px; padding: 0.2em; font-size: 12px; height: 16px; text-align: left;    
+}
+
+.ui-tabs{
+    padding: 0em 0em;
+    height: 280px;
+}
+
+.ui-tabs-nav li a:link{
+    background-image: url("../../resources/img/tabtitle2.gif");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.ui-tabs-nav li a:link:hover{
+    background-image: url("../../resources/img/tabtitle1.gif");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.topNewsList_content{
+    height: 244px;
+}
+
+#topLink{
+    margin-top: 20px;
+}
+
+#tabTopLeft{
+    float: left;
+    width: 375px;
+    height: 280px;
+    margin: 0px 10px 20px 0px;
+}
+
+#tabTopRight{
+    float: left;
+    width: 375px;
+    height: 280px;
+    margin: 0px 0px 20px 0px;
+}
+
+#tabTopLeftList {list-style-type:none;}
+#tabTopLeftList li{
+    margin: 1px 1px 1px -40px; padding: 0.4em; font-size: 12px; height: 18px; width: 340px; text-align: left; 
+}
+
+#tabTopRightList {list-style-type:none; }
+#tabTopRightList li{
+    margin: 1px 1px 1px -40px; padding: 0.4em; font-size: 12px; height: 18px; width: 340px;text-align: left; 
+}
+
+.toDoNavigator{
+    clear: both;
+    width: 748px;
+    height: 205px;
+    margin: 0px 0px 0px 0px;
+    border: 2px solid #007C9B;//rgba(16, 127, 158, 1);
+    //background: none repeat scroll 0% 0% rgba(242, 242, 242, 1); 
+    background-image:url("../img/bodyimg2.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+#todoprevImg{float: left;margin-top: 40px;}
+#todonextImg{float: right;margin-top: 40px;}
+
+#toDoList{list-style-type: none; }
+#toDoList li {float: left;}
+#toDoList li img{width: 120px; height: 102px;margin: 10px 18px; }

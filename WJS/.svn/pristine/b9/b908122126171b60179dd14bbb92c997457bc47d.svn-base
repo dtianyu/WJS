@@ -1,0 +1,85 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.query;
+
+import com.wjs.ebj.NoticeBean;
+import com.wjs.entity.Notice;
+import com.wjs.lazy.NoticeModel;
+import com.wjs.web.SuperQueryBean;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
+/**
+ *
+ * @author C0160
+ */
+@ManagedBean
+@RequestScoped
+public class NoticeQueryBean extends SuperQueryBean<Notice> {
+
+    @EJB
+    private NoticeBean noticeBean;
+
+    /**
+     * Creates a new instance of NoticeRequestBean
+     */
+    public NoticeQueryBean() {
+
+    }
+
+    @Override
+    public void init() {
+        setTopList(noticeBean.findTop(10));
+        if (!getTopList().isEmpty()) {
+            setCurrentEntity(getTopList().get(0));
+        }
+        model = new NoticeModel(noticeBean,com.wjs.web.Scope.Query);
+        if (id != null) {
+            setCurrentEntity(noticeBean.getById(id));
+            if (getCurrentEntity() != null) {
+                setPrev(noticeBean.getPrevById(id));
+                if (prev.getId() == 0) {
+                    setHasPrev(false);
+                } else {
+                    setHasPrev(true);
+                }
+                setNext(noticeBean.getNextById(id));
+                if (next.getId() == 0) {
+                    setHasNext(false);
+                } else {
+                    setHasNext(true);
+                }
+            } else {
+                setCurrentEntity(new Notice(0, "没有相关资料"));
+                setHasPrev(false);
+                setHasNext(false);
+            }
+
+        }
+
+    }
+
+    @Override
+    public String viewList() {
+        return "noticeList.xhtml";
+    }
+
+    /**
+     * @return the noticeBean
+     */
+    public NoticeBean getNoticeBean() {
+        return noticeBean;
+    }
+
+    /**
+     * @param noticeBean the noticeBean to set
+     */
+    public void setNoticeBean(NoticeBean noticeBean) {
+        this.noticeBean = noticeBean;
+    }
+
+}

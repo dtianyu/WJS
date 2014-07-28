@@ -1,0 +1,144 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.control;
+
+import com.wjs.comm.Lib;
+import com.wjs.ebj.SystemUserBean;
+import com.wjs.entity.SystemUser;
+import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
+
+/**
+ *
+ * @author C0160
+ */
+@ManagedBean
+@SessionScoped
+public class UserManagedBean implements Serializable {
+
+    @EJB
+    private SystemUserBean systemUserBean;
+
+    private SystemUser currentUser;
+    private String userid;
+    private String pwd;
+    private String secpwd;
+    private boolean status;
+
+    public UserManagedBean() {
+        status = false;
+    }
+
+    public boolean checkUser() {
+        return true;
+    }
+
+    public String login() {
+        if (getUserid().toString().length() == 0 || getPwd().toString().length() == 0) {
+            throw new UnsupportedOperationException();
+        }
+        try {
+            secpwd = Lib.securityMD5(getPwd());
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(UserManagedBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            SystemUser u = systemUserBean.getByIdAndPwd(getUserid(), getSecpwd());
+            if (u != null) {
+                setCurrentUser(u);
+                setStatus(true);
+            }
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("用户名或密码不正确！"));
+            setStatus(false);
+            return "login.xhtml";
+        }
+        return "admin";
+    }
+
+    public String logout() {
+        if (status) {
+            setCurrentUser(null);
+            setStatus(false);
+            HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+            session.invalidate();
+            return "index";
+        } else {
+            return "index";
+        }
+    }
+
+    public Date getDate() {
+        return Calendar.getInstance().getTime();
+    }
+
+    /**
+     * @return the currentUser
+     */
+    public SystemUser getCurrentUser() {
+        return currentUser;
+    }
+
+    /**
+     * @param currentUser the currentUser to set
+     */
+    public void setCurrentUser(SystemUser currentUser) {
+        this.currentUser = currentUser;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    /**
+     * @return the userid
+     */
+    public String getUserid() {
+        return userid;
+    }
+
+    /**
+     * @param userid the userid to set
+     */
+    public void setUserid(String userid) {
+        this.userid = userid;
+    }
+
+    /**
+     * @return the pwd
+     */
+    public String getPwd() {
+        return pwd;
+    }
+
+    /**
+     * @param pwd the pwd to set
+     */
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+
+    /**
+     * @return the secpwd
+     */
+    public String getSecpwd() {
+        return secpwd;
+    }
+
+}

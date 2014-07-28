@@ -1,0 +1,235 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.control;
+
+import com.wjs.ebj.KnowledgeBean;
+import com.wjs.entity.Knowledge;
+import com.wjs.mbi.ManagedBeanDataOperation;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+/**
+ *
+ * @author kevintung
+ */
+@ManagedBean
+@SessionScoped
+public class KnowledgeManagedBean implements ManagedBeanDataOperation<Knowledge> {
+
+    @EJB
+    private KnowledgeBean knowledgeBean;
+
+    private Knowledge currentKnowledge;
+    private Knowledge newKnowledge;
+    private List<Knowledge> knowledgeList;
+    private FacesContext fc;
+    @ManagedProperty("#{userManagedBean}")
+    private UserManagedBean userManagedBean;
+
+    /**
+     * Creates a new instance of KnowledgeManagedBean
+     */
+    public KnowledgeManagedBean() {
+        fc = FacesContext.getCurrentInstance();
+    }
+
+    @PostConstruct
+    public void construct() {
+        init();
+        create();
+    }
+
+    @PreDestroy
+    public void destory() {
+        if (getKnowledgeList() != null) {
+            getKnowledgeList().clear();
+            setKnowledgeList(null);
+        }
+        setCurrentKnowledge(null);
+        setNewKnowledge(null);
+    }
+
+    @Override
+    public void init() {
+        setKnowledgeList(retrieve());
+        if (!getKnowledgeList().isEmpty()) {
+            setCurrentKnowledge(getKnowledgeList().get(0));
+        }
+    }
+
+    @Override
+    public void create() {
+        if (getNewKnowledge() == null) {
+            Knowledge entity = new Knowledge();
+            entity.setOntop(false);
+            entity.setStatus("N");
+            entity.setCreator(getUserManagedBean().getCurrentUser().getUserid());
+            entity.setCredate(getUserManagedBean().getDate());
+            setNewKnowledge(entity);
+        }
+    }
+
+    @Override
+    public void delete(Knowledge entity) {
+        if (entity != null) {
+            try {
+                knowledgeBean.delete(entity);
+                if (getKnowledgeList().contains(entity)) {
+                    getKnowledgeList().remove(entity);
+                }
+            } catch (Exception e) {
+
+                fc.addMessage(null, new FacesMessage(e.getMessage()));
+            }
+            init();
+//            fc.addMessage(null, new FacesMessage("删除成功！"));
+        }
+    }
+
+    @Override
+    public void edit(Knowledge entity) {
+        if (entity != null) {
+            setCurrentKnowledge(entity);
+        }
+    }
+
+    @Override
+    public void persist() {
+        if (getNewKnowledge() != null) {
+            try {
+                knowledgeBean.persist(getNewKnowledge());
+                if (!getKnowledgeList().contains(getNewKnowledge())) {
+                    getKnowledgeList().add(getNewKnowledge());
+                }
+            } catch (Exception e) {
+                fc.addMessage(null, new FacesMessage(e.getMessage()));
+            }
+            setNewKnowledge(null);
+            init();
+//            fc.addMessage(null, new FacesMessage("更新成功！"));
+        }
+    }
+
+    @Override
+    public List<Knowledge> retrieve() {
+        return knowledgeBean.findAll();
+    }
+
+    @Override
+    public void save() {
+        if (currentKnowledge != null) {
+            try {
+                currentKnowledge.setOptuser(userManagedBean.getUserid());
+                currentKnowledge.setOptdate(userManagedBean.getDate());
+                knowledgeBean.update(currentKnowledge);
+            } catch (Exception e) {
+                fc.addMessage(null, new FacesMessage(null, e.toString()));
+            }
+            init();
+//            fc.addMessage(null, new FacesMessage("更新成功！"));
+        }
+    }
+
+    @Override
+    public void sendNotification(Knowledge entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void view(Knowledge entity) {
+                if (entity != null) {
+            setCurrentKnowledge(entity);
+        }
+    }
+
+    @Override
+    public void verify() {
+                //To change body of generated methods, choose Tools | Templates.
+        if (getCurrentKnowledge() != null) {
+            getCurrentKnowledge().setCfmuser(userManagedBean.getUserid());
+            getCurrentKnowledge().setCfmdate(userManagedBean.getDate());
+            getCurrentKnowledge().setStatus("V");
+            save();
+        }
+    }
+
+    @Override
+    public void unverify() {
+                //To change body of generated methods, choose Tools | Templates.
+        if (getCurrentKnowledge() != null) {
+            getCurrentKnowledge().setCfmuser(null);
+            getCurrentKnowledge().setCfmdate(null);
+            getCurrentKnowledge().setOptuser(userManagedBean.getUserid());
+            getCurrentKnowledge().setOptdate(userManagedBean.getDate());
+            getCurrentKnowledge().setStatus("M");
+            save();
+        }
+    }
+
+    /**
+     * @return the currentKnowledge
+     */
+    public Knowledge getCurrentKnowledge() {
+        return currentKnowledge;
+    }
+
+    /**
+     * @param currentKnowledge the currentKnowledge to set
+     */
+    public void setCurrentKnowledge(Knowledge currentKnowledge) {
+        this.currentKnowledge = currentKnowledge;
+    }
+
+    /**
+     * @return the newKnowledge
+     */
+    public Knowledge getNewKnowledge() {
+        return newKnowledge;
+    }
+
+    /**
+     * @param newKnowledge the newKnowledge to set
+     */
+    public void setNewKnowledge(Knowledge newKnowledge) {
+        this.newKnowledge = newKnowledge;
+    }
+
+    /**
+     * @return the knowledgeList
+     */
+    public List<Knowledge> getKnowledgeList() {
+        return knowledgeList;
+    }
+
+    /**
+     * @param knowledgeList the knowledgeList to set
+     */
+    public void setKnowledgeList(List<Knowledge> knowledgeList) {
+        this.knowledgeList = knowledgeList;
+    }
+
+    /**
+     * @return the userManagedBean
+     */
+    public UserManagedBean getUserManagedBean() {
+        return userManagedBean;
+    }
+
+    /**
+     * @param userManagedBean the userManagedBean to set
+     */
+    public void setUserManagedBean(UserManagedBean userManagedBean) {
+        this.userManagedBean = userManagedBean;
+    }
+
+}

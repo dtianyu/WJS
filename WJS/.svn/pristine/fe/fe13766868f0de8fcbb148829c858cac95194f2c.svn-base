@@ -1,0 +1,135 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.query;
+
+import com.wjs.ebj.NewsBean;
+import com.wjs.entity.News;
+import com.wjs.lazy.NewsModel;
+import java.util.List;
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
+import org.primefaces.model.LazyDataModel;
+
+/**
+ *
+ * @author kevintung
+ */
+@ManagedBean(name = "newsQueryBean")
+@RequestScoped
+public class NewsQueryBean {
+
+    @EJB
+    private NewsBean newsBean;
+
+    private News currentNews;
+    private List<News> topList;
+
+    private LazyDataModel model;
+
+    @ManagedProperty("#{param.id}")
+    private String id;
+
+    /**
+     * Creates a new instance of NewsManagedBean
+     */
+    public NewsQueryBean() {
+    }
+
+    @PostConstruct
+    public void construct() {
+        init();
+        setModel(new NewsModel(newsBean));
+        if (getId() != null) {
+            setCurrentNews(newsBean.getById(id));
+        }
+    }
+
+    @PreDestroy
+    public void destory() {
+        if (getTopList() != null) {
+            getTopList().clear();
+            setTopList(null);
+        }
+        setCurrentNews(null);
+    }
+
+    public void init() {
+        setTopList(newsBean.findTop());
+        if (!getTopList().isEmpty()) {
+            setCurrentNews(getTopList().get(0));
+        }
+    }
+
+    public String view(News entity) {
+        setCurrentNews(entity);
+        return "newsDetail";
+    }
+
+    public String viewList() {
+        return "newsList.xhtml";
+    }
+
+    /**
+     * @return the currentNews
+     */
+    public News getCurrentNews() {
+        return currentNews;
+    }
+
+    /**
+     * @param currentNews the currentNews to set
+     */
+    public void setCurrentNews(News currentNews) {
+        this.currentNews = currentNews;
+    }
+
+    /**
+     * @return the topNews
+     */
+    public List<News> getTopList() {
+        return topList;
+    }
+
+    /**
+     * @param topList the topNews to set
+     */
+    public void setTopList(List<News> topList) {
+        this.topList = topList;
+    }
+
+    /**
+     * @return the model
+     */
+    public LazyDataModel getModel() {
+        return model;
+    }
+
+    /**
+     * @param model the model to set
+     */
+    public void setModel(LazyDataModel model) {
+        this.model = model;
+    }
+
+    /**
+     * @return the id
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+}

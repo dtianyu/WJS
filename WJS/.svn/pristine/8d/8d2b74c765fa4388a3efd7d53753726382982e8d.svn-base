@@ -1,0 +1,76 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.wjs.query;
+
+
+import com.wjs.ebj.PunishmentBean;
+import com.wjs.entity.Punishment;
+import com.wjs.lazy.PunishmentQueryModel;
+import com.wjs.mbi.SuperQueryBean;
+import javax.ejb.EJB;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+
+/**
+ *
+ * @author kevintung
+ */
+@ManagedBean(name = "punishmentQueryBean")
+@RequestScoped
+public class PunishmentQueryBean extends SuperQueryBean<Punishment> {
+   
+    @EJB
+    private PunishmentBean punishmentBean;
+
+    /**
+     * Creates a new instance of LicenseQueryBean
+     */
+    public PunishmentQueryBean() {
+    }
+
+    @Override
+    public void init() {
+        setTopList(punishmentBean.findTop(6));
+        model = new PunishmentQueryModel(punishmentBean);
+        if (getId() != null) {
+            setCurrentEntity(punishmentBean.getById(getId()));
+            if (getCurrentEntity() != null) {
+                setPrev(punishmentBean.getPrevById(getId()));
+                if (prev.getId() == 0) {
+                    setHasPrev(false);
+                } else {
+                    setHasPrev(true);
+                }
+                setNext(punishmentBean.getNextById(getId()));
+                if (next.getId() == 0) {
+                    setHasNext(false);
+                } else {
+                    setHasNext(true);
+                }
+            }
+        }
+    }
+
+    @Override
+    public String viewList() {
+        return "punishmentList";
+    }
+
+    /**
+     * @return the punishmentBean
+     */
+    public PunishmentBean getPunishmentBean() {
+        return punishmentBean;
+    }
+
+    /**
+     * @param punishmentBean the punishmentBean to set
+     */
+    public void setPunishmentBean(PunishmentBean punishmentBean) {
+        this.punishmentBean = punishmentBean;
+    }
+
+}

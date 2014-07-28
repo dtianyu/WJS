@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./template/mainTemplate.xhtml">
+            <ui:define name="left">
+                <h:form id="formNotice">
+                    <h:outputScript library="js/libs/" name="jquery.slides.js"  target="head"/>
+                    <h:outputScript library="js" name="slides.js"  target="head"/>
+                    <h:outputStylesheet library="css" name="slides.css" />
+                    <div id="topNotice" class="box-shadow">
+                        <div id="topNoticeTitle">
+                            <a class="topTitleText">通知公告</a>
+                            <p:commandLink value="More"  styleClass="more" action="#{noticeQueryBean.viewList()}"/>        
+                        </div>
+                        <p:dataList id="topNoticeList" value="#{noticeQueryBean.topList}" var="item" itemType="disc">          
+                            <h:outputText value="#{item.cfmdate}" >
+                                <f:convertDateTime pattern="MM/dd" />
+                            </h:outputText>
+                            <h:link outcome="noticeDetail" value="#{item.title}" style="padding-left: 10px;" >
+                                <f:param name="id" value="#{item.id}"></f:param>
+                            </h:link>
+                        </p:dataList>
+                    </div>   
+                </h:form>
+                <div id="topLink" class="box-shadow">
+                    <div><a href="/WJS-war/faces/party.xhtml"><img src="resources/img/toplink01.jpg" style="height:68px ;width: 239px;"/></a></div>
+                    <div><a href="/WJS-war/"><img src="resources/img/toplink02.jpg" style="height:68px ;width: 239px;"/></a></div>
+                    <div><a href=""><img src="resources/img/toplink03.jpg" style="height:68px ;width: 239px;"/></a></div>
+                </div>
+                <h:form id="formKB">
+                    <div id="topKB" class="box-shadow">
+                        <div id="topKBTitle">
+                            <p:commandLink value="More"  styleClass="more"  action="#{knowledgeQueryBean.viewList()}"/>
+                        </div>
+                        <p:dataList id="topKBList" value="#{knowledgeQueryBean.topList}" var="item" >
+                            <h:link outcome="knowledgeDetail" value="#{item.title}"  >
+                                <f:param name="id" value="#{item.id}"></f:param>
+                            </h:link>                                        
+                        </p:dataList>
+                    </div> 
+                </h:form>
+            </ui:define>
+            <ui:define name="right">  
+                <h:form id="formContent">
+                    <div id="topLeft" class="box-shadow" >
+                        <div id="slides" >
+                            <ui:repeat value="#{newsQueryBean.topList}" var="item">  
+                                <div>
+                                    <img src="../resources/upload/#{item.imgfile}" alt="#{item.title}"/>                             
+                                    <div id="topImgFooter" style="position: relative;z-index: 99;height: 25px;margin-top: -25px ;background-color: #000;opacity: 0.5; ">
+                                        <h:link outcome="newsDetail" value="#{item.title}" >
+                                            <f:param name="id" value="#{item.id}"></f:param>
+                                        </h:link>
+                                    </div>
+                                </div>
+                            </ui:repeat>
+                        </div>
+                    </div>
+                    <div id="topRight" class="box-shadow">
+                        <div id="topSupervisionTitle">
+                            <p:commandLink value="More"  styleClass="more"  action="#{supervisionQueryBean.viewList()}"/>
+                        </div>
+                        <p:dataList id="topSupervisionList" value="#{supervisionQueryBean.topList}" var="item" itemType="square" >
+                            <h:outputText value="#{item.credate}" style="float: right;padding-right:20px;">
+                                <f:convertDateTime pattern="MM/dd" />
+                            </h:outputText> 
+                            <h:link outcome="supervisionDetail" value="#{item.title}">
+                                <f:param name="id" value="#{item.id}"></f:param>
+                            </h:link>     
+                        </p:dataList>
+                    </div>
+                    <div id="toDoNavigator" Class="toDoNavigator box-shadow">
+                        <div id="toDoNavigatorTitle" class="toDoNavigatorTitle">
+                            <h1><img style="padding-top: 5px;" width="14" height="14" alt="" src="./resources/img/ico0.jpg"></img>
+                                <a  class="topTitleText">网上办事/Service</a></h1>
+                        </div>  
+                        <div id="toDoPrevImg">
+                            <img src="resources/img/toDoPrev.gif"></img>
+                        </div>
+                        <div id="toDoNextImg">
+                            <img src="resources/img/toDoNext.gif"></img>
+                        </div>          
+                        <div id="toDoList">
+                            <ul>
+                                <li><div class="toDoNavBox" ><img src="resources/img/toDo1.png"/>
+                                        <a>表格下载</a></div></li>
+                                <li><div class="toDoNavBox" ><img src="resources/img/toDo2.png"/>
+                                        <a>962223热线</a></div></li>
+                                <li><div class="toDoNavBox" ><img src="resources/img/toDo3.png"/>
+                                        <a href="http://www.hs.sh.cn/newwjs/statusQuery.shtml" target="_blank">许可查询</a></div></li>
+                                <li><div class="toDoNavBox" ><img src="resources/img/toDo4.png"/>
+                                        <a href="http://www.jkz.sh.cn/" target="_blank">健康证查询</a></div></li>
+                            </ul>
+                        </div>                            
+                    </div>
+                    <div id="topTabContent" class="box-shadow">
+                        <div id="topTabContentTitle">
+                            <h:link outcome="licenseList" value="More" styleClass="more" />    
+                        </div>
+                        <p:tabView id="tabViewRight1" dynamic="true" cache="true" styleClass="topTab box-shadow">  
+                            <p:tab id="tabRightOne" title="行政许可">  
+                                <p:dataList id="tabListOne" value="#{licenseQueryBean.topList}" var="item"  styleClass="topTabRightList" >
+                                    <h:link outcome="licenseDetail" value="#{item.title}">
+                                        <f:param name="id" value="#{item.id}"></f:param>
+                                    </h:link>     
+                                </p:dataList>
+                            </p:tab> 
+                        </p:tabView>
+                        <p:tabView id="tabViewRight2" dynamic="true" cache="true" styleClass="topTab box-shadow">  
+                            <p:tab id="tabRightTwo" title="监督抽检">  
+                                <p:dataList id="tabListTwo" value="#{inspectionQueryBean.topList}" var="item"  styleClass="topTabRightList" >
+                                    <h:link outcome="inspectionDetail" value="#{item.title}">
+                                        <f:param name="id" value="#{item.id}"></f:param>
+                                    </h:link>     
+                                </p:dataList>
+                            </p:tab>  
+                            <p:tab id="tabRightThree" title="行政处罚" titleStyle="">  
+                                <p:dataList id="tabListThree" value="#{punishmentQueryBean.topList}" var="item"  styleClass="topTabRightList" >
+                                    <h:link outcome="punishmentDetail" value="#{item.title}">
+                                        <f:param name="id" value="#{item.id}"></f:param>
+                                    </h:link>     
+                                </p:dataList>
+                            </p:tab>  
+                        </p:tabView>  
+                    </div>
+                </h:form>
+            </ui:define>
+            <ui:define name="content">
+                <div id="contentListImage" ></div>
+                <h:form id="formContentList">
+                    <div style="margin-top: 10px;">
+                        <div class="contentList">
+                            <div class="topTitle">
+                                <img src='resources/img/ico5.jpg'/>
+                                <span class="span1">荣誉</span><span class="span2">证书 / </span><span class="span3">Honor</span>
+                                <p:commandLink value="More"  styleClass="more" action="#{noticeQueryBean.viewList()}"/>                
+                            </div>
+                            <div class="ui-widget-content contentListNoRightBorder">
+                                <div><img src="resources/img/pic1.jpg" style="margin: 2px;height:103px ;width: 209px;padding-left: 15px;"/></div>
+                                <div><img src="resources/img/pic2.jpg" style="margin: 2px;height:103px ;width: 209px;padding-left: 15px;"/></div>                                         
+                            </div>
+                        </div>
+                        <div class="contentList">
+                            <div  class="topTitle">
+                                <img src='resources/img/ico6.jpg'/>
+                                <span class="span1">媒体</span><span class="span2">报道 / </span><span class="span3">Media</span>
+                                <p:commandLink value="More"  styleClass="more" action="#{noticeQueryBean.viewList()}"/>
+                            </div>
+                            <p:dataList id="topContentList6" value="#{newsQueryBean.topList}" var="item" itemType="disc">
+                                <p:commandLink value="#{item.title}" action="#{newsQueryBean.view(item)}"></p:commandLink>                                            
+                            </p:dataList>
+                        </div>
+                        <div class="contentList">
+                            <div class="topTitle">
+                                <img src='resources/img/ico7.jpg'/>
+                                <span class="span1">简报</span><span class="span2">文档 / </span><span class="span3">Briefing</span>
+                                <p:commandLink value="More"  styleClass="more" action="#{noticeQueryBean.viewList()}"/>
+                            </div>
+                            <p:dataList id="topContentList7" value="#{newsQueryBean.topList}" var="item" itemType="disc">
+                                <p:commandLink value="#{item.title}" action="#{newsQueryBean.view(item)}"></p:commandLink>                                            
+                            </p:dataList>
+                        </div>
+                        <div class="contentList">
+                            <div class="topTitle">
+                                <img src='resources/img/ico8.jpg'/>
+                                <span class="span1">联系</span><span class="span2">我们 / </span><span class="span3">Contact</span>
+                            </div>
+                            <div class="ui-widget-content topListContent">
+                                <p style="padding: 15px;">
+                                    <b>地 址：</b>金山区朱泾镇人民路95号 <br></br><br></br>
+                                    <b>邮 编：</b>201599 <br></br><br></br>
+                                    <b>投诉举报电话：</b>962223 <br></br><br></br>
+                                    <b>电子信箱：</b>shjswjs@163.com<br></br><br></br>
+                                    <b>窗口地址：</b>龙山路555号<br></br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;金山区行政服务中心一楼B
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+                <div style="margin-top: 10px;font-size: 12pt;text-align: center ">
+                    <div id="bottomLink" class="ui-widget-content">
+                        <ul id="bottomLinkTitle" style=" padding: 0px;margin: 0px; ">
+                            <li id="bottomLinkTitle1" class="selected"><a class="selected">友情链接</a></li>
+                            <li id="bottomLinkTitle2" class="unselected"><a class="unselected">政府部门</a></li>
+                        </ul>                    
+                        <ul id="bottomLink1" class="selected">
+                            <li><a href="http://www.jdzx.net.cn/" target="_blank"><img src="./resources/img/linkjdzx.jpg" alt="" height="36" width="130"/></a></li>
+                            <li><a href="http://www.hs.sh.cn/" target="_blank"><img src="./resources/img/linkhs.jpg" alt="" height="36" width="130"/></a></li>
+                            <li><a href="http://www.scdc.sh.cn/" target="_blank"><img src="./resources/img/linkscdc.jpg" alt="" height="36" width="130"/></a></li>
+                            <li><a href="http://www.wsjsw.gov.cn/wsj/" target="_blank"><img src="./resources/img/linksmhb.jpg" alt="" height="36" width="130"/></a></li>
+                        </ul>
+                        <ul id="bottomLink2" class="unselected">
+                            <li><a><img src="./resources/img/linkjsgov.jpg" alt="" height="36" width="130"/></a></li>
+                            <li><a><img src="./resources/img/linkjsgov.jpg" alt="" height="36" width="130"/></a></li>
+                            <li><a><img src="./resources/img/linkjsgov.jpg" alt="" height="36" width="130"/></a></li>
+                            <li><a><img src="./resources/img/linkjsgov.jpg" alt="" height="36" width="130"/></a></li>
+                        </ul>                
+                    </div>
+                </div>   
+            </ui:define>
+        </ui:composition>
+
+    </body>
+
+</html>

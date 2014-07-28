@@ -1,0 +1,39 @@
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+$(function() {
+    $("#todoprevImg").click(function() {
+        $("#toDoList").append($("#toDoList li:first"));
+    });
+    $("#todonextImg").click(function() {
+        $("#toDoList li:last").insertBefore($("#toDoList li:first"));
+    });
+    $(document.getElementById("topNews:topNewsList_content")).addClass("topList_content");
+    $(document.getElementById("formKB:topKBList_content")).addClass("topList_content");
+    $(document.getElementById("formContent:topNoticeList_content")).addClass("topList_content");
+
+    $(document.getElementById("formContentList:topContentList1_content")).addClass("topList_content");
+    $(document.getElementById("formContentList:topContentList2_content")).addClass("topList_content");
+    $(document.getElementById("formContentList:topContentList3_content")).addClass("topList_content");
+    $(document.getElementById("formContentList:topContentList4_content")).addClass("topList_content");
+    $(document.getElementById("formContentList:topContentList5_content")).addClass("topList_content");
+    $(document.getElementById("formContentList:topContentList6_content")).addClass("topList_content");
+    $(document.getElementById("formContentList:topContentList7_content")).addClass("topList_content");
+    $(document.getElementById("formContentList:topContentList8_content")).addClass("topList_content");
+
+    $(".menu").hover(function() {        
+        $(this).parent(0).find(".menu div").removeClass("menuDropdownShow").addClass("menuDropdownHide");
+        $(this).find("div").removeClass("menuDropdownHide").addClass("menuDropdownShow");
+        $(this).find("div").mouseleave(function() {
+            $(this).removeClass("menuDropdownShow");
+            $(this).addClass("menuDropdownHide");
+        });
+    }, function() {
+
+    });
+
+//    alert('321');
+});
