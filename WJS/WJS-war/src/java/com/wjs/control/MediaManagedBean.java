@@ -98,4 +98,9 @@ public class MediaManagedBean extends SuperManagedBean<Media> {
         this.mediaBean = mediaBean;
     }
 
+    @Override
+    public String viewDetail(Media entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

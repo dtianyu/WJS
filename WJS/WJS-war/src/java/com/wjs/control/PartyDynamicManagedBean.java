@@ -36,7 +36,7 @@ public class PartyDynamicManagedBean extends SuperManagedBean<PartyDynamic> {
     @Override
     public void init() {
         setSessionBean(partyDynamicBean);
-        setModel(new PartyDynamicModel(partyDynamicBean,com.wjs.web.Scope.Managed));
+        setModel(new PartyDynamicModel(partyDynamicBean, com.wjs.web.Scope.Managed));
     }
 
     @Override
@@ -99,6 +99,15 @@ public class PartyDynamicManagedBean extends SuperManagedBean<PartyDynamic> {
      */
     public void setUserManagedBean(UserManagedBean userManagedBean) {
         this.userManagedBean = userManagedBean;
+    }
+
+    @Override
+    public String viewDetail(PartyDynamic entity) {
+        if (entity != null) {
+            setCurrentEntity(entity);
+            return "partyDynamicView";
+        }
+        return "partyDynamicAdmin";
     }
 
 }

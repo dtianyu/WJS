@@ -45,8 +45,8 @@
                                     <h:outputText value="Do"/>
                                 </f:facet>
                                 <p:menuButton value="操作" style="float: right">  
-                                    <p:menuitem id="btnView" actionListener="#{licenseManagedBean.view(item)}" icon="ui-icon-document" value="查看" style="float: right"
-                                                oncomplete="viewDialog.show()" update=":formView:dlgView" />                        
+                                    <p:menuitem id="btnView" action="#{licenseManagedBean.viewDetail(item)}" icon="ui-icon-document" value="查看" style="float: right"
+                                               />                        
                                     <p:menuitem id="btnEdit" actionListener="#{licenseManagedBean.edit(item)}" icon="ui-icon-pencil" value="修改" 
                                                 rendered="#{item.status!='V'}" oncomplete="editDialog.show()" update=":formEdit:dlgEdit"/>                                                     
                                     <p:menuitem id="btnDelete" actionListener="#{licenseManagedBean.delete(item)}" icon="ui-icon-close" value="删除" 

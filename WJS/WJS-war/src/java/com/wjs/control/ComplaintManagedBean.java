@@ -108,4 +108,9 @@ public class ComplaintManagedBean extends SuperManagedBean<Complaint> {
         this.userManagedBean = userManagedBean;
     }
 
+    @Override
+    public String viewDetail(Complaint entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

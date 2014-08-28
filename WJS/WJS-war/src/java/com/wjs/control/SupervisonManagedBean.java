@@ -102,4 +102,9 @@ public class SupervisonManagedBean extends SuperManagedBean<Supervision> {
         this.userManagedBean = userManagedBean;
     }
 
+    @Override
+    public String viewDetail(Supervision entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

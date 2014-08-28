@@ -36,7 +36,7 @@ public class NoticeManagedBean extends SuperManagedBean<Notice> {
     @Override
     public void init() {
         setSessionBean(getNoticeBean());
-        setModel(new NoticeModel(noticeBean,com.wjs.web.Scope.Managed));
+        setModel(new NoticeModel(noticeBean, com.wjs.web.Scope.Managed));
     }
 
     @Override
@@ -104,6 +104,15 @@ public class NoticeManagedBean extends SuperManagedBean<Notice> {
      */
     public void setNoticeBean(NoticeBean noticeBean) {
         this.noticeBean = noticeBean;
+    }
+
+    @Override
+    public String viewDetail(Notice entity) {
+        if (entity != null) {
+            setCurrentEntity(entity);
+            return "noticeView";
+        }
+        return "noticeAdmin";
     }
 
 }

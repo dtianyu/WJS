@@ -14,25 +14,120 @@
         <navigation-case>
             <from-outcome>login</from-outcome>
             <to-view-id>/admin/login.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
         <navigation-case>
             <from-outcome>index</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
-        </navigation-case>          
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>inspectionAdmin</from-outcome>
+            <to-view-id>/admin/inspectionAdmin.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>       
+        <navigation-case>
+            <from-outcome>inspectionView</from-outcome>
+            <to-view-id>/admin/inspectionView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case> 
+        <navigation-case>
+            <from-outcome>knowledgeAdmin</from-outcome>
+            <to-view-id>/admin/knowledgeAdmin.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>       
+        <navigation-case>
+            <from-outcome>knowledgeView</from-outcome>
+            <to-view-id>/admin/knowledgeView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>                
+        <navigation-case>
+            <from-outcome>licenseAdmin</from-outcome>
+            <to-view-id>/admin/licenseAdmin.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>       
+        <navigation-case>
+            <from-outcome>licenseView</from-outcome>
+            <to-view-id>/admin/licenseView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>  
+        <navigation-case>
+            <from-outcome>newsAdmin</from-outcome>
+            <to-view-id>/admin/newsAdmin.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>       
+        <navigation-case>
+            <from-outcome>newsView</from-outcome>
+            <to-view-id>/admin/newsView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case> 
+        <navigation-case>
+            <from-outcome>noticeAdmin</from-outcome>
+            <to-view-id>/admin/noticeAdmin.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>       
+        <navigation-case>
+            <from-outcome>noticeView</from-outcome>
+            <to-view-id>/admin/noticeView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>     
+        <navigation-case>
+            <from-outcome>punishmentAdmin</from-outcome>
+            <to-view-id>/admin/punishmentAdmin.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>       
+        <navigation-case>
+            <from-outcome>punishmentView</from-outcome>
+            <to-view-id>/admin/punishmentView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case> 
+        <navigation-case>
+            <from-outcome>punishmentAdmin</from-outcome>
+            <to-view-id>/admin/punishmentAdmin.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>       
+        <navigation-case>
+            <from-outcome>punishmentView</from-outcome>
+            <to-view-id>/admin/punishmentView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>punishmentAdmin</from-outcome>
+            <to-view-id>/admin/punishmentAdmin.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>       
+        <navigation-case>
+            <from-outcome>punishmentView</from-outcome>
+            <to-view-id>/admin/punishmentView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>  
+        <navigation-case>
+            <from-outcome>partyNewsAdmin</from-outcome>
+            <to-view-id>/admin/partyNewsAdmin.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>       
+        <navigation-case>
+            <from-outcome>partyNewsView</from-outcome>
+            <to-view-id>/admin/partyNewsView.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>                            
     </navigation-rule>
-        <navigation-rule>
+    <navigation-rule>
         <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>party</from-outcome>
             <to-view-id>/party/party.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>
         <navigation-case>
             <from-outcome>partyNewsList</from-outcome>
             <to-view-id>/party/partyNewsList.xhtml</to-view-id>
+            <redirect/>
         </navigation-case> 
-         <navigation-case>
+        <navigation-case>
             <from-outcome>partyNewsDetail</from-outcome>
             <to-view-id>/party/partyNewsDetail.xhtml</to-view-id>
+            <redirect/>
         </navigation-case>            
     </navigation-rule>
 </faces-config>

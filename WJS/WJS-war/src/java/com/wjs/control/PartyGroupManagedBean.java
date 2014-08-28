@@ -101,4 +101,13 @@ public class PartyGroupManagedBean extends SuperManagedBean<PartyGroup> {
         this.userManagedBean = userManagedBean;
     }
 
+    @Override
+    public String viewDetail(PartyGroup entity) {
+          if (entity != null) {
+            setCurrentEntity(entity);
+            return "partyGroupView";
+        }
+        return "partyGroupAdmin";
+    }
+
 }

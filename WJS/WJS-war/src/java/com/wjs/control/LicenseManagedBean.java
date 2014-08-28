@@ -37,7 +37,7 @@ public class LicenseManagedBean extends SuperManagedBean<License> {
     @Override
     public void init() {
         setSessionBean(licenseBean);
-        setModel(new LicenseModel(licenseBean,Scope.Managed));
+        setModel(new LicenseModel(licenseBean, Scope.Managed));
     }
 
     @Override
@@ -100,6 +100,15 @@ public class LicenseManagedBean extends SuperManagedBean<License> {
      */
     public void setUserManagedBean(UserManagedBean userManagedBean) {
         this.userManagedBean = userManagedBean;
+    }
+
+    @Override
+    public String viewDetail(License entity) {
+        if (entity != null) {
+            setCurrentEntity(entity);
+            return "licenseView";
+        }
+        return "licenseAdmin";
     }
 
 }

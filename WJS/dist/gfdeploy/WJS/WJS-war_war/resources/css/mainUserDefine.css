@@ -187,6 +187,11 @@ button span{
     padding-right: 10px;
 }
 
+a.quicklink{
+    float: right;font-size: 12px;text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.8);
+    padding-right: 10px;
+}
+
 .ui-datalist-item{
     margin: 0px 1px 1px -30px; padding: 0.1em;height: 20px;text-align: left; 
     white-space: nowrap;
@@ -375,7 +380,7 @@ button span{
 }
 
 #topNoticeTitle a.topTitleText{
-    font-size: 12pt;font-weight: bold;
+    font-size: 16px;
     text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.8);
     line-height: 2.6em;
     padding-left: 10px; 

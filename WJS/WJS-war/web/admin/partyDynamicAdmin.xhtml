@@ -20,7 +20,7 @@
                             <f:facet name="header">
                                 <p:commandButton id="btnCreate" value="新增" actionListener="#{partyDynamicManagedBean.create()}" style="float: right" icon="ui-icon-plus"  
                                                  oncomplete="newDialog.show();" update=":formNew:dlgNew"/>
-                                <h:outputLabel>党建动态</h:outputLabel>
+                                <h:outputLabel>文化建设</h:outputLabel>
                             </f:facet>
                             <p:column styleClass="w550">
                                 <f:facet name="header">
@@ -45,8 +45,8 @@
                                     <h:outputText value="Do"/>
                                 </f:facet>
                                 <p:menuButton value="操作" style="float: right">  
-                                    <p:menuitem id="btnView" actionListener="#{partyDynamicManagedBean.view(item)}" icon="ui-icon-document" value="查看" style="float: right"
-                                                oncomplete="viewDialog.show()" update=":formView:dlgView" />                        
+                                    <p:menuitem id="btnView" action="#{partyDynamicManagedBean.viewDeatil(item)}" icon="ui-icon-document" value="查看" style="float: right"
+                                                 />                        
                                     <p:menuitem id="btnEdit" actionListener="#{partyDynamicManagedBean.edit(item)}" icon="ui-icon-pencil" value="修改" 
                                                 rendered="#{item.status!='V'}" oncomplete="editDialog.show()" update=":formEdit:dlgEdit"/>                                                     
                                     <p:menuitem id="btnDelete" actionListener="#{partyDynamicManagedBean.delete(item)}" icon="ui-icon-close" value="删除" 

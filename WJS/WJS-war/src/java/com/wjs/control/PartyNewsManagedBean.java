@@ -101,4 +101,13 @@ public class PartyNewsManagedBean extends SuperManagedBean<PartyNews> {
         this.userManagedBean = userManagedBean;
     }
 
+    @Override
+    public String viewDetail(PartyNews entity) {
+         if (entity != null) {
+            setCurrentEntity(entity);
+            return "partyNewsView";
+        }
+        return "partyNewsAdmin";
+    }
+
 }

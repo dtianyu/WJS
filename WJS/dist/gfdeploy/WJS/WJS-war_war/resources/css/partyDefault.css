@@ -21,11 +21,13 @@ h1 {
 a:link, a:visited {
   color: #333;
   text-decoration: none;
+  font-size: 14px;
 }
 
 a:link:hover, a:visited:hover  {
   color: #B70303;
   text-decoration : underline;
+  font-size: 14px;
 }
 
 img{

@@ -159,7 +159,7 @@
                             </div>                                                        
                             <p:dataList id="topContentList6" value="#{mediaQueryBean.topList}" var="item">
                                 <a href="../resources/upload/#{item.uploadfile}" class="download"/>
-                                <p:commandLink value="#{item.title}"></p:commandLink>     
+                                <h:link value="#{item.title}"/>    
                             </p:dataList>
                         </div>
                         <div class="contentList">

@@ -36,7 +36,7 @@ public class NewsManagedBean extends SuperManagedBean<News> {
     @Override
     public void init() {
         setSessionBean(newsBean);
-        setModel(new NewsModel(newsBean,com.wjs.web.Scope.Managed));
+        setModel(new NewsModel(newsBean, com.wjs.web.Scope.Managed));
     }
 
     @Override
@@ -100,6 +100,15 @@ public class NewsManagedBean extends SuperManagedBean<News> {
      */
     public void setUserManagedBean(UserManagedBean userManagedBean) {
         this.userManagedBean = userManagedBean;
+    }
+
+    @Override
+    public String viewDetail(News entity) {
+        if (entity != null) {
+            setCurrentEntity(entity);
+            return "newsView";
+        }
+        return "newsAdmin";
     }
 
 }

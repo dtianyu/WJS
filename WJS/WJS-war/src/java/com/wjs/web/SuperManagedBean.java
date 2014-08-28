@@ -53,6 +53,8 @@ public abstract class SuperManagedBean<T> implements Serializable {
     public abstract void verify();
 
     public abstract void unverify();
+    
+    public abstract String viewDetail(T entity);
 
     public void init() {
         setEntityList(retrieve());
@@ -93,7 +95,7 @@ public abstract class SuperManagedBean<T> implements Serializable {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(null, e.getMessage()));
             }
             setNewEntity(null);
-            init();
+//            init();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(null, "更新成功！"));
         }
     }
@@ -105,7 +107,7 @@ public abstract class SuperManagedBean<T> implements Serializable {
             } catch (Exception e) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(null, e.toString()));
             }
-            init();
+            //init();
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(null, "更新成功！"));
         }
     }

@@ -102,4 +102,13 @@ public class PunishmentManagedBean extends SuperManagedBean<Punishment> {
         this.userManagedBean = userManagedBean;
     }
 
+    @Override
+    public String viewDetail(Punishment entity) {
+            if (entity != null) {
+            setCurrentEntity(entity);
+            return "punishmentView";
+        }
+        return "punishmentAdmin";
+    }
+
 }

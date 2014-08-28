@@ -5,7 +5,11 @@
  */
 
 $(function() {
+    display();
+});
+
+function display() {
     var content = $("#detailContent").val();
     $(document.getElementById("formDetail:contentDetail")).html(content);
-//    alert("content");
-});
+}
+

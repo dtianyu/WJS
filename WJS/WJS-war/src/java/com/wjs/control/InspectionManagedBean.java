@@ -73,6 +73,15 @@ public class InspectionManagedBean extends SuperManagedBean<Inspection> {
             save();
         }
     }
+    
+    @Override
+    public String viewDetail(Inspection entity){
+        if(entity!=null){
+            setCurrentEntity(entity);
+            return "inspectionView";
+        }
+        return "inspectionAdmin";
+    }
 
     /**
      * @return the inspectionBean

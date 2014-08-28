@@ -100,4 +100,9 @@ public class DocumentManagedBean extends SuperManagedBean<Document> {
         this.userManagedBean = userManagedBean;
     }
 
+    @Override
+    public String viewDetail(Document entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

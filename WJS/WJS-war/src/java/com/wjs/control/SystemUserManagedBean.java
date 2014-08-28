@@ -89,4 +89,9 @@ public class SystemUserManagedBean extends SuperManagedBean<SystemUser> {
         this.userManagedBean = userManagedBean;
     }
 
+    @Override
+    public String viewDetail(SystemUser entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

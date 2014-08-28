@@ -103,4 +103,13 @@ public class KnowledgeManagedBean extends SuperManagedBean<Knowledge> {
         this.userManagedBean = userManagedBean;
     }
 
+    @Override
+    public String viewDetail(Knowledge entity) {
+        if (entity != null) {
+            setCurrentEntity(entity);
+            return "knowledgeView";
+        }
+        return "knowledgeAdmin";
+    }
+
 }

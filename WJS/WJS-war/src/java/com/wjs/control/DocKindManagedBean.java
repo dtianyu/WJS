@@ -100,4 +100,9 @@ public class DocKindManagedBean extends SuperManagedBean<DocKind> {
         this.userManagedBean = userManagedBean;
     }
 
+    @Override
+    public String viewDetail(DocKind entity) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
