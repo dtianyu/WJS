@@ -8,33 +8,14 @@
     <ui:composition>
 
         <h:form id="formAdmin">   
-            <p:menu rendered="true"> 
-                <p:submenu label="内容维护">
-                    <p:menuitem value="监督快讯维护" url="newsAdmin.xhtml" /> 
-                    <p:menuitem value="通知公告维护" url="noticeAdmin.xhtml" /> 
-                    <p:menuitem value="健康知识维护" url="knowledgeAdmin.xhtml" />
-                    <p:menuitem value="行政许可维护" url="licenseAdmin.xhtml" />
-                    <p:menuitem value="监督抽检维护" url="inspectionAdmin.xhtml" />
-                    <p:menuitem value="行政处罚维护" url="punishmentAdmin.xhtml" />
-                    <p:menuitem value="媒体报道维护" url="mediaAdmin.xhtml" />
-                    <p:menuitem value="文件下载类别" url="docKindAdmin.xhtml" />
-                    <p:menuitem value="文件下载维护" url="documentAdmin.xhtml" />
-                    <p:menuitem value="投诉举报受理" url="complaintAdmin.xhtml" />
-                    <p:menuitem value="其他页面维护" url="pageAdmin.xhtml" />
-                </p:submenu>
-                <p:submenu label="党建网站"> 
-                    <p:menuitem value="党建新闻" url="partyNewsAdmin.xhtml" /> 
-                    <p:menuitem value="文化建设" url="partyDynamicAdmin.xhtml" /> 
-                    <p:menuitem value="群教专栏" url="partyInfoAdmin.xhtml" /> 
-                    <p:menuitem value="工团信息" url="partyGroupAdmin.xhtml" /> 
-                </p:submenu>  
-                <p:submenu label="系统管理">
-                    <p:menuitem value="账户管理" url="userAdmin.xhtml"/> 
-                    <p:menuitem value="修改密码" url="userPwd.xhtml"/> 
-                </p:submenu>
+            <p:menu model="#{menuManagedBean.model}" rendered="true"> 
 
             </p:menu>
-
+            <p:menu>
+                <p:submenu label="系统维护视频">
+                    <p:menuitem value="新增监督快讯视频" url="http://www.jswjs.com.cn/WJS-war/resources/teach1/index.html"/>
+                </p:submenu>
+            </p:menu>
         </h:form>  
 
     </ui:composition>

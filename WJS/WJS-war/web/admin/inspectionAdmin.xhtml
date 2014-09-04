@@ -22,7 +22,7 @@
                                                  oncomplete="newDialog.show();" update=":formNew:dlgNew"/>
                                 <h:outputLabel>监督抽检</h:outputLabel>
                             </f:facet>
-                            <p:column styleClass="w550">
+                            <p:column>
                                 <f:facet name="header">
                                     <h:outputText value="标题"/>
                                 </f:facet>
@@ -34,24 +34,24 @@
                                 </f:facet>
                                 <p:selectBooleanCheckbox value="#{item.ontop}" disabled="true"/>
                             </p:column>                         
-                            <p:column>
+                            <p:column styleClass="w040">
                                 <f:facet name="header">
                                     <h:outputText value="状态"/>
                                 </f:facet>
                                 <h:outputText value="#{item.status}"/>
                             </p:column>
-                            <p:column styleClass="w080">
+                            <p:column styleClass="w200">
                                 <f:facet name="header">
                                     <h:outputText value="Do"/>
                                 </f:facet>
-                                <p:menuButton value="操作" style="float: right">  
-                                    <p:menuitem id="btnView" action="#{inspectionManagedBean.viewDetail(item)}" icon="ui-icon-document" value="查看" style="float: right"
-                                                />                        
-                                    <p:menuitem id="btnEdit" actionListener="#{inspectionManagedBean.edit(item)}" icon="ui-icon-pencil" value="修改" 
-                                                rendered="#{item.status!='V'}" oncomplete="editDialog.show()" update=":formEdit:dlgEdit"/>                                                     
-                                    <p:menuitem id="btnDelete" actionListener="#{inspectionManagedBean.delete(item)}" icon="ui-icon-close" value="删除" 
-                                                rendered="#{item.status!='V' }" update=":formList"/>                        
-                                </p:menuButton>
+
+                                <p:commandButton id="btnView" action="#{inspectionManagedBean.viewDetail(item)}" icon="ui-icon-document" value="查看" 
+                                                 />                        
+                                <p:commandButton id="btnEdit" actionListener="#{inspectionManagedBean.edit(item)}" icon="ui-icon-pencil" value="修改" 
+                                                 rendered="#{item.status!='V'}" oncomplete="editDialog.show()" update=":formEdit:dlgEdit"/>                                                     
+                                <p:commandButton id="btnDelete" actionListener="#{inspectionManagedBean.delete(item)}" icon="ui-icon-close" value="删除" 
+                                                 rendered="#{item.status!='V' }" update=":formList"/>                        
+
                             </p:column>
                             <f:facet name="footer">
                                 <p:commandButton id="btnLoad" value="刷新" actionListener="#{inspectionManagedBean.init()}" style="float: right"

@@ -9,29 +9,29 @@
         <Node id="admin/login.xhtml" x="900" y="750" zoom="true"/>
         <Node id="knowledgeDetail.xhtml" x="400" y="600" zoom="true"/>
         <Node id="orgLeader.xhtml" x="150" y="300" zoom="true"/>
-        <Node id="supervisionDetail.xhtml" x="1150" y="450" zoom="true"/>
         <Node id="licenseDetail.xhtml" x="1150" y="600" zoom="true"/>
-        <Node id="admin/pageAdmin.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="supervisionDetail.xhtml" x="1150" y="450" zoom="true"/>
         <Node id="template/adminLeftMenu.xhtml" x="650" y="1050" zoom="true"/>
+        <Node id="admin/pageAdmin.xhtml" x="1150" y="300" zoom="true"/>
         <Node id="noticeList.xhtml" x="1900" y="300" zoom="true"/>
         <Node id="template/mainTopMenu.xhtml" x="1400" y="300" zoom="true"/>
         <Node id="template/adminTopMenu.xhtml" x="150" y="450" zoom="true"/>
         <Node id="index.html" x="400" y="900" zoom="true"/>
         <Node id="template/partyTemplate.xhtml" x="1650" y="300" zoom="true"/>
         <Node id="admin/supervisionAdmin.xhtml" x="400" y="450" zoom="true"/>
-        <Node id="admin/licenseAdmin.xhtml" x="1400" y="450" zoom="true"/>
         <Node id="handleGuide.xhtml" x="2150" y="150" zoom="true"/>
+        <Node id="admin/licenseAdmin.xhtml" x="1400" y="450" zoom="true"/>
         <Node id="inspectionDetail.xhtml" x="1400" y="600" zoom="true"/>
         <Node id="search.xhtml" x="900" y="450" zoom="true"/>
         <Node id="supervisionList.xhtml" x="400" y="1050" zoom="true"/>
-        <Node id="newsDetail.xhtml" x="150" y="150" zoom="true"/>
         <Node id="index.xhtml" x="900" y="150" zoom="true"/>
-        <Node id="inspectionList.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="newsDetail.xhtml" x="150" y="150" zoom="true"/>
         <Node id="licenseList.xhtml" x="650" y="750" zoom="true"/>
+        <Node id="inspectionList.xhtml" x="400" y="750" zoom="true"/>
         <Node id="template/adminTemplate.xhtml" x="150" y="900" zoom="true"/>
         <Node id="template/mainTemplate.xhtml" x="650" y="600" zoom="true"/>
-        <Node id="template/partyTopMenu.xhtml" x="900" y="900" zoom="true"/>
         <Node id="admin/noticeAdmin.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="template/partyTopMenu.xhtml" x="900" y="900" zoom="true"/>
         <Node id="admin/admin.xhtml" x="150" y="750" zoom="true"/>
         <Node id="orgFun.xhtml" x="150" y="1050" zoom="true"/>
         <Node id="newsList.xhtml" x="900" y="600" zoom="true"/>

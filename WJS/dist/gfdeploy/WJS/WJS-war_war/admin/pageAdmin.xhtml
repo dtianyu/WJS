@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <body>
-        
+
         <ui:composition template="./../template/adminTemplate.xhtml">
 
             <ui:define name="right">
@@ -22,7 +22,7 @@
                                                  oncomplete="newDialog.show();" update=":formNew:dlgNew"/>
                                 <h:outputLabel>页面列表</h:outputLabel>
                             </f:facet>
-                            <p:column styleClass="w120">
+                            <p:column>
                                 <f:facet name="header">
                                     <h:outputText value="页面标题"/>
                                 </f:facet>
@@ -40,18 +40,18 @@
                                 </f:facet>
                                 <h:outputText value="#{item.status}"/>
                             </p:column>
-                            <p:column>
+                            <p:column styleClass="w200">
                                 <f:facet name="header">
                                     <h:outputText value="Do"/>
                                 </f:facet>
-                                <p:menuButton value="操作" style="float: right">  
-                                    <p:menuitem id="btnView" actionListener="#{pageInfoManagedBean.view(item)}" icon="ui-icon-document" value="查看" style="float: right"
-                                                oncomplete="viewDialog.show()" update=":formView:dlgView" />                        
-                                    <p:menuitem id="btnEdit" actionListener="#{pageInfoManagedBean.edit(item)}" icon="ui-icon-pencil" value="修改" 
-                                                rendered="#{item.status!='V'}" oncomplete="editDialog.show()" update=":formEdit:dlgEdit"/>                                                     
-                                    <p:menuitem id="btnDelete" actionListener="#{pageInfoManagedBean.delete(item)}" icon="ui-icon-close" value="删除" 
-                                                rendered="#{item.status!='V' }" update=":formList"/>                  
-                                </p:menuButton>
+
+                                <p:commandButton id="btnView" actionListener="#{pageInfoManagedBean.view(item)}" icon="ui-icon-document" value="查看" 
+                                                 oncomplete="viewDialog.show()" update=":formView:dlgView" />                        
+                                <p:commandButton id="btnEdit" actionListener="#{pageInfoManagedBean.edit(item)}" icon="ui-icon-pencil" value="修改" 
+                                                 rendered="#{item.status!='V'}" oncomplete="editDialog.show()" update=":formEdit:dlgEdit"/>                                                     
+                                <p:commandButton id="btnDelete" actionListener="#{pageInfoManagedBean.delete(item)}" icon="ui-icon-close" value="删除" 
+                                                 rendered="#{item.status!='V' }" update=":formList"/>                  
+
                             </p:column>
                             <f:facet name="footer">
                                 <p:commandButton id="btnLoad" value="刷新" actionListener="#{pageInfoManagedBean.init()}" style="float: right"

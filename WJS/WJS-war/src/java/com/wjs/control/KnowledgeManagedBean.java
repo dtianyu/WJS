@@ -46,6 +46,7 @@ public class KnowledgeManagedBean extends SuperManagedBean<Knowledge> {
         if (getNewEntity() == null) {
             Knowledge entity = new Knowledge();
             entity.setOntop(false);
+            entity.setHits(0);
             entity.setStatus("N");
             entity.setCreator(getUserManagedBean().getCurrentUser().getUserid());
             entity.setCredate(getUserManagedBean().getDate());

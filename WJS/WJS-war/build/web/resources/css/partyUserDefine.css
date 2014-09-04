@@ -484,7 +484,7 @@ div.title a.unselected{
 
 #bottomLink ul{list-style: none;}
 
-#bottomLink ul.selected{margin-top: 60px;display: block;}
+#bottomLink ul.selected{margin-top: 50px;margin-left: -55px;display: block;}
 
 #bottomLink ul.unselected{display:none}
 

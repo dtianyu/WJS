@@ -67,9 +67,6 @@ public abstract class SuperManagedBean<T> implements Serializable {
         if (entity != null) {
             try {
                 getSessionBean().delete(entity);
-                if (getEntityList().contains(entity)) {
-                    getEntityList().remove(entity);
-                }
             } catch (Exception e) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(null, e.getMessage()));
             }
@@ -88,9 +85,6 @@ public abstract class SuperManagedBean<T> implements Serializable {
         if (getNewEntity() != null) {
             try {
                 getSessionBean().persist(getNewEntity());
-                if (!getEntityList().contains(getNewEntity())) {
-                    getEntityList().add(getNewEntity());
-                }
             } catch (Exception e) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(null, e.getMessage()));
             }

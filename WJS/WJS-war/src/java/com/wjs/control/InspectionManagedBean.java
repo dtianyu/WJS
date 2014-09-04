@@ -45,6 +45,7 @@ public class InspectionManagedBean extends SuperManagedBean<Inspection> {
         if (getNewEntity() == null) {
             Inspection entity = new Inspection();
             entity.setOntop(false);
+            entity.setHits(0);
             entity.setStatus("N");
             entity.setCreator(getUserManagedBean().getCurrentUser().getUserid());
             entity.setCredate(getUserManagedBean().getDate());

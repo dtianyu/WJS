@@ -44,6 +44,7 @@ public class NewsManagedBean extends SuperManagedBean<News> {
         if (getNewEntity() == null) {
             News entity = new News();
             entity.setOntop(false);
+            entity.setHits(0);
             entity.setStatus("N");
             entity.setCreator(getUserManagedBean().getCurrentUser().getUserid());
             entity.setCredate(getUserManagedBean().getDate());

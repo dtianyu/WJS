@@ -12,7 +12,7 @@
 
             <ui:define name="right">
                 <h:form id="formList">
-                    <p:growl id="growl" showDetail="true" autoUpdate="true"  sticky="true" /> 
+                    <p:growl id="growl" showSummary="false" showDetail="true" autoUpdate="true"  sticky="true" /> 
                     <p:dataTable id="tbllist" value="#{systemUserManagedBean.model}" var="item"  paginator="true"  paginatorPosition="bottom" rows="15"  
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                  rowsPerPageTemplate="15,30,45"  lazy="true"  styleClass="tbllist" >

@@ -453,9 +453,25 @@ a.quicklink{
     border: none;
 }
 
-#toDoPrevImg{float: left;padding-left: 20px;margin-top: 40px; margin-right: 25px;}
+#toDoPrevImg{
+    display: block;
+    float: left;
+    padding-left: 20px;margin-top: 40px; margin-right: 25px;
+    background-image:url('../img/background.png');
+    background-position: -408px -1px;
+    height: 90px;
+    width: 29px;
+}
 
-#toDoNextImg{float: right;padding-right: 20px;margin-top: 40px; margin-left: 25px;}
+#toDoNextImg{
+    display: block;
+    float: right;
+    padding-right: 20px;margin-top: 40px; margin-left: 25px;
+    background-image:url('../img/background.png');
+    background-position: -468px -1px;
+    height: 90px;
+    width: 29px;
+}
 
 #toDoList ul{list-style-type: none; padding-left: 50px; }
 
@@ -463,13 +479,47 @@ a.quicklink{
 
 #toDoList ul li .toDoNavBox {width: 105px; ;margin: 10px 20px; text-align: center;}
 
-#toDoList ul li .toDoNavBox img {height: 102px;border: none; }
-
 #toDoList ul li .toDoNavBox a{
     color: #0288AB;
     font-weight: bold;
     font-size: 16px;
     margin-top: 10px;
+    border: none;
+}
+
+#toDoList ul li .toDoNavBox a.img1{
+    display: block;
+    width: 102px;
+    height: 102px;
+    background-image: url('../img/background.png');
+    background-position: -0px 0px;
+    border: none;
+}
+
+#toDoList ul li .toDoNavBox a.img2{
+    display: block;
+    width: 102px;
+    height: 102px;
+    background-image: url('../img/background.png');
+    background-position: -102px 0px;
+    border: none;
+}
+
+#toDoList ul li .toDoNavBox a.img3{
+    display: block;
+    width: 102px;
+    height: 102px;
+    background-image: url('../img/background.png');
+    background-position: -204px 0px;
+    border: none;
+}
+
+#toDoList ul li .toDoNavBox a.img4{
+    display: block;
+    width: 102px;
+    height: 102px;
+    background-image: url('../img/background.png');
+    background-position: -306px 0px;
     border: none;
 }
 
@@ -605,13 +655,11 @@ div.title a.unselected{
     height: 105px;
     margin: auto;
     background-image: url("../img/bgbar.jpg");
-    background-repeat: no-repeat;
+    background-repeat: repeat-x;
     background-size: 100% 100%;  
 }
 
-#bottomLink ul{list-style: none;}
-
-#bottomLink ul.selected{margin-top: 60px;display: block;}
+#bottomLink ul.selected{margin-top: 50px;margin-left: -55px;display: block;}
 
 #bottomLink ul.unselected{display:none}
 
@@ -648,7 +696,6 @@ div.title a.unselected{
 #footerNav ul{
     margin-left: 185px;
     text-align: center;
-    /*    list-style: none;*/
 }
 
 #footerNav ul li{
@@ -664,13 +711,14 @@ div.title a.unselected{
     overflow: hidden;
     width: 500px;
 }
+
 .publish ul{
-    /*list-style: none;*/ 
     float: left ;padding: 0px;margin: 0px;
     position: relative;
     overflow: hidden;
     border: none;
 }
+
 .publish ul li.ui-datalist-item{float: left;padding: 8px;margin: 0px; }
 
 .newComplaint{
@@ -694,6 +742,6 @@ div.title a.unselected{
     height: 9px;
     float: left; 
     margin-top: 4px;
-    background :url("../img/videoNewsLeft.gif");
-    background-position: 0px 0px;
+    background :url("../img/background.png");
+    background-position: 0px -110px;
 }

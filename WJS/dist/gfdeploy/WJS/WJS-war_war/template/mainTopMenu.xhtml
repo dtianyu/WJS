@@ -34,7 +34,7 @@
         </div >
         <div id="topNavSearch">
             <h:form id="formPublish">
-                <div style="float: left; width: 620px;"><img style="float: left;" src="../resources/img/toppublishbg.png"></img>
+                <div style="float: left; width: 620px;"><img style="float: left;padding-top: 2px;" src="../resources/img/toppublishbg.png"></img>
                     <p:dataList id="publishList" value="#{licenseQueryBean.topList}" var="item"  styleClass="publish">
                         <h:link outcome="licenseDetail" value="#{item.title}">
                             <f:param name="id" value="#{item.id}"></f:param>

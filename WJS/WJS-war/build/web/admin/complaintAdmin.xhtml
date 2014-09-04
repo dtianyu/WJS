@@ -22,7 +22,7 @@
                                                  oncomplete="newDialog.show();" update=":formNew:dlgNew"/>
                                 <h:outputLabel>投诉举报</h:outputLabel>
                             </f:facet>
-                            <p:column styleClass="w550">
+                            <p:column>
                                 <f:facet name="header">
                                     <h:outputText value="标题"/>
                                 </f:facet>
@@ -40,12 +40,12 @@
                                 </f:facet>
                                 <h:outputText value="#{item.status}"/>
                             </p:column>
-                            <p:column styleClass="w180">
+                            <p:column styleClass="w200">
                                 <f:facet name="header">
                                     <h:outputText value="Do"/>
                                 </f:facet>
 
-                                <p:commandButton id="btnView" actionListener="#{complaintManagedBean.view(item)}" icon="ui-icon-document" value="查看" style="float: right"
+                                <p:commandButton id="btnView" actionListener="#{complaintManagedBean.view(item)}" icon="ui-icon-document" value="查看" 
                                                  oncomplete="viewDialog.show()" update=":formView:dlgView" />                        
                                 <p:commandButton id="btnEdit" actionListener="#{complaintManagedBean.edit(item)}" icon="ui-icon-pencil" value="修改" 
                                                  rendered="#{item.status!='V'}" oncomplete="editDialog.show()" update=":formEdit:dlgEdit"/>                                                     
