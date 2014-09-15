@@ -43,7 +43,7 @@ public class NoticeManagedBean extends SuperManagedBean<Notice> {
     public void create() {
         if (getNewEntity() == null) {
             Notice entity = new Notice();
-            entity.setOntop(false);
+            entity.setOntop(true);
             entity.setHits(0);
             entity.setStatus("N");
             entity.setCreator(getUserManagedBean().getCurrentUser().getUserid());
