@@ -43,7 +43,7 @@ public class PartyInfoManagedBean extends SuperManagedBean<PartyInfo> {
     public void create() {
         if (getNewEntity() == null) {
             PartyInfo entity = new PartyInfo();
-            entity.setOntop(false);
+            entity.setOntop(true);
             entity.setStatus("N");
             entity.setHits(0);
             entity.setCreator(getUserManagedBean().getCurrentUser().getUserid());
