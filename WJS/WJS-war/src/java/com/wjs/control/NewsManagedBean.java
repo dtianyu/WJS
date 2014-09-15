@@ -43,7 +43,7 @@ public class NewsManagedBean extends SuperManagedBean<News> {
     public void create() {
         if (getNewEntity() == null) {
             News entity = new News();
-            entity.setOntop(false);
+            entity.setOntop(true);
             entity.setHits(0);
             entity.setStatus("N");
             entity.setCreator(getUserManagedBean().getCurrentUser().getUserid());
