@@ -43,7 +43,7 @@ public class PartyNewsManagedBean extends SuperManagedBean<PartyNews> {
     public void create() {
         if (getNewEntity() == null) {
             PartyNews entity = new PartyNews();
-            entity.setOntop(false);
+            entity.setOntop(true);
             entity.setStatus("N");
             entity.setHits(0);
             entity.setCreator(getUserManagedBean().getCurrentUser().getUserid());
