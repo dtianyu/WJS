@@ -43,7 +43,7 @@ public class PartyDynamicManagedBean extends SuperManagedBean<PartyDynamic> {
     public void create() {
         if (getNewEntity() == null) {
             PartyDynamic entity = new PartyDynamic();
-            entity.setOntop(false);
+            entity.setOntop(true);
             entity.setStatus("N");
             entity.setHits(0);
             entity.setCreator(getUserManagedBean().getCurrentUser().getUserid());
