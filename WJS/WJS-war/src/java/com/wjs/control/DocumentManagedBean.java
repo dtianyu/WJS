@@ -42,7 +42,7 @@ public class DocumentManagedBean extends SuperManagedBean<Document> {
     public void create() {
          if (getNewEntity() == null) {
             Document entity = new Document();
-            entity.setOntop(false);
+            entity.setOntop(true);
             entity.setStatus("N");
             entity.setCreator(getUserManagedBean().getCurrentUser().getUserid());
             entity.setCredate(getUserManagedBean().getDate());
