@@ -44,7 +44,7 @@ public class LicenseManagedBean extends SuperManagedBean<License> {
     public void create() {
         if (getNewEntity() == null) {
             License entity = new License();
-            entity.setOntop(false);
+            entity.setOntop(true);
             entity.setStatus("N");
             entity.setCreator(getUserManagedBean().getCurrentUser().getUserid());
             entity.setCredate(getUserManagedBean().getDate());
