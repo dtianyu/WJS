@@ -40,7 +40,7 @@ public class MediaManagedBean extends SuperManagedBean<Media> {
     public void create() {
         if (getNewEntity() == null) {
             Media entity = new Media();
-            entity.setOntop(false);
+            entity.setOntop(true);
             entity.setStatus("N");
             entity.setCreator(getUserManagedBean().getCurrentUser().getUserid());
             entity.setCredate(getUserManagedBean().getDate());
