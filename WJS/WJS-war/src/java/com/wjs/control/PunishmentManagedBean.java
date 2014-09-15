@@ -44,7 +44,7 @@ public class PunishmentManagedBean extends SuperManagedBean<Punishment> {
     public void create() {
         if (getNewEntity() == null) {
             Punishment entity = new Punishment();
-            entity.setOntop(false);
+            entity.setOntop(true);
             entity.setStatus("N");
             entity.setCreator(getUserManagedBean().getCurrentUser().getUserid());
             entity.setCredate(getUserManagedBean().getDate());
