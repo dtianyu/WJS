@@ -9,17 +9,16 @@ import com.wjs.ebj.PunishmentBean;
 import com.wjs.entity.Punishment;
 import com.wjs.lazy.PunishmentModel;
 import com.wjs.web.SuperManagedBean;
-import java.io.Serializable;
 import javax.ejb.EJB;
-import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.inject.Named;
+import javax.faces.bean.SessionScoped;
 
 /**
  *
  * @author C0160
  */
-@Named(value = "punishmentManagedBean")
+@ManagedBean(name = "punishmentManagedBean")
 @SessionScoped
 public class PunishmentManagedBean extends SuperManagedBean<Punishment> {
 

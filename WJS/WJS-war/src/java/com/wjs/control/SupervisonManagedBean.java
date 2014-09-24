@@ -44,7 +44,7 @@ public class SupervisonManagedBean extends SuperManagedBean<Supervision> {
     public void create() {
         if (getNewEntity() == null) {
             Supervision entity = new Supervision();
-            entity.setOntop(false);
+            entity.setOntop(true);
             entity.setHits(0);
             entity.setStatus("N");
             entity.setCreator(getUserManagedBean().getCurrentUser().getUserid());

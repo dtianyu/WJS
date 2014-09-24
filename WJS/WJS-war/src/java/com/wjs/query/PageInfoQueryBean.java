@@ -10,15 +10,15 @@ import com.wjs.entity.PageInfo;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
-import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
 
 /**
  *
  * @author kevintung
  */
-@Named(value = "pageInfoQueryBean")
+@ManagedBean(name = "pageInfoQueryBean")
 @RequestScoped
 public class PageInfoQueryBean {
 

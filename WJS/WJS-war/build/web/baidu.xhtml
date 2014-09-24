@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"          
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./template/mainTemplate.xhtml">
+
+            <ui:define name="content">
+
+                <p:panelMenu rendered="false"/>  
+                       <div>
+            <script type="text/javascript">
+                document.write(unescape('%3Cdiv id="bdzs"%3E%3C/div%3E%3Cscript charset="utf-8" \n\
+            src="http://rp.baidu.com/rp3w/3w.js?sid=802091570132742987&t=')  + (Math.ceil(new Date()/3600000)) + unescape('"%3E%3C/script%3E'));
+            </script>
+        </div>
+                <div>
+                    <SCRIPT language="javascript">
+                        function g(formname) {
+                            var url = "http://www.baidu.com";
+                            if (formname.s[1].checked) {
+                                formname.ct.value = "2097152";
+                            }
+                            else {
+                                formname.ct.value = "0";
+                            }
+                            formname.action = url;
+                            return true;
+                        }
+                    </SCRIPT>
+                    <form name="f1" onsubmit="return g(this)">
+                        <table bgcolor="#FFFFFF" style="font-size:9pt;">
+                            <tr height="60"><td>
+                                <input name="word"  size="30" maxlength="100"/>
+                                <input type="submit" value="百度搜索"/>
+                                <input name="tn" type="hidden" value="bds"/>
+                                <input name="cl" type="hidden" value="3"/>
+                                <input name="ct" type="hidden"/>
+                                <input name="si" type="hidden" value="www.baidu.com"/>
+                                <input name="ie" type="hidden" value="utf-8"/> 
+
+                                </td></tr></table></form>
+                </div>
+                <div>
+                    <script type="text/javascript">document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E%3Cscript charset="utf-8" src="http://rp.baidu.com/rp3w/3w.js?sid=802091570132742987') + '&t=' + (Math.ceil(new Date()/3600000)) + unescape('"%3E%3C/script%3E'));</script>
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -60,7 +60,7 @@
                         </p:dataTable>
                     </h:form>
                     <h:form id="formNew">
-                        <p:dialog id="dlgNew" header="党建动态－新增窗口" widgetVar="newDialog" modal="true" >
+                        <p:dialog id="dlgNew" header="文化建设－新增窗口" widgetVar="newDialog" modal="true" >
                             <p:panelGrid columns="2" columnClasses="plgLable,plgInput520" styleClass="plgDialog" > 
                                 <h:outputLabel value="标题" for="newsTitle" />
                                 <p:inputText id="newsTitle" value="#{partyDynamicManagedBean.newEntity.title}" required="true" requiredMessage="标题不能空白."/>
@@ -84,7 +84,7 @@
                         </p:dialog>
                     </h:form>
                     <h:form id="formEdit">
-                        <p:dialog id="dlgEdit" header="党建动态－修改窗口" widgetVar="editDialog" modal="true"  >
+                        <p:dialog id="dlgEdit" header="文化建设－修改窗口" widgetVar="editDialog" modal="true"  >
                             <p:panelGrid columns="2" columnClasses="plgLable,plgInput520" styleClass="plgDialog" >
                                 <h:outputLabel value="标题" for="title" />
                                 <p:inputText id="title" value="#{partyDynamicManagedBean.currentEntity.title}"  required="true" requiredMessage="标题不能空白."/>                 
@@ -110,7 +110,7 @@
                         </p:dialog>
                     </h:form>
                     <h:form id="formView">
-                        <p:dialog id="dlgView" header="党建动态－审核窗口" widgetVar="viewDialog" modal="true" >
+                        <p:dialog id="dlgView" header="文化建设－审核窗口" widgetVar="viewDialog" modal="true" >
                             <p:panelGrid columns="2" columnClasses="plgLable,plgInput520" styleClass="plgDialog" >
                                 <h:outputText value="标题"/>
                                 <h:outputText value="#{partyDynamicManagedBean.currentEntity.title}" title="标题"/>        

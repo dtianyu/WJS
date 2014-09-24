@@ -33,11 +33,11 @@ $(function() {
     $(document.getElementById("formContent:topInspectionList_content")).addClass("topListContent");
     $(document.getElementById("formContent:topPunishmentList_content")).addClass("topListContent");
 
-    $(document.getElementById("formContentList:topContentList1_content")).addClass("topListContentNoRightBorder");
-    $(document.getElementById("formContentList:topContentList2_content")).addClass("topListContentNoRightBorder");
-    $(document.getElementById("formContentList:topContentList3_content")).addClass("topListContentNoRightBorder");
-    $(document.getElementById("formContentList:topContentList4_content")).addClass("topListContent");
-    $(document.getElementById("formContentList:topContentList5_content")).addClass("topListContentNoRightBorder");
+//    $(document.getElementById("formContentList:topContentList1_content")).addClass("topListContentNoRightBorder");
+//    $(document.getElementById("formContentList:topContentList2_content")).addClass("topListContentNoRightBorder");
+//    $(document.getElementById("formContentList:topContentList3_content")).addClass("topListContentNoRightBorder");
+//    $(document.getElementById("formContentList:topContentList4_content")).addClass("topListContent");
+//    $(document.getElementById("formContentList:topContentList5_content")).addClass("topListContentNoRightBorder");
     $(document.getElementById("formContentList:topContentList6_content")).addClass("topListContentNoRightBorder");
     $(document.getElementById("formContentList:topContentList7_content")).addClass("topListContentNoRightBorder");
 
@@ -82,11 +82,11 @@ $(function() {
 
     //重新设定列表字符串长度，避免浏览器兼容问题引起的CSS失效
     $(document.getElementById("formContent:topSupervisionList_list")).find("li.ui-datalist-item a").each(function() {
-        if ($(this).html().length > 28) {
-            var html = $(this).html().substr(0, 22);
+        if ($(this).html().length > 20) {
+            var html = $(this).html().substr(0, 20)+"...";
             $(this).html(html);
         }
-        ;
+        
     });
 
     //底部链接样式切换

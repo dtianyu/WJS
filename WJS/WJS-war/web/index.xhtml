@@ -20,10 +20,7 @@
                             <a class="more" href="/WJS-war/faces/noticeList.xhtml">More</a>      
                         </div>
                         <p:dataList id="topNoticeList" value="#{noticeQueryBean.topList}" var="item" itemType="disc">          
-                            <h:outputText value="#{item.cfmdate}" >
-                                <f:convertDateTime pattern="MM/dd" />
-                            </h:outputText>
-                            <h:link outcome="noticeDetail" value="#{item.title}" style="padding-left: 10px;" >
+                            <h:link outcome="noticeDetail" value="#{item.title}"  >
                                 <f:param name="id" value="#{item.id}"></f:param>
                             </h:link>
                         </p:dataList>
@@ -49,7 +46,7 @@
                 </h:form>
             </ui:define>
             <ui:define name="right">
-                <div id='rightFloatAdv'>
+                <div id='rightFloatAdv' style="display: none;">
                 </div>
                 <h:form id="formContent">
                     <div id="topNews">
@@ -57,7 +54,7 @@
                             <ui:repeat value="#{newsQueryBean.topNewsHasImg}" var="item">  
                                 <div>
                                     <img src="../resources/upload/#{item.imgfile}" alt="#{item.title}"/>                             
-                                    <div id="topImgFooter" style="position: relative;z-index: 99;height: 25px;margin-top: -25px ;background-color: #000;opacity: 0.5; ">
+                                    <div id="topImgFooter" style="position: relative;z-index: 99;height: 45px;margin-top: -45px ;background-color: #000;opacity: 0.5; ">
                                         <h:link outcome="newsDetail" value="#{item.title}" >
                                             <f:param name="id" value="#{item.id}"></f:param>
                                         </h:link>
@@ -140,18 +137,18 @@
                             <div class="topTitle">
                                 <img src='resources/img/ico5.jpg'/>
                                 <span class="span1">荣誉</span><span class="span2">证书 / </span><span class="span3">Honor</span>
-                                <a class="more" href="#">More</a>                
+                                <a class="more" href="/WJS-war/faces/honor.xhtml">More</a>                
                             </div>
                             <div class="ui-widget-content topListContentNoRightBorder">
-                                <div></div>
-                                <div></div>                                         
+                                <div><img src="resources/upload/honor1.jpg" style="margin: 2px;height:102px ;width: 209px;padding-left: 15px;"/></div>
+                                <div><img src="resources/upload/honor2.jpg" style="margin: 2px;height:102px ;width: 209px;padding-left: 15px;"/></div>                                         
                             </div>
                         </div>
                         <div class="contentList">
                             <div  class="topTitle">
                                 <img src='resources/img/ico6.jpg'/>
                                 <span class="span1">媒体</span><span class="span2">报道 / </span><span class="span3">Media</span>
-                                <p:commandLink value="More"  styleClass="more" action="#{mediaQueryBean.viewList()}"/>             
+                                <a class="more" href="/WJS-war/faces/mediaList.xhtml">More</a>               
                             </div>                                                        
                             <p:dataList id="topContentList6" value="#{mediaQueryBean.topList}" var="item">
                                 <a href="../resources/upload/#{item.uploadfile}" class="download"/>
