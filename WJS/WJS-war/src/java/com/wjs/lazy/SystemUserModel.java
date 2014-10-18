@@ -54,7 +54,7 @@ public class SystemUserModel extends LazyDataModel<SystemUser> {
     }
 
     @Override
-    public List<SystemUser> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
+    public List<SystemUser> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
         setDataList(sessionBean.findAll(first, pageSize));
         this.setRowCount(sessionBean.getRowCount());
         return this.getDataList();

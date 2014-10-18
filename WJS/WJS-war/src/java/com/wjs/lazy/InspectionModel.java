@@ -61,7 +61,7 @@ public class InspectionModel extends LazyDataModel<Inspection> {
     }
 
     @Override
-    public List<Inspection> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
+    public List<Inspection> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
         switch (this.scope) {
             case Managed:
                 setDataList(sessionBean.findAll(first, pageSize));

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./template/mainTemplate.xhtml">
+
+            <ui:define name="content">
+                <f:view>
+                    <h:form id="formDetail">
+                        <!--<h:outputScript library="js" name="detailContent.js" target="head"></h:outputScript>-->
+                        <div class="topTitle box-shadow">
+                            <div style="padding-left: 10px;padding-top: 10px;">
+                                <a class="ico"></a>
+                                <a class="topTitleText">简报文档</a>
+                                <span class="quicklink">正文</span><span class="quicklink">|</span><a class="quicklink" href="/WJS-war/faces/documentList.xhtml">文件下载</a><span class="quicklink">|</span><a class="quicklink" href="/">首页</a><span class="quicklink">当前位置：</span>
+                            </div>
+                        </div>
+                        <p:outputPanel id="panelDetail" styleClass="pageDetail box-shadow"> 
+                            <div style="text-align: center;padding-bottom: 20px;"><a class="pageTitle">#{documentQueryBean.currentEntity.title}</a></div>
+                            <div style="text-align: center;padding-bottom: 20px;"><a class="pageWriter">
+                                    发布日期：<h:outputText  value="#{documentQueryBean.currentEntity.credate}">
+                                        <f:convertDateTime pattern="yyyy/MM/dd" />
+                                    </h:outputText></a></div>
+                            <div class="pageContent">
+                                <p:media value="../resources/upload/#{documentQueryBean.currentEntity.relfile}" player="pdf" style="width: 100%;min-height: 620px;"/>
+                            </div>
+                        </p:outputPanel>
+                        <div class="footerTitle box-shadow">
+                            <div style="padding-left: 10px;padding-top: 10px;text-align: center;">
+
+                            </div>
+                        </div>
+                        <div  style="display: none;">
+                            <input id="detailContent" value=""/>
+                        </div>
+                    </h:form>
+                </f:view>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

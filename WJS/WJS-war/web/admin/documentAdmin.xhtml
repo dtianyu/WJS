@@ -19,7 +19,7 @@
                                      rowsPerPageTemplate="15,30,45"  lazy="false"  styleClass="tbllist" >
                             <f:facet name="header">
                                 <p:commandButton id="btnCreate" value="新增" actionListener="#{documentManagedBean.create()}" style="float: right" icon="ui-icon-plus"  
-                                                 oncomplete="newDialog.show();" update=":formNew:dlgNew"/>
+                                                 oncomplete="PF('newDialog').show();" update=":formNew:dlgNew"/>
                                 <h:outputLabel>文件下载</h:outputLabel>
                             </f:facet>
                             <p:column styleClass="w100">

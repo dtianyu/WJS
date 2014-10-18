@@ -61,7 +61,7 @@ public class NewsModel extends LazyDataModel<News> {
     }
 
     @Override
-    public List<News> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
+    public List<News> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
         switch (this.scope) {
             case Managed:
                 setDataList(sessionBean.findAll(first, pageSize));

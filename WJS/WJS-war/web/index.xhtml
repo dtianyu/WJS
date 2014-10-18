@@ -162,7 +162,9 @@
                                 <a class="more" href="/WJS-war/faces/documentList.xhtml?kind=3">More</a>
                             </div>
                             <p:dataList id="topContentList7" value="#{documentQueryBean.topPPTList}" var="item" itemType="disc">
-                                <a href="../resources/upload/#{item.relfile}">#{item.title}</a>                                       
+                                <h:link outcome="documentDetail" value="#{item.title}">
+                                    <f:param name="id" value="#{item.id}"></f:param>
+                                </h:link>                                      
                             </p:dataList>
                         </div>
                         <div class="contentList">

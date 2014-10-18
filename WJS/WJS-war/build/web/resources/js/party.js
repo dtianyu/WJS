@@ -7,7 +7,21 @@
 $(function() {
 
     $("#topInfo").addClass("nodisplay");
+    
+    $("#searchLink").click(function () {
+        var search = $("#searchContent").val();
+        if (search === null || search.length === 0) {
+            alert("请输入搜索条件");
+            return false;
+        }
+        else {
+            baiduSearch(search);
+            //GooleSearch
+            //$(this).prop("href", "/WJS-war/faces/search.xhtml?q=" + search);
 
+        }
+    });
+    
     $("#toDoPrevImg").click(function() {
         $("#toDoList ul").append($("#toDoList ul li:first"));
     });
@@ -83,7 +97,10 @@ $(function() {
 
 });
 
-
+function baiduSearch(word) {
+    var link = "http://www.baidu.com/s?si=www.jswjs.com.cn&cl=3&ct=2097152&tn=baidulocal&word=" + word;
+    window.open(link);
+}
 
 function publish(t) {
 

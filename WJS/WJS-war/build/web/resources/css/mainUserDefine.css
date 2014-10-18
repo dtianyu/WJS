@@ -748,3 +748,19 @@ div.title a.unselected{
     background :url("../img/background.png");
     background-position: 0px -110px;
 }
+
+a.shutdown{
+    width: 22px;
+    height: 24px;
+    float: right; 
+    background :url("../img/sprites.png");
+    background-position: -107px -25px;
+}
+
+a.shutdown:hover{
+    width: 22px;
+    height: 24px;
+    float: right; 
+    background :url("../img/sprites.png");
+    background-position: -107px 0px;
+}

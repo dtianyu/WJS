@@ -4,24 +4,27 @@
  * and open the template in the editor.
  */
 
-$(function() {
+$(function () {
 
-    $("#searchLink").click(function() {
+    $("#searchLink").click(function () {
         var search = $("#searchContent").val();
         if (search === null || search.length === 0) {
             alert("请输入搜索条件");
             return false;
         }
         else {
-            $(this).prop("href", "/WJS-war/faces/search.xhtml?q=" + search);
+            baiduSearch(search);
+            //GooleSearch
+            //$(this).prop("href", "/WJS-war/faces/search.xhtml?q=" + search);
+
         }
     });
 
-    $("#toDoPrevImg").click(function() {
+    $("#toDoPrevImg").click(function () {
         $("#toDoList ul").append($("#toDoList ul li:first"));
     });
 
-    $("#toDoNextImg").click(function() {
+    $("#toDoNextImg").click(function () {
         $("#toDoList ul li:last").insertBefore($("#toDoList ul li:first"));
     });
 
@@ -42,55 +45,55 @@ $(function() {
     $(document.getElementById("formContentList:topContentList7_content")).addClass("topListContentNoRightBorder");
 
 
-    $("#topNavMenu li.menu").hover(function() {
+    $("#topNavMenu li.menu").hover(function () {
         $(this).parent(0).find(".menu div").removeClass("menuDropdownShow").addClass("menuDropdownHide");
         $(this).find("div").removeClass("menuDropdownHide").addClass("menuDropdownShow");
-        $(this).find("div").mouseleave(function() {
+        $(this).find("div").mouseleave(function () {
             $(this).removeClass("menuDropdownShow");
             $(this).addClass("menuDropdownHide");
         });
-    }, function() {
+    }, function () {
 
     });
 
-    $("#inspectionLink").hover(function() {
+    $("#inspectionLink").hover(function () {
         $("#punishmentLink").removeClass("selected").addClass("unselected");
         $("#inspectionLink").removeClass("unselected").addClass("selected");
         $(document.getElementById("formContent:topPunishmentList")).addClass("nodisplay");
         $(document.getElementById("formContent:topInspectionList")).removeClass("nodisplay");
-    }, function() {
+    }, function () {
 
     });
 
-    $("#punishmentLink").hover(function() {
+    $("#punishmentLink").hover(function () {
         $("#inspectionLink").removeClass("selected").addClass("unselected");
         $("#punishmentLink").removeClass("unselected").addClass("selected");
         $(document.getElementById("formContent:topInspectionList")).addClass("nodisplay");
         $(document.getElementById("formContent:topPunishmentList")).removeClass("nodisplay");
-    }, function() {
+    }, function () {
 
     });
 
-    $(".leftNavMenu li.inactive").hover(function() {
+    $(".leftNavMenu li.inactive").hover(function () {
         $(".leftNavMenu #active").removeClass("active").addClass("inactive");
         $(this).parent(0).find("li").removeClass("active").addClass("inactive");
         $(this).removeClass("inactive").addClass("active");
-    }, function() {
+    }, function () {
         $(this).removeClass("active").addClass("inactive");
         $(".leftNavMenu #active").removeClass("inactive").addClass("active");
     });
 
     //重新设定列表字符串长度，避免浏览器兼容问题引起的CSS失效
-    $(document.getElementById("formContent:topSupervisionList_list")).find("li.ui-datalist-item a").each(function() {
+    $(document.getElementById("formContent:topSupervisionList_list")).find("li.ui-datalist-item a").each(function () {
         if ($(this).html().length > 20) {
-            var html = $(this).html().substr(0, 20)+"...";
+            var html = $(this).html().substr(0, 20) + "...";
             $(this).html(html);
         }
-        
+
     });
 
     //底部链接样式切换
-    $("#bottomLinkTitle1").mouseover(function() {
+    $("#bottomLinkTitle1").mouseover(function () {
         $(this).parent(0).find("li").removeClass("selected").addClass("unselected");
         $(this).parent(0).find("li a").removeClass("selected").addClass("unselected");
         $(this).find("a").removeClass("unselected").addClass("selected");
@@ -101,7 +104,7 @@ $(function() {
     });
 
     //底部链接样式切换
-    $("#bottomLinkTitle2").mouseover(function() {
+    $("#bottomLinkTitle2").mouseover(function () {
         $(this).parent(0).find("li").removeClass("selected").addClass("unselected");
         $(this).parent(0).find("li a").removeClass("selected").addClass("unselected");
         $(this).find("a").removeClass("unselected").addClass("selected");
@@ -121,6 +124,11 @@ $(function() {
 
 });
 
+function baiduSearch(word) {
+    var link = "http://www.baidu.com/s?si=www.jswjs.com.cn&cl=3&ct=2097152&tn=baidulocal&word=" + word;
+    window.open(link);
+}
+
 function publish(t) {
 
     $(".publish ul").append($(".publish ul li:first"));
@@ -133,6 +141,3 @@ function submitComplaint() {
     $(".newComplaint").addClass("nodisplay");
     $("#afterSubmitComplaint").removeClass("nodisplay");
 }
-
-
-

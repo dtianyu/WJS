@@ -32,6 +32,7 @@ public class DocumentQueryBean {
     private DocKindBean docKindBean;
     private List<Document> entityList;
     private List<Document> topPPTList;
+    private Document currentEntity;
 
     /**
      * Creates a new instance of DocKindQueryBean
@@ -54,10 +55,14 @@ public class DocumentQueryBean {
 
     public void init() {
         String kind = "";
+        String id="";
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         Map map = ec.getRequestParameterMap();
         if (!map.isEmpty() && map.containsKey("kind")) {
             kind = map.get("kind").toString();
+        }
+        if (!map.isEmpty() && map.containsKey("id")) {
+            id = map.get("id").toString();
         }
         if (kind.equals("")) {
             kind = docKindBean.findAll(0, 1).get(0).getId().toString();
@@ -66,6 +71,13 @@ public class DocumentQueryBean {
             setEntityList(getDocumentBean().getByPId(kind));
         }
         setTopPPTList(getDocumentBean().getByPId("3").subList(0, 8));
+        if (!id.equals("")) {
+            setCurrentEntity(getDocumentBean().getById(id));
+        }
+        else{
+            setCurrentEntity(getEntityList().get(0));
+        }
+        
     }
 
     /**
@@ -122,6 +134,20 @@ public class DocumentQueryBean {
      */
     public void setTopPPTList(List<Document> topPPTList) {
         this.topPPTList = topPPTList;
+    }
+
+    /**
+     * @return the currentEntity
+     */
+    public Document getCurrentEntity() {
+        return currentEntity;
+    }
+
+    /**
+     * @param currentEntity the currentEntity to set
+     */
+    public void setCurrentEntity(Document currentEntity) {
+        this.currentEntity = currentEntity;
     }
 
 }

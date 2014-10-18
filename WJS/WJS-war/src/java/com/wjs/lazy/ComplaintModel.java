@@ -61,7 +61,7 @@ public class ComplaintModel extends LazyDataModel<Complaint> {
     }
 
     @Override
-    public List<Complaint> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
+    public List<Complaint> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
         switch (this.scope) {
             case Managed:
                 setDataList(sessionBean.findAll(first, pageSize));

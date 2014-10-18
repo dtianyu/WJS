@@ -51,7 +51,7 @@ public class LicenseModel extends LazyDataModel<License> {
     }
 
     @Override
-    public List<License> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
+    public List<License> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
         switch (this.scope) {
             case Managed:
                 setDataList(sessionBean.findAll(first, pageSize));

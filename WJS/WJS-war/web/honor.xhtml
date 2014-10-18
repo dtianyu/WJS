@@ -12,6 +12,7 @@
             <ui:define name="content">
                 <h:form id="formDetail">
                     <h:outputScript library="js" name="detailContent.js" target="head"></h:outputScript>
+                    <h:outputScript library="js" name="honor.js" target="head"></h:outputScript>
                     <div class="topTitle box-shadow">
                         <div style="padding-left: 10px;padding-top: 10px;">
                             <a class="ico"></a>
@@ -30,7 +31,16 @@
                     <div  style="display: none;">
                         <input id="detailContent" value="#{pageInfoQueryBean.currentPageInfo.content}"/>
                     </div>             
+                    <div id="showImg" class="nodisplay" style="z-index: 99; position: absolute;top: 280px;margin: auto;padding-left: 60px;padding-right: 60px;">
+                        <div style="background-color:#c2edff;height: 24px;">
+                            <a href="#" class="shutdown"></a>
+                        </div>
+                        <div>
+                            <img id="imgDetail" src="" style="width: 860px;height: 520px;">
 
+                            </img>
+                        </div>
+                    </div>
                 </h:form>  
             </ui:define>
 
