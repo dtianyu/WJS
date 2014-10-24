@@ -56,6 +56,20 @@ $(function () {
 
     });
 
+    $("#publicLink").hover(function () {
+        $("#licenseLink").removeClass("selected").addClass("unselected");
+        $("#publicLink").removeClass("unselected").addClass("selected");
+    }, function () {
+
+    });
+
+    $("#licenseLink").hover(function () {
+        $("#publicLink").removeClass("selected").addClass("unselected");
+        $("#licenseLink").removeClass("unselected").addClass("selected");
+    }, function () {
+
+    });
+
     $("#inspectionLink").hover(function () {
         $("#punishmentLink").removeClass("selected").addClass("unselected");
         $("#inspectionLink").removeClass("unselected").addClass("selected");
