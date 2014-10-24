@@ -1,12 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * To change this license header, choose Briefing Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package com.wjs.lazy;
 
-import com.wjs.ebj.LicenseBean;
-import com.wjs.entity.License;
+import com.wjs.ebj.BriefingBean;
+import com.wjs.entity.Briefing;
 import com.wjs.web.Scope;
 import java.util.List;
 import java.util.Map;
@@ -17,17 +17,17 @@ import org.primefaces.model.SortOrder;
  *
  * @author C0160
  */
-public class LicenseModel extends LazyDataModel<License> {
+public class BriefingModel extends LazyDataModel<Briefing> {
 
-    LicenseBean sessionBean;
-    private List<License> dataList;
+    BriefingBean sessionBean;
+    private List<Briefing> dataList;
     private Scope scope;
 
-    public LicenseModel() {
+    public BriefingModel() {
 
     }
 
-    public LicenseModel(LicenseBean sessionBean, Scope scope) {
+    public BriefingModel(BriefingBean sessionBean, Scope scope) {
         this.sessionBean = sessionBean;
         this.scope = scope;
     }
@@ -46,12 +46,12 @@ public class LicenseModel extends LazyDataModel<License> {
     }
 
     @Override
-    public Object getRowKey(License entity) {
+    public Object getRowKey(Briefing entity) {
         return entity.getId();
     }
 
     @Override
-    public List<License> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
+    public List<Briefing> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
         switch (this.scope) {
             case Managed:
                 setDataList(sessionBean.findAll(first, pageSize));
@@ -68,14 +68,14 @@ public class LicenseModel extends LazyDataModel<License> {
     /**
      * @return the dataList
      */
-    public List<License> getDataList() {
+    public List<Briefing> getDataList() {
         return dataList;
     }
 
     /**
      * @param dataList the dataList to set
      */
-    public void setDataList(List<License> dataList) {
+    public void setDataList(List<Briefing> dataList) {
         this.dataList = dataList;
     }
 

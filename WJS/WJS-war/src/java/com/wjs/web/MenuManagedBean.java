@@ -78,6 +78,10 @@ public class MenuManagedBean implements Serializable {
             item = new DefaultMenuItem("媒体报道维护");
             item.setUrl("mediaAdmin.xhtml");
             firstSubmenu.addElement(item);
+            
+            item = new DefaultMenuItem("简报文档维护");
+            item.setUrl("briefingAdmin.xhtml");
+            firstSubmenu.addElement(item);
 
             item = new DefaultMenuItem("文件下载类别");
             item.setUrl("docKindAdmin.xhtml");
@@ -148,7 +152,11 @@ public class MenuManagedBean implements Serializable {
             item = new DefaultMenuItem("媒体报道维护");
             item.setUrl("mediaAdmin.xhtml");
             firstSubmenu.addElement(item);
-
+                     
+            item = new DefaultMenuItem("简报文档维护");
+            item.setUrl("briefingAdmin.xhtml");
+            firstSubmenu.addElement(item);
+            
             item = new DefaultMenuItem("文件下载类别");
             item.setUrl("docKindAdmin.xhtml");
             firstSubmenu.addElement(item);

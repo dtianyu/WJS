@@ -61,7 +61,7 @@ public class KnowledgeModel extends LazyDataModel<Knowledge> {
     }
 
     @Override
-    public List<Knowledge> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+    public List<Knowledge> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, String> filters) {
         switch (this.scope) {
             case Managed:
                 setDataList(sessionBean.findAll(first, pageSize));

@@ -31,7 +31,6 @@ public class DocumentQueryBean {
     @EJB
     private DocKindBean docKindBean;
     private List<Document> entityList;
-    private List<Document> topPPTList;
     private Document currentEntity;
 
     /**
@@ -69,8 +68,7 @@ public class DocumentQueryBean {
         }
         if (kind != null) {
             setEntityList(getDocumentBean().getByPId(kind));
-        }
-        setTopPPTList(getDocumentBean().getByPId("3").subList(0, 8));
+        }        
         if (!id.equals("")) {
             setCurrentEntity(getDocumentBean().getById(id));
         }
@@ -120,20 +118,6 @@ public class DocumentQueryBean {
      */
     public void setDocKindBean(DocKindBean docKindBean) {
         this.docKindBean = docKindBean;
-    }
-
-    /**
-     * @return the topPPTList
-     */
-    public List<Document> getTopPPTList() {
-        return topPPTList;
-    }
-
-    /**
-     * @param topPPTList the topPPTList to set
-     */
-    public void setTopPPTList(List<Document> topPPTList) {
-        this.topPPTList = topPPTList;
     }
 
     /**

@@ -99,14 +99,14 @@
                     <div id="topPublic">
                         <div>
                             <div class="title" style="width: 365px;float:left;">
-                                <a class="selected">公示栏</a>
-                                <a class="unselected">行政许可</a>
-                                <h:link outcome="licenseList" value="More" styleClass="more" /> 
+                                <a id="publicLink" class="selected">公示栏</a>
+                                <a id="licenseLink" class="unselected">行政许可</a>
+                                <a class="more" href="/WJS-war/faces/licenseList.xhtml">More</a>
                             </div>
                             <div class="title" style="width: 365px;float: left;">
                                 <a id="inspectionLink" class="selected">监督抽检</a>
                                 <a id="punishmentLink" class="unselected">行政处罚</a>                     
-                                <h:link outcome="inspectionList" value="More" styleClass="more" /> 
+                                <a class="more" href="/WJS-war/faces/inspectionList.xhtml">More</a>    
                             </div>
                         </div>
                         <div style="clear:  both;">
@@ -159,10 +159,10 @@
                             <div class="topTitle">
                                 <img src='resources/img/ico7.jpg'/>
                                 <span class="span1">简报</span><span class="span2">文档 / </span><span class="span3">Briefing</span>
-                                <a class="more" href="/WJS-war/faces/documentList.xhtml?kind=3">More</a>
+                                <a class="more" href="/WJS-war/faces/briefingList.xhtml">More</a>
                             </div>
-                            <p:dataList id="topContentList7" value="#{documentQueryBean.topPPTList}" var="item" itemType="disc">
-                                <h:link outcome="documentDetail" value="#{item.title}">
+                            <p:dataList id="topContentList7" value="#{briefingQueryBean.topList}" var="item" itemType="disc">
+                                <h:link outcome="briefingDetail" value="#{item.title}">
                                     <f:param name="id" value="#{item.id}"></f:param>
                                 </h:link>                                      
                             </p:dataList>

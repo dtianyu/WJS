@@ -14,6 +14,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
@@ -55,6 +56,8 @@ public class FileUploadBean {
     private void save() {
         try {
             InputStream in = file.getInputstream();
+            HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+            request.setCharacterEncoding("UTF-8");
             OutputStream out = new FileOutputStream(new File(getDestination() + "\\" + file.getFileName()));
             int read = 0;;
             byte[] bytes = new byte[1024];
