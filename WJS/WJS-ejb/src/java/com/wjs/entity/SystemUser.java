@@ -35,8 +35,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "SystemUser.findAll", query = "SELECT s FROM SystemUser s "),
     @NamedQuery(name = "SystemUser.findById", query = "SELECT s FROM SystemUser s WHERE s.userid = :userid"),
     @NamedQuery(name = "SystemUser.findRowCount", query = "SELECT count(s) FROM SystemUser s "),
-    @NamedQuery(name = "SystemUser.findByIdAndPwd", query = "SELECT s FROM SystemUser s WHERE s.userid = :userid AND s.password = :pwd " )})
+    @NamedQuery(name = "SystemUser.findByIdAndPwd", query = "SELECT s FROM SystemUser s WHERE s.userid = :userid AND s.password = :pwd ")})
 public class SystemUser implements Serializable {
+
     @Column(name = "superuser")
     private Boolean superuser;
     @Size(max = 2)
@@ -152,7 +153,14 @@ public class SystemUser implements Serializable {
 
     @Override
     public String toString() {
-        return "com.wjs.entity.SystemUser[ userid=" + userid + " ]";
+        StringBuilder sb = new StringBuilder();
+        sb.append("<userid>");
+        sb.append(userid);
+        sb.append("</userid>");
+        sb.append("<username>");
+        sb.append(username);
+        sb.append("</username>");
+        return sb.toString();
     }
 
     public Boolean getSuperuser() {
