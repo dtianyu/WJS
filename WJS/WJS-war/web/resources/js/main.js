@@ -129,8 +129,8 @@ $(function () {
 
     publish(3000);
 
-    //文件下载左侧菜单动态样式
-    var doc = $(document.getElementById("formLeft:docKindList_content"));
+    //左侧菜单动态样式
+    var doc = $(document.getElementById("formLeft:kindList_content"));
     doc.removeClass("ui-widget-content");
     doc.find("ul").removeClass("ui-datalist-data").addClass("leftNavMenu");
     doc.find("ul li").removeClass("ui-datalist-item").addClass("inactive");

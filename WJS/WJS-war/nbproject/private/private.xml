@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/kevintung/GitHub/WJS/WJS/WJS-war/web/WEB-INF/web.xml</file>
+            <file>file:/Users/kevintung/GitHub/WJS/WJS/WJS-war/src/java/com/wjs/query/GuideQueryBean.java</file>
+            <file>file:/Users/kevintung/GitHub/WJS/WJS/WJS-war/web/guideList.xhtml</file>
+            <file>file:/Users/kevintung/GitHub/WJS/WJS/WJS-war/web/documentList.xhtml</file>
+            <file>file:/Users/kevintung/GitHub/WJS/WJS/WJS-war/web/guideDetail.xhtml</file>
+            <file>file:/Users/kevintung/GitHub/WJS/WJS/WJS-war/web/template/adminLeftMenu.xhtml</file>
         </group>
     </open-files>
 </project-private>

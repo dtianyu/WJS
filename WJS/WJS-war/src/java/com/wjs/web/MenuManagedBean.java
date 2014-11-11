@@ -78,7 +78,7 @@ public class MenuManagedBean implements Serializable {
             item = new DefaultMenuItem("媒体报道维护");
             item.setUrl("mediaAdmin.xhtml");
             firstSubmenu.addElement(item);
-            
+
             item = new DefaultMenuItem("简报文档维护");
             item.setUrl("briefingAdmin.xhtml");
             firstSubmenu.addElement(item);
@@ -89,6 +89,14 @@ public class MenuManagedBean implements Serializable {
 
             item = new DefaultMenuItem("文件下载维护");
             item.setUrl("documentAdmin.xhtml");
+            firstSubmenu.addElement(item);
+
+            item = new DefaultMenuItem("办事指南类别");
+            item.setUrl("guideKindAdmin.xhtml");
+            firstSubmenu.addElement(item);
+
+            item = new DefaultMenuItem("办事指南维护");
+            item.setUrl("guideAdmin.xhtml");
             firstSubmenu.addElement(item);
 
             item = new DefaultMenuItem("投诉举报受理");
@@ -152,11 +160,11 @@ public class MenuManagedBean implements Serializable {
             item = new DefaultMenuItem("媒体报道维护");
             item.setUrl("mediaAdmin.xhtml");
             firstSubmenu.addElement(item);
-                     
+
             item = new DefaultMenuItem("简报文档维护");
             item.setUrl("briefingAdmin.xhtml");
             firstSubmenu.addElement(item);
-            
+
             item = new DefaultMenuItem("文件下载类别");
             item.setUrl("docKindAdmin.xhtml");
             firstSubmenu.addElement(item);

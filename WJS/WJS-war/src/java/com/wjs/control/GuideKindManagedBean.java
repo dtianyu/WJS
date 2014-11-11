@@ -5,8 +5,8 @@
  */
 package com.wjs.control;
 
-import com.wjs.ebj.DocumentBean;
-import com.wjs.entity.Document;
+import com.wjs.ebj.GuideKindBean;
+import com.wjs.entity.GuideKind;
 import com.wjs.web.SuperManagedBean;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -17,40 +17,45 @@ import javax.faces.bean.SessionScoped;
  *
  * @author kevintung
  */
-@ManagedBean(name = "documentManagedBean")
+@ManagedBean(name = "guideKindManagedBean")
 @SessionScoped
-public class DocumentManagedBean extends SuperManagedBean<Document> {
+public class GuideKindManagedBean extends SuperManagedBean<GuideKind> {
 
     @EJB
-    private DocumentBean documentBean;
+    private GuideKindBean guideKindBean;
     @ManagedProperty(value = "#{userManagedBean}")
     private UserManagedBean userManagedBean;
 
     /**
-     * Creates a new instance of DocumentManagedBean
+     * Creates a new instance of GuideKindManagedBean
      */
-    public DocumentManagedBean() {
+    public GuideKindManagedBean() {
     }
-    
+
     @Override
-    public void init(){
-        setSessionBean(documentBean);
+    public void init() {
+        setSessionBean(guideKindBean);
         super.init();
     }
 
     @Override
     public void create() {
-         if (getNewEntity() == null) {
-            Document entity = new Document();
-            entity.setOntop(true);
+        if (getNewEntity() == null) {
+            GuideKind entity = new GuideKind();
+            entity.setOntop(false);
             entity.setStatus("N");
-            entity.setHits(0);
             entity.setCreator(getUserManagedBean().getCurrentUser().getUserid());
             entity.setCredate(getUserManagedBean().getDate());
             setNewEntity(entity);
         }
     }
-
+    
+    @Override
+    public void persist() {
+        super.persist();
+        init();
+    }
+    
     @Override
     public void verify() {
         if (getCurrentEntity() != null) {
@@ -74,17 +79,17 @@ public class DocumentManagedBean extends SuperManagedBean<Document> {
     }
 
     /**
-     * @return the documentBean
+     * @return the guideKindBean
      */
-    public DocumentBean getDocumentBean() {
-        return documentBean;
+    public GuideKindBean getGuideKindBean() {
+        return guideKindBean;
     }
 
     /**
-     * @param documentBean the documentBean to set
+     * @param docKindBean the guideKindBean to set
      */
-    public void setDocumentBean(DocumentBean documentBean) {
-        this.documentBean = documentBean;
+    public void setGuideKindBean(GuideKindBean docKindBean) {
+        this.guideKindBean = docKindBean;
     }
 
     /**
@@ -102,7 +107,7 @@ public class DocumentManagedBean extends SuperManagedBean<Document> {
     }
 
     @Override
-    public String viewDetail(Document entity) {
+    public String viewDetail(GuideKind entity) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

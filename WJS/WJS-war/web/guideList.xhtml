@@ -14,10 +14,10 @@
                 <h:form id="formLeft">
                     <div id="leftMenuBar">
                         <div class="title">
-                            <a class="selected" style="height: 32px;padding:12px 83px 0px;">文档下载</a>
+                            <a class="selected" style="height: 32px;padding:12px 83px 0px;">办事指南</a>
                         </div>
-                        <p:dataList id="kindList" value="#{docKindQueryBean.entityList}" var="item">
-                            <h:link outcome="documentList" value="#{item.kind}">
+                        <p:dataList id="kindList" value="#{guideKindQueryBean.entityList}" var="item">
+                            <h:link outcome="guideList" value="#{item.kind}">
                                 <f:param name="kind" value="#{item.id}"></f:param>
                             </h:link> 
                         </p:dataList> 
@@ -32,19 +32,20 @@
                         <div class="topTitle box-shadow">
                             <div style="padding-left: 10px;padding-top: 10px;">
                                 <a class="ico"></a>
-                                <a class="topTitleText">文件下载</a>
-                                <span class="quicklink">文件下载</span><span class="quicklink">|</span><a class="quicklink" href="/">首页</a><span class="quicklink">当前位置：</span>
+                                <a class="topTitleText">办事指南-#{guideQueryBean.entityList.get(0).kind.kind}</a>
+                                <span class="quicklink">办事指南</span><span class="quicklink">|</span><a class="quicklink" href="/">首页</a><span class="quicklink">当前位置：</span>
                             </div>
                         </div>
-                        <p:dataList id="documentList" value="#{documentQueryBean.entityList}" var="item" itemType="none" paginator="true"  paginatorPosition="bottom" rows="30"  
+                        <p:dataList id="guideList" value="#{guideQueryBean.entityList}" var="item" itemType="none" paginator="true"  paginatorPosition="bottom" rows="30"  
                                     paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
                                     rowsPerPageTemplate="30,60,90"  lazy="false" styleClass="panellist box-shadow">
                             <span class="ui-icon ui-icon-triangle-1-e" style="float:left;"></span>
+                            <h:link outcome="guideDetail" value="#{item.title}" style="float: left;">
+                                <f:param name="id" value="#{item.id}"/>
+                            </h:link>                            
                             <h:outputText value="#{item.credate}" style="float: right;padding-right:5px;">
                                 <f:convertDateTime pattern="yy/MM/dd" />
                             </h:outputText>   
-                            <a href="../resources/upload/#{item.relfile}">#{item.title}</a>
-
                         </p:dataList>   
                     </h:form>
                 </f:view>

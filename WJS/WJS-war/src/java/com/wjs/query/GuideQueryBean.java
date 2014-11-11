@@ -5,9 +5,9 @@
  */
 package com.wjs.query;
 
-import com.wjs.ebj.DocKindBean;
-import com.wjs.ebj.DocumentBean;
-import com.wjs.entity.Document;
+import com.wjs.ebj.GuideBean;
+import com.wjs.ebj.GuideKindBean;
+import com.wjs.entity.Guide;
 import java.util.List;
 import java.util.Map;
 import javax.annotation.PostConstruct;
@@ -22,21 +22,22 @@ import javax.faces.context.FacesContext;
  *
  * @author kevintung
  */
-@ManagedBean(name = "documentQueryBean")
+@ManagedBean(name = "guideQueryBean")
 @RequestScoped
-public class DocumentQueryBean {
+public class GuideQueryBean {
 
     @EJB
-    private DocumentBean documentBean;
+    private GuideKindBean guideKindBean;
     @EJB
-    private DocKindBean docKindBean;
-    private List<Document> entityList;
-    private Document currentEntity;
+    private GuideBean guideBean;
+
+    private List<Guide> entityList;
+    private Guide currentEntity;
 
     /**
-     * Creates a new instance of DocumentQueryBean
+     * Creates a new instance of GuideQueryBean
      */
-    public DocumentQueryBean() {
+    public GuideQueryBean() {
     }
 
     @PostConstruct
@@ -54,7 +55,7 @@ public class DocumentQueryBean {
 
     public void init() {
         String kind = "";
-        String id="";
+        String id = "";
         ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         Map map = ec.getRequestParameterMap();
         if (!map.isEmpty() && map.containsKey("kind")) {
@@ -64,74 +65,72 @@ public class DocumentQueryBean {
             id = map.get("id").toString();
         }
         if (kind.equals("")) {
-            kind = docKindBean.findAll(0, 0).get(0).getId().toString();
+            kind = guideKindBean.findAll(0, 0).get(0).getId().toString();
         }
         if (kind != null) {
-            setEntityList(getDocumentBean().getByPId(kind));
-        }        
-        if (!id.equals("")) {
-            setCurrentEntity(getDocumentBean().getById(id));
+            setEntityList(guideBean.getByPId(kind));
         }
-        else{
+        if (!id.equals("")) {
+            setCurrentEntity(guideBean.getById(id));
+        } else {
             setCurrentEntity(getEntityList().get(0));
         }
-        
-    }
-
-    /**
-     * @return the documentBean
-     */
-    public DocumentBean getDocumentBean() {
-        return documentBean;
-    }
-
-    /**
-     * @param documentBean the documentBean to set
-     */
-    public void setDocumentBean(DocumentBean documentBean) {
-        this.documentBean = documentBean;
     }
 
     /**
      * @return the entityList
      */
-    public List<Document> getEntityList() {
+    public List<Guide> getEntityList() {
         return entityList;
     }
 
     /**
      * @param entityList the entityList to set
      */
-    public void setEntityList(List<Document> entityList) {
+    public void setEntityList(List<Guide> entityList) {
         this.entityList = entityList;
     }
 
     /**
      * @return the docKindBean
      */
-    public DocKindBean getDocKindBean() {
-        return docKindBean;
+    public GuideKindBean getGuideKindBean() {
+        return guideKindBean;
     }
 
     /**
-     * @param docKindBean the docKindBean to set
+     * @param guideKindBean the guideKindBean to set
      */
-    public void setDocKindBean(DocKindBean docKindBean) {
-        this.docKindBean = docKindBean;
+    public void setGuideKindBean(GuideKindBean guideKindBean) {
+        this.guideKindBean = guideKindBean;
     }
 
     /**
      * @return the currentEntity
      */
-    public Document getCurrentEntity() {
+    public Guide getCurrentEntity() {
         return currentEntity;
     }
 
     /**
      * @param currentEntity the currentEntity to set
      */
-    public void setCurrentEntity(Document currentEntity) {
+    public void setCurrentEntity(Guide currentEntity) {
         this.currentEntity = currentEntity;
+    }
+
+    /**
+     * @return the guideBean
+     */
+    public GuideBean getGuideBean() {
+        return guideBean;
+    }
+
+    /**
+     * @param guideBean the guideBean to set
+     */
+    public void setGuideBean(GuideBean guideBean) {
+        this.guideBean = guideBean;
     }
 
 }
