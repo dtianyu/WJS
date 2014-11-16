@@ -12,6 +12,7 @@
 
             <ui:define name="left">  
                 <h:form id="formLeft">
+                    <h:outputScript library="js" name="kind.js" target="head"></h:outputScript>
                     <div id="leftMenuBar">
                         <div class="title">
                             <a class="selected" style="height: 32px;padding:12px 83px 0px;">文档下载</a>
@@ -32,7 +33,7 @@
                         <div class="topTitle box-shadow">
                             <div style="padding-left: 10px;padding-top: 10px;">
                                 <a class="ico"></a>
-                                <a class="topTitleText">文件下载</a>
+                                <a class="topTitleText">文件下载-#{documentQueryBean.entityList.get(0).kind.kind}</a>
                                 <span class="quicklink">文件下载</span><span class="quicklink">|</span><a class="quicklink" href="/">首页</a><span class="quicklink">当前位置：</span>
                             </div>
                         </div>

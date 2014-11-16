@@ -2,3 +2,5 @@
 .jar
 .png
 .jpeg
+/WJS/build/
+/WJS/dist/

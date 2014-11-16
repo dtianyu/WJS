@@ -13,10 +13,10 @@ $(function () {
             return false;
         }
         else {
+            //BaiduSearch
             baiduSearch(search);
             //GooleSearch
             //$(this).prop("href", "/WJS-war/faces/search.xhtml?q=" + search);
-
         }
     });
 
@@ -88,15 +88,6 @@ $(function () {
 
     });
 
-    $(".leftNavMenu li.inactive").hover(function () {
-        $(".leftNavMenu #active").removeClass("active").addClass("inactive");
-        $(this).parent(0).find("li").removeClass("active").addClass("inactive");
-        $(this).removeClass("inactive").addClass("active");
-    }, function () {
-        $(this).removeClass("active").addClass("inactive");
-        $(".leftNavMenu #active").removeClass("inactive").addClass("active");
-    });
-
     //重新设定列表字符串长度，避免浏览器兼容问题引起的CSS失效
     $(document.getElementById("formContent:topSupervisionList_list")).find("li.ui-datalist-item a").each(function () {
         if ($(this).html().length > 20) {
@@ -128,13 +119,6 @@ $(function () {
     });
 
     publish(3000);
-
-    //左侧菜单动态样式
-    var doc = $(document.getElementById("formLeft:kindList_content"));
-    doc.removeClass("ui-widget-content");
-    doc.find("ul").removeClass("ui-datalist-data").addClass("leftNavMenu");
-    doc.find("ul li").removeClass("ui-datalist-item").addClass("inactive");
-    doc.find("ul li:first").removeClass("inactive").addClass("active");
 
 });
 
