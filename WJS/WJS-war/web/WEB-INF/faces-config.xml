@@ -47,6 +47,11 @@
             <redirect/>
         </navigation-case>
         <navigation-case>
+            <from-outcome>honorAdmin</from-outcome>
+            <to-view-id>/admin/honorAdmin.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>  
+        <navigation-case>
             <from-outcome>inspectionAdmin</from-outcome>
             <to-view-id>/admin/inspectionAdmin.xhtml</to-view-id>
             <redirect/>

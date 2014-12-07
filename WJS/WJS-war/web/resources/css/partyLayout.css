@@ -17,13 +17,13 @@ html,body{
 #center{
     width: 980px;
     margin: auto;
-    padding-bottom: 90px;
+    padding-bottom: 110px;
 }
 
 #bottom {
     position: relative;
-    margin-top: -80px;
-    height: 80px; 
+    margin-top: -100px;
+    height: 100px; 
     background: url("./../img/party/bottombg.jpg")  repeat-x;
     background-size: 100% 100%; 
     color: white;

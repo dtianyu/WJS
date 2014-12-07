@@ -103,6 +103,10 @@ public class MenuManagedBean implements Serializable {
             item.setUrl("complaintAdmin.xhtml");
             firstSubmenu.addElement(item);
 
+            item = new DefaultMenuItem("荣誉证书维护");
+            item.setUrl("honorAdmin.xhtml");
+            firstSubmenu.addElement(item);
+
             item = new DefaultMenuItem("其他页面维护");
             item.setUrl("pageAdmin.xhtml");
             firstSubmenu.addElement(item);
@@ -152,6 +156,10 @@ public class MenuManagedBean implements Serializable {
             item = new DefaultMenuItem("监督快讯维护");
             item.setUrl("newsAdmin.xhtml");
             firstSubmenu.addElement(item);
+            
+            item = new DefaultMenuItem("通知公告维护");
+            item.setUrl("noticeAdmin.xhtml");
+            firstSubmenu.addElement(item);
 
             item = new DefaultMenuItem("健康知识维护");
             item.setUrl("knowledgeAdmin.xhtml");
@@ -175,6 +183,10 @@ public class MenuManagedBean implements Serializable {
 
             item = new DefaultMenuItem("投诉举报受理");
             item.setUrl("complaintAdmin.xhtml");
+            firstSubmenu.addElement(item);
+
+            item = new DefaultMenuItem("荣誉证书维护");
+            item.setUrl("honorAdmin.xhtml");
             firstSubmenu.addElement(item);
 
             item = new DefaultMenuItem("其他页面维护");

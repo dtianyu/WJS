@@ -6,13 +6,16 @@
 
 
 $(function () {
-    $('div img').click(function () {
+    $('.honorList img').click(function () {
         showImg($(this).attr('src'));
     });
-    $('a.shutdown').click(function () {
+    $('#showImg img').click(function () {
         $('#showImg').addClass('nodisplay');
     }
-    );
+    ).hover(function () {
+    }, function () {
+        $('#showImg').addClass('nodisplay');
+    });
 })
 
 function showImg(src) {

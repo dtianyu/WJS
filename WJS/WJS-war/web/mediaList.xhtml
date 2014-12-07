@@ -12,11 +12,12 @@
 
             <ui:define name="left">  
                 <h:form id="formLeft">
+                    <h:outputScript library="js" name="kind.js" target="head"></h:outputScript>
                     <div id="leftMenuBar">
                         <div class="title">
                             <a class="selected" style="height: 32px;padding:12px 83px 0px;">文档下载</a>
                         </div>
-                        <p:dataList id="docKindList" value="#{docKindQueryBean.entityList}" var="item">
+                        <p:dataList id="kindList" value="#{docKindQueryBean.entityList}" var="item">
                             <h:link outcome="documentList" value="#{item.kind}">
                                 <f:param name="kind" value="#{item.id}"></f:param>
                             </h:link> 

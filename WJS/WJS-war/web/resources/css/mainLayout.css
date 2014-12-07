@@ -17,15 +17,15 @@ html,body{
 #center{
     width: 980px;
     margin: auto;
-    padding-bottom: 90px;
+    padding-bottom: 110px;
 }
 
 #bottom {
     position: relative;
-    margin-top: -80px;
-    height: 80px; 
-    background: url("../img/bottombg.gif")  repeat-x;
-    background-size: 100% 100%; 
+    margin-top: -100px;
+    height: 100px; 
+    background-color: #f5f5f5;   
+    border-top:  #0288AB solid 5px;
     color: white;
     text-align: center;
     clear: both ;  

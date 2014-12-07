@@ -14,7 +14,7 @@ $(function () {
         }
         else {
             //BaiduSearch
-            baiduSearch(search);
+            $(this).prop("href", "http://zhannei.baidu.com/cse/search?s=802091570132742987&entry=1&q=" + search);
             //GooleSearch
             //$(this).prop("href", "/WJS-war/faces/search.xhtml?q=" + search);
         }
@@ -120,12 +120,30 @@ $(function () {
 
     publish(3000);
 
-});
+    $("#add1").hover(function () {
+        showMap($(this).attr("id"));
+    });
 
-function baiduSearch(word) {
-    var link = "http://www.baidu.com/s?si=www.jswjs.com.cn&cl=3&ct=2097152&tn=baidulocal&word=" + word;
-    window.open(link);
-}
+    $("#add2").hover(function () {
+        showMap($(this).attr("id"));
+    });
+
+    $("#add3").hover(function () {
+        showMap($(this).attr("id"));
+    });
+
+    $("#add4").hover(function () {
+        showMap($(this).attr("id"));
+    });
+    
+    $("#addmap img").click(function () {
+        $("#addmap").removeClass("display").addClass("nodisplay");
+    }).hover(function () {
+    }, function () {
+        $("#addmap").removeClass("display").addClass("nodisplay");
+    });
+
+});
 
 function publish(t) {
 
@@ -139,3 +157,10 @@ function submitComplaint() {
     $(".newComplaint").addClass("nodisplay");
     $("#afterSubmitComplaint").removeClass("nodisplay");
 }
+
+function showMap(address) {
+    //alert(address);
+    $("#addmap").removeClass("nodisplay").addClass("display");
+    $("#addmap img").attr("src", "resources/img/" + address + ".png");
+}
+

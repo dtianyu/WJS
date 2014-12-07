@@ -78,8 +78,8 @@
                     </div>
                     <div id="toDoNavigator" Class="toDoNavigator box-shadow">
                         <div id="toDoNavigatorTitle" class="toDoNavigatorTitle">
-                            <h1><img style="padding-top: 5px;" width="14" height="14" alt="" src="./resources/img/ico0.jpg"></img>
-                                <a  class="topTitleText">网上办事/Service</a></h1>
+                            <h1><!--<img style="padding-top: 5px;" width="14" height="14" alt="" src="./resources/img/ico0.jpg"></img>-->
+                                <a style="color: white;line-height:2em;">网上办事/Service</a></h1>
                         </div>  
                         <div id="toDoPrevImg"/>
                         <div id="toDoNextImg"/>        
@@ -139,9 +139,14 @@
                                 <span class="span1">荣誉</span><span class="span2">证书 / </span><span class="span3">Honor</span>
                                 <a class="more" href="/WJS-war/faces/honor.xhtml">More</a>                
                             </div>
-                            <div class="ui-widget-content topListContentNoRightBorder">
-                                <div><img src="resources/upload/honor1.jpg" style="margin: 2px;height:102px ;width: 209px;padding-left: 15px;"/></div>
-                                <div><img src="resources/upload/honor2.jpg" style="margin: 2px;height:102px ;width: 209px;padding-left: 15px;"/></div>                                         
+                            <div class="ui-widget-content topListContentNoRightBorder" style="position: relative;overflow: hidden;">
+                                <marquee id="scrollArea" height="235" width="235" loop="-1" scrollamount="1" scrolldelay="50" direction="up" onMouseOver="scrollArea.stop()" onMouseOut="scrollArea.start()" >
+                                    <ul style="padding: 0px" class="topHonorList">
+                                        <ui:repeat value="#{honorQueryBean.topList}" var="item" class="topHonorList">
+                                            <li><img src="resources/upload/#{item.uploadfile}"></img></li>
+                                        </ui:repeat>
+                                    </ul>
+                                </marquee>
                             </div>
                         </div>
                         <div class="contentList">
@@ -152,7 +157,7 @@
                             </div>                                                        
                             <p:dataList id="topContentList6" value="#{mediaQueryBean.topList}" var="item">
                                 <a href="../resources/upload/#{item.uploadfile}" class="download"/>
-                                <h:link value="#{item.title}"/>    
+                                <a href="../resources/upload/#{item.uploadfile}">#{item.title}</a>    
                             </p:dataList>
                         </div>
                         <div class="contentList">
@@ -173,17 +178,24 @@
                                 <span class="span1">联系</span><span class="span2">我们 / </span><span class="span3">Contact</span>
                             </div>
                             <div class="ui-widget-content topListContent">
-                                <p style="padding: 15px;">
-                                    <b>地 址：</b>金山区朱泾镇人民路95号 <br></br><br></br>
-                                    <b>邮 编：</b>201599 <br></br><br></br>
-                                    <b>投诉举报电话：</b>962223 <br></br><br></br>
-                                    <b>电子信箱：</b>shjswjs@163.com<br></br><br></br>
-                                    <b>窗口地址：</b>龙山路555号<br></br>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;金山区行政服务中心一楼B
+                                <p style="padding: 5px 0px 0px 10px;">
+                                    <span id="add1"><b>地址：</b>金山区朱泾镇人民路95号<br/></span>
+                                    <b>邮编：</b>201599&nbsp;&nbsp;<br/>
+                                    <b>电子信箱：</b>shjswjs@163.com<br/>
+                                    <b>投诉举报电话：</b>962223 <br/>
+                                    <b>窗口地址：</b>龙山路555号&nbsp;金山区行政服务中心一楼B<br/><br/>
+                                    <span id="add2"><b>石化街道分所：</b>金零路78号<br/></span>
+                                    <b>电话：</b>37213301<br/><br/>
+                                    <span id="add3"><b>工业区分所：</b>亭卫公路6668号<br/></span>
+                                    <b>电话：</b>57270310<br/>               
                                 </p>
                             </div>
+                            <div id="addmap" class="nodisplay">
+                                <img src=""/>
+                            </div> 
                         </div>
                     </div>
+
                 </h:form>
                 <div style="margin-top: 10px;font-size: 12pt;text-align: center ">
                     <div id="bottomLink" class="ui-widget-content">
@@ -205,7 +217,7 @@
                             <li><a href="http://zhujing.jinshan.gov.cn/html/" target="_blank"><img src="./resources/img/linkjszj.png" alt=""/></a></li>
                         </ul>                
                     </div>
-                </div>   
+                </div>
             </ui:define>
         </ui:composition>
 

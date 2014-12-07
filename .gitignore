@@ -4,3 +4,7 @@
 .jpeg
 /WJS/build/
 /WJS/dist/
+/WJS/WJS-ejb/build/
+/WJS/WJS-ejb/dist/
+/WJS/WJS-war/build/
+/WJS/WJS-war/dist/

@@ -17,18 +17,11 @@ $(function () {
     $(".leftNavMenu li").hover(function () {
         $(".leftNavMenu li").removeClass("active").addClass("inactive");
         $(this).removeClass("inactive").addClass("active");
+    }, function () {
+        setLeftNavStyle();
     });
-    
-    var p = getUrlParam('kind');
-    if (p!==null){
-        $(".leftNavMenu li a").each(function(){
-            var href = $(this).attr('href');
-            if (href.slice(href.length - 1 ,href.lenght)===p){
-                $(this).parent(0).parent(0).find('li').removeClass("active").addClass("inactive");
-                $(this).parent(0).removeClass("inactive").addClass("active");
-            }
-        });        
-    }
+
+    setLeftNavStyle();
 });
 
 //获取Url参数值
@@ -39,4 +32,17 @@ function getUrlParam(name) {
         return unescape(para[2]);
     }
     return null; //返回参数值
+}
+
+function setLeftNavStyle() {
+    var p = getUrlParam('kind');
+    if (p !== null) {
+        $(".leftNavMenu li a").each(function () {
+            var href = $(this).attr('href');
+            if (href.slice(href.length - 1, href.lenght) === p) {
+                $(this).parent(0).parent(0).find('li').removeClass("active").addClass("inactive");
+                $(this).parent(0).removeClass("inactive").addClass("active");
+            }
+        });
+    }
 }
