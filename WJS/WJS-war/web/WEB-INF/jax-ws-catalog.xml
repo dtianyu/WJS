@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
-    <system systemId="http://localhost:8080/CalcWS/CalcWS?wsdl" uri="src/conf/xml-resources/web-service-references/CalcWS/wsdl/localhost_8080/CalcWS/CalcWS.wsdl"/>
-    <system systemId="http://localhost:8080/CalcWS/CalcWS?xsd=1" uri="src/conf/xml-resources/web-service-references/CalcWS/wsdl/localhost_8080/CalcWS/CalcWS.xsd_1.xsd"/>
-    <system systemId="http://localhost:8080/WSCalc/WSCalc?wsdl" uri="wsdl/localhost_8080/WSCalc/WSCalc.wsdl"/>
-    <system systemId="http://localhost:8080/WSCalc/WSCalc?xsd=1" uri="wsdl/localhost_8080/WSCalc/WSCalc.xsd_1.xsd"/>
-</catalog>
