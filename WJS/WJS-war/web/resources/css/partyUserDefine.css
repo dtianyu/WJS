@@ -112,7 +112,7 @@ button span{
 }
 
 .leftNavMenu li.inactive a{
-      display: inline-block;  
+    display: inline-block;  
     width: 200px;
     line-height: 2.6em;
     padding-left: 30px;
@@ -309,9 +309,8 @@ form .plgInputLong input{
 }
 
 .topTitle{
-    background-image: url('../img/party/titlebg.jpg');
-    background-repeat: repeat-x;
-    background-size: 100% 100%;
+    background-color: #feeddb;
+    border-top: 3px solid #d7201c ;
     height: 36px;
 
 }
@@ -352,9 +351,9 @@ form .plgInputLong input{
 }
 
 .footerTitle{
-    background-image: url('../img/party/titlebg.jpg');
-    background-repeat: repeat-x;
-    background-size: 100% 100%;height: 36px;
+   background-color: #feeddb;
+    border-bottom: 3px solid #d7201c ;
+    height: 36px;
 }
 
 .footerTitle a{
